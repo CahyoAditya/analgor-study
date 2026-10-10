@@ -1,10 +1,10 @@
 # Panduan Belajar Analisis Algoritme: Kuliah 1–7
 
-Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu berlatih menjelaskannya. Urutan bab mengikuti tujuh berkas kuliah dalam materi yang diberikan. Setiap bab memuat konsep, contoh kerja yang diturunkan langkah demi langkah, kesalahan yang sering terjadi, serta dua belas latihan bertingkat dengan jawaban atau petunjuk pemeriksaan.
+Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu berlatih menjelaskannya. Urutan bab mengikuti tujuh berkas kuliah dalam materi yang diberikan. **Bab 1 sudah ditulis ulang sebagai bacaan bertahap bergaya buku**: dimulai dari contoh konkret, menjelaskan setiap perubahan bentuk, dan diakhiri 16 latihan bertingkat beserta pembahasan. Bab 2–7 masih menggunakan versi ringkas sebelumnya dan akan ditulis ulang satu per satu.
 
 | Bab | Bacaan | Pertanyaan inti |
 | --- | --- | --- |
-| 1 | [Dasar matematika](bab-01-dasar-matematika.md) | Bagaimana membuktikan klaim dan menghitung banyak kemungkinan? |
+| 1 | [Matematika untuk analisis algoritme](bab-01-dasar-matematika.md) | Mengapa aljabar, bukti, induksi, dan penghitungan kemungkinan bekerja? |
 | 2 | [Pertumbuhan fungsi](bab-02-pertumbuhan-fungsi.md) | Apa arti biaya sebagai fungsi ukuran input? |
 | 3 | [Kasus analisis](bab-03-kasus-analisis.md) | Masukan mana yang menghasilkan best, average, dan worst case? |
 | 4 | [Algoritme iteratif](bab-04-algoritme-iteratif.md) | Berapa kali operasi dasar dalam perulangan dilakukan? |
@@ -14,7 +14,7 @@ Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu b
 
 ## Mulai dari sini jika rumus terasa melompat
 
-Buka satu bab saja, lalu cari bagian **Contoh perlahan** sebelum mencoba latihan. Pada setiap baris, tanyakan: apa yang dihitung, dari mana angka itu berasal, dan mengapa langkah berikutnya sah? Coba ulangi contoh dengan angka kecil tanpa melihat jawabannya. Jika tersendat, kembali ke langkah terakhir yang masih jelas; tidak perlu memaksa menghafal rumus.
+Mulai dari Bab 1. Bacalah ceritanya secara berurutan, lalu coba ulangi tiap contoh dengan angka kecil tanpa melihat penjelasannya. Pada setiap perubahan bentuk, tanyakan: apa yang dihitung, dari mana angka itu berasal, dan mengapa langkah berikutnya sah? Jika tersendat, kembali ke langkah terakhir yang masih jelas; tidak perlu memaksa menghafal rumus.
 
 Urutan belajar yang membantu: **Bab 1** untuk deret dan bukti → **Bab 2** untuk mengubah hitungan menjadi Θ → **Bab 3** untuk memahami asumsi peluang → **Bab 4** untuk jumlah operasi loop → **Bab 5** untuk pohon rekursi → **Bab 6–7** untuk menerapkan semuanya pada algoritme. Untuk waktu singkat, pahami satu contoh tuntas per bab sebelum berpindah.
 
@@ -31,7 +31,7 @@ Jika waktu terbatas, dahulukan Bab 1 bagian induksi dan jumlah deret; Bab 2 defi
 
 - Ukuran input ditulis *n*; untuk matriks digunakan *m × n*. Basis logaritma 2 kecuali disebut lain. Mengganti basis logaritma mengubah faktor konstan, bukan kelas Θ.
 - *T(n)* berarti banyak operasi dasar dalam model biaya yang dinyatakan. Big-O adalah batas atas, Ω batas bawah, Θ batas ketat. Untuk menyebut kelas yang paling informatif, panduan ini biasanya memakai Θ.
-- Potongan algoritme ditulis sebagai daftar langkah atau baris berindentasi, agar nyaman dibaca di ponsel. Indeks larik dimulai dari 0 kecuali soal sumber memakai indeks 1.
+- Potongan algoritme ditulis sebagai daftar langkah atau baris berindentasi, agar nyaman dibaca di ponsel. Indeks array dimulai dari 0 kecuali soal sumber memakai indeks 1.
 - Soal berlabel **Adaptasi responsi** atau **Adaptasi UTS** disusun ulang dari tema atau angka sumber; bukan salinan ujian resmi atau jaminan akan keluar lagi.
 - Beberapa bagian PDF berupa gambar tanpa lapisan teks. Panduan ini memakai bagian yang terbaca dan pengetahuan matematika yang diperiksa kembali; rujuk PDF asli ketika diagram atau potongan program tertentu diperlukan.
 
