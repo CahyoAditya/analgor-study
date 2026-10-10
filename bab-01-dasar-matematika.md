@@ -12,6 +12,10 @@ Lembar responsi pertama terdiri dari lima nomor besar. Nomor 1 mencari titik pot
 
 Beberapa soal sumber belum menetapkan semua konvensi, dan dua klaim di nomor 5 ternyata salah. Bab ini menyatakan syaratnya dengan jelas dan tidak memaksakan jawaban yang keliru. Setiap perubahan bentuk matematika perlu alasan; bila pembahasan terasa cepat, coba ulangi dengan angka kecil sebelum melanjutkan.
 
+**Benang merah lima nomor.** Bayangkan peserta sedang membantu sebuah tim menyusun proyek. Dua cara kerja mungkin memberi biaya yang sama (nomor 1). Tim lalu memilih proyek dan orang yang mengerjakannya (nomor 2). Pilihan itu dapat bercabang menjadi *tree* keputusan (nomor 3). Beberapa hasil akhir mungkin memenuhi lebih dari satu syarat sehingga harus dihitung sekali saja (nomor 4). Terakhir, tim perlu memastikan pernyataan yang dipakai berlaku untuk semua keadaan, bukan hanya contoh yang kebetulan cocok (nomor 5). Cerita ini hanya penghubung; angka dan syarat tiap soal tetap mengikuti lembar responsi.
+
+Untuk setiap subnomor, ikuti empat pertanyaan yang sama: **apa yang diketahui, apa yang dicari, mengapa langkah tersebut sah, dan bagaimana mengecek jawaban?** Rumus muncul setelah pertanyaan itu jelas.
+
 ## 1. Titik potong: kapan dua aturan memberi hasil yang sama?
 
 Bayangkan dua aturan mengubah angka masukan $x$ menjadi angka keluaran $y$. Titik potong adalah satu pasangan $(x,y)$ tempat **kedua aturan menerima $x$ yang sama dan mengeluarkan $y$ yang sama**. Misalnya, untuk $f(x)=x+1$ dan $g(x)=3$, pada $x=2$ keduanya bernilai 3. Titik potongnya $(2,3)$. Inilah alasan kita memulai dengan $f(x)=g(x)$. Setelah menemukan $x$, kita tetap harus mencari $y$ dan memeriksa kedua fungsi.
@@ -48,7 +52,9 @@ Pembagian ini sah karena 2 bukan nol. Terakhir, masukkan $x=4$ ke persamaan awal
 
 **Soal sumber.** Cari titik potong masing-masing pasangan dengan substitusi, eliminasi, atau determinan: (1) $2x+3$ dan $-x+5$; (2) $3x-4$ dan $2x+1$; (3) $x^2-4x+3$ dan $x+1$; (4) $\frac12x+2$ dan $-\frac14x+\frac74$. Pembahasan berikut memakai penyamaan keluaran kedua fungsi.
 
-**Pasangan pertama.** Dalam lembar responsi, ada $f(x)=2x+3$ dan $g(x)=-x+5$. Titik potong berarti satu nilai $x$ menghasilkan nilai $y$ yang sama pada dua fungsi. Karena itu kita mulai dengan menyamakan hasilnya:
+#### 1a. Pasangan pertama: dua biaya yang bergerak berlawanan
+
+Bayangkan $x$ sebagai ukuran pekerjaan. Biaya menurut aturan pertama bertambah saat $x$ naik, sedangkan menurut aturan kedua berkurang. Kita ingin tahu kapan keduanya **persis sama**, bukan sekadar mendekati. Dalam lembar responsi, kedua aturannya adalah $f(x)=2x+3$ dan $g(x)=-x+5$. Titik potong berarti satu nilai $x$ menghasilkan nilai $y$ yang sama pada dua fungsi. Karena itu kita mulai dengan menyamakan hasilnya:
 
 $$2x+3=-x+5.$$
 
@@ -60,9 +66,15 @@ Pemeriksaan dengan fungsi kedua memberi $-(2/3)+5=-2/3+15/3=13/3$. Jadi titik po
 
 Ada alasan praktis mempelajarinya. Jika $f(n)$ dan $g(n)$ adalah jumlah operasi dua algoritme, titik saat keduanya sama dapat menjadi tempat pilihan yang lebih cepat berubah. Kita masih harus memeriksa **sisi kiri dan kanan** titik itu; kesamaan di satu titik saja belum mengatakan algoritme mana yang lebih baik untuk input lain.
 
-**Contoh kedua, juga dari responsi.** Untuk $f(x)=3x-4$ dan $g(x)=2x+1$, samakan $3x-4=2x+1$. Kurangi $2x$ dari kedua sisi sehingga $x-4=1$. Tambah 4 pada kedua sisi sehingga $x=5$. Kedua fungsi bernilai 11: $3(5)-4=11$ dan $2(5)+1=11$. Titik potongnya $(5,11)$.
+#### 1b. Pasangan kedua: selisihnya tinggal satu $x$
 
-**Pasangan ketiga: saat satu fungsi melengkung.** Responsi juga memberi $f(x)=x^2-4x+3$ dan $g(x)=x+1$. Samakan keduanya, lalu kurangi $(x+1)$ pada kedua sisi:
+Pada pasangan ini kedua keluaran sama-sama naik ketika $x$ naik. Kita belum tahu kapan keduanya bertemu, sehingga tetap perlu menyamakan keluaran. Untuk $f(x)=3x-4$ dan $g(x)=2x+1$, tulis $3x-4=2x+1$. Kurangi $2x$ dari **kedua sisi**: $x-4=1$. Ini menghilangkan suku $x$ di kanan tanpa mengubah nilai penyelesaian. Tambah 4 pada kedua sisi: $x=5$. Kedua fungsi bernilai 11: $3(5)-4=11$ dan $2(5)+1=11$. Titik potongnya $(5,11)$.
+
+Mengapa pemeriksaan dilakukan dua kali? Substitusi ke satu fungsi hanya menemukan calon nilai $y$; memasukkannya ke fungsi kedua memastikan pasangan itu benar-benar titik milik **kedua** grafik. Di sini selisih $f(x)-g(x)=x-5$. Karena selisih menjadi nol hanya pada $x=5$, garis-garis ini bertemu sekali.
+
+#### 1c. Pasangan ketiga: mengapa jawabannya bisa dua?
+
+Garis dan kurva yang melengkung bisa bertemu di dua tempat. Jadi sebelum berhitung, jangan menganggap semua soal titik potong hanya punya satu jawaban. Responsi memberi $f(x)=x^2-4x+3$ dan $g(x)=x+1$. Samakan keduanya, lalu kurangi $(x+1)$ pada kedua sisi:
 
 $$
 \begin{aligned}
@@ -72,13 +84,17 @@ x^2-5x+2&=0.
 \end{aligned}
 $$
 
-Rumus kuadrat untuk $ax^2+bx+c=0$ ialah $x=(-b\pm\sqrt{b^2-4ac})/(2a)$. Di sini $a=1$, $b=-5$, dan $c=2$. Maka $-b=5$ dan $b^2-4ac=25-8=17$. Kita mendapat dua nilai $x$, yaitu $(5+\sqrt{17})/2$ dan $(5-\sqrt{17})/2$. Untuk masing-masing, $y=x+1$, sehingga titiknya $((5+\sqrt{17})/2,(7+\sqrt{17})/2)$ dan $((5-\sqrt{17})/2,(7-\sqrt{17})/2)$. Dua titik masuk akal: garis dapat memotong parabola di dua tempat.
+Mengapa semua suku dikumpulkan ke satu sisi? Bentuk $ax^2+bx+c=0$ memungkinkan kita memakai cara mencari akar persamaan kuadrat. Cara memfaktorkan dengan bilangan bulat sederhana tidak langsung tampak di sini, jadi gunakan rumus kuadrat: $x=(-b\pm\sqrt{b^2-4ac})/(2a)$. Di sini $a=1$, $b=-5$, dan $c=2$. Maka $-b=5$ dan $b^2-4ac=25-8=17$. Karena 17 positif, akar kuadratnya nyata; tanda $\pm$ memberi **dua** nilai $x$: $(5+\sqrt{17})/2$ dan $(5-\sqrt{17})/2$.
 
-**Pasangan keempat: pecahan tidak perlu ditakuti.** Dua fungsi lain di responsi adalah $f(x)=\tfrac12x+2$ dan $g(x)=-\tfrac14x+\tfrac74$. Titik potongnya memenuhi
+Untuk masing-masing nilai, $y=x+1$, sehingga titiknya $((5+\sqrt{17})/2,(7+\sqrt{17})/2)$ dan $((5-\sqrt{17})/2,(7-\sqrt{17})/2)$. Kita bisa mengecek keduanya tanpa hitungan akar yang panjang: setiap nilai $x$ yang diperoleh memenuhi $x^2-5x+2=0$, sehingga $x^2-4x+3=(x^2-5x+2)+(x+1)=x+1$. Artinya keluaran kedua fungsi sama untuk **kedua** nilai tersebut.
+
+#### 1d. Pasangan keempat: hilangkan penyebut dengan aman
+
+Pecahan pada soal ini tidak mengubah arti titik potong. Pecahan hanya membuat penjumlahan lebih merepotkan. Dua fungsi di responsi adalah $f(x)=\tfrac12x+2$ dan $g(x)=-\tfrac14x+\tfrac74$. Titik potongnya memenuhi
 
 $$\frac12x+2=-\frac14x+\frac74.$$
 
-Penyebut 2 dan 4 membuat hitungan kurang nyaman. Kita boleh mengalikan **kedua sisi** dengan 4, karena 4 bukan nol dan perkalian yang sama mempertahankan kesamaan:
+Penyebut 2 dan 4 sama-sama dapat dihilangkan oleh 4. Kita boleh mengalikan **kedua sisi** dengan 4, karena 4 bukan nol dan perkalian yang sama mempertahankan kesamaan. Mengalikan hanya sisi kiri akan membuat persamaan baru yang berbeda dan memberi jawaban keliru:
 
 $$
 4\left(\frac12x+2\right)=4\left(-\frac14x+\frac74\right).
@@ -110,31 +126,43 @@ Ada tiga buku berbeda A, B, C. Untuk menyusunnya berurutan, posisi pertama punya
 
 Mengapa $0!=1$, bukan 0? Menyusun nol benda mempunyai **satu** hasil yang mungkin: susunan kosong. Aturan perkalian mengharuskan perkalian tanpa faktor bernilai 1 agar rumus tetap konsisten. Contoh: $1!=1\times0!$ mengharuskan $0!=1$.
 
-### Jawaban 2a dan 2c: kelompok berbeda dari jabatan
+### Jawaban nomor 2: bedakan isi kelompok dari urutan memilih
 
-Lembar responsi meminta memilih 2 orang dari 5 untuk sebuah sub-tim. Jika kita menghitung “orang pertama” lalu “orang kedua”, kita mendapat $5\times4=20$. Namun tim A-B sama dengan B-A: urutan tidak bermakna. Setiap tim dihitung dua kali. Karena itu bagi 2 dan dapatkan $20/2=10$ tim.
+#### 2a. Mengapa empat proyek tidak dihitung sebagai urutan?
+
+Bayangkan empat kartu proyek yang akhirnya diletakkan di meja. Manajer boleh mengambilnya dalam urutan apa pun, tetapi setelah diletakkan, keempat kartu itu membentuk kelompok yang sama. Pertanyaan menanyakan **kelompok akhir**, sehingga urutan pengambilan hanya alat bantu berhitung dan harus dibuang di akhir.
 
 Untuk memilih 4 dari 10 proyek, hitungan berurutan adalah $10\times9\times8\times7=5040$. Setiap kelompok 4 proyek yang sama dapat muncul dalam $4!=24$ urutan. Maka banyak kelompok ialah $5040/24=210$. Inilah alasan rumus kombinasi
 
 $$\binom nr=\frac{n!}{r!(n-r)!}.$$
 
-Bagian $n!/(n-r)!$ menghitung pemilihan berurutan sebanyak $r$ benda; bagian $r!$ membuang penghitungan ulang akibat urutan internal yang tidak penting. Jika jabatan *ketua* dan *wakil* berbeda, urutan memang penting, sehingga untuk 2 dari 5 hasilnya $5\times4=20$, bukan 10.
+Bagian $n!/(n-r)!$ menghitung pemilihan berurutan sebanyak $r$ benda; bagian $r!$ membuang penghitungan ulang akibat urutan internal yang tidak penting. Rumus ini berlaku ketika semua proyek berbeda dan setiap proyek dipilih paling banyak sekali, tepat seperti syarat soal.
 
 Lihat lagi angka 5040 sebelum membaginya. Proyek pertama mempunyai 10 kemungkinan. Setelah satu proyek diambil, proyek yang sama tidak boleh diambil ulang, sehingga pilihan kedua tinggal 9. Sesudah dua proyek berbeda diambil, pilihan ketiga tinggal 8; pilihan keempat tinggal 7. Karena **setiap** pilihan pertama dapat diikuti **setiap** pilihan kedua yang tersisa, kita mengalikan $10\times9\times8\times7$, bukan menjumlahkannya. Setelah empat proyek terpilih, baru kita buang pengulangan urutan dengan membagi 24. Pembagian sah karena setiap kelompok empat proyek berbeda mempunyai tepat 24 susunan, tanpa pengecualian.
 
-**Jawaban 2b perlu dibedakan dari jumlah proyek.** Jika tidak ada proyek yang dipilih, jumlah proyek terpilih adalah nol. Namun hanya ada **satu** kelompok yang memenuhi keputusan itu, yakni kelompok kosong. Jadi $\binom{10}{0}=1$, bukan nol. Angka $0!=1$ membuat rumus kombinasi konsisten dengan alasan ini.
+#### 2b. Mengapa memilih nol proyek menghasilkan satu cara?
+
+Kedengarannya aneh: jika tidak mengambil apa pun, mengapa jawabannya bukan nol? Karena soal menanyakan **banyak cara memilih**, bukan banyak proyek yang dibawa pulang. Jumlah proyek terpilih memang nol. Namun hanya ada **satu** kelompok yang memenuhi keputusan itu, yakni kelompok kosong. Jadi $\binom{10}{0}=1$. Angka $0!=1$ membuat rumus kombinasi konsisten dengan alasan ini.
 
 Bayangkan peserta diminta menulis semua hasil dari keputusan “ambil nol proyek”. Daftarnya berisi satu baris: `{}`. Daftar itu tidak mempunyai anggota proyek, tetapi tetap merupakan **satu hasil pilihan**. Perbedaan antara “banyak anggota hasil” dan “banyak hasil yang mungkin” sering menjadi sumber jawaban nol yang keliru.
 
-Pada 2a hasilnya $\binom{10}{4}=210$; pada 2b hasilnya 1; pada 2c hasilnya $\binom52=10$. Untuk 2c, daftar AB, AC, AD, AE, BC, BD, BE, CD, CE, DE memeriksa bahwa tidak ada pasangan terlewat. Jika soal mengganti sub-tim menjadi ketua dan wakil, pembagian oleh 2 tidak dilakukan dan hasilnya 20. **Baca syarat urutan sebelum memilih rumus.**
+#### 2c. Mengapa AB dan BA hanya satu sub-tim?
+
+Lima anggota bernama A, B, C, D, E memilih dua orang untuk satu sub-tim tanpa jabatan. Jika kita menghitung “orang pertama” lalu “orang kedua”, ada $5\times4=20$ urutan. Namun pasangan AB dan BA berisi orang yang sama. Setiap sub-tim muncul **tepat dua kali**, sebab dua orang dapat ditulis dalam $2!=2$ urutan. Jadi banyak sub-tim $20/2=10$.
+
+Daftar AB, AC, AD, AE, BC, BD, BE, CD, CE, DE memeriksa bahwa tidak ada pasangan terlewat. Kita bisa menghitung daftar itu sebagai $4+3+2+1=10$: A berpasangan dengan empat nama setelahnya, B dengan tiga nama yang belum dihitung, dan seterusnya. Jika soal mengganti sub-tim menjadi *ketua* dan *wakil*, AB dan BA berarti jabatan yang berbeda; pembagian oleh 2 tidak dilakukan dan hasilnya 20. Jadi cek apakah menukar posisi mengubah hasil sebelum memilih rumus.
 
 ## 3. *Tree* keputusan: hitung tiap lapisan dahulu
 
 Nomor 2 menghitung kelompok akhir. Pada nomor 3, yang dihitung adalah **simpul pada proses bercabang**. Akar adalah titik awal; satu cabang adalah satu kemungkinan keputusan; anak adalah simpul sesudah keputusan. Kedalaman menyatakan banyak langkah dari akar. Di sini akar berkedalaman 0. Jika akar punya dua anak, kedalaman 1 berisi dua simpul. Bila tiap anak itu juga punya dua anak, kedalaman 2 berisi empat. Kita mengalikan banyak simpul sebelumnya dengan banyak cabang per simpul.
 
+Bayangkan seseorang memilih arah di setiap persimpangan. Satu titik pada gambar menandai keadaan setelah sejumlah pilihan. Ada dua pertanyaan yang berbeda: **berapa keadaan pada langkah tertentu?** dan **berapa keadaan yang pernah muncul sejak awal?** Pertanyaan kedua harus menjumlahkan semua lapisan; mengalikan cabang saja baru menjawab pertanyaan pertama.
+
 ### Jawaban 3a: kedalaman tiga dan dua cabang
 
 **Soal sumber.** Sebuah algoritme pencarian memakai *tree* kombinatorial dengan kedalaman $d=3$. Setiap simpul yang belum menjadi daun mempunyai $b=2$ cabang. Berapa jumlah seluruh simpulnya?
+
+Kedalaman 3 berarti tiga kali berpindah dari akar, bukan tiga lapisan. Mulai dengan satu akar pada kedalaman 0. Setiap simpul sebelum kedalaman 3 melahirkan dua anak, sehingga setiap baris tabel berikut dua kali baris sebelumnya.
 
 | Kedalaman | Simpul pada lapisan itu | Jumlah dari akar sampai lapisan itu |
 | ---: | ---: | ---: |
@@ -150,6 +178,8 @@ Secara umum, bila setiap simpul punya $b$ anak, kedalaman $d$ memuat $b^d$ simpu
 ### Jawaban 3b: “level ke-2” perlu konvensi
 
 **Soal sumber.** Sebuah *tree* mempunyai empat level, dengan tiga cabang pada setiap simpul, lalu ditanya banyak simpul pada level ke-2. Lembar sumber tidak menyebut apakah akar dihitung sebagai level 1 atau level 0. Jika **akar level 1**, level 1 berisi 1 dan level 2 berisi $1\times3=\boxed{3}$. Jika **akar level 0**, level 1 berisi 3 dan level 2 berisi $3\times3=\boxed{9}$. Dalam penomoran sehari-hari, akar sebagai level 1 lazim dipakai untuk pertanyaan ini; jawabannya 3 **dengan konvensi itu**. Sebutkan konvensi saat menjawab.
+
+Cerita sederhananya seperti lantai gedung: lantai dasar kadang disebut lantai 0, kadang lantai 1. Gedungnya tidak berubah, hanya labelnya. Karena itu jangan langsung memasukkan angka 2 ke pangkat sebelum tahu titik awal penomorannya. Setelah label ditetapkan, hitung anak pada setiap perpindahan dari akar.
 
 | Lapisan fisik dari akar | Jika akar disebut level 1 | Jika akar disebut level 0 | Banyak simpul |
 | ---: | ---: | ---: | ---: |
@@ -172,7 +202,11 @@ Pada *tree*, jalur yang berbeda dihitung sebagai jalur berbeda. Pada nomor 4, sa
 
 Kata “setidaknya satu” berarti $|A\cup B\cup C|$. Berikut alasan rumusnya dan penghitungan langkah demi langkah.
 
+Bayangkan setiap solusi adalah satu kartu dengan beberapa stempel: A, B, atau C. Kita ingin menghitung banyak **kartu**, bukan banyak stempel. Kartu berstempel A dan B tetap satu kartu. Perbedaan antara “jumlah anggota tiap kelompok” dan “jumlah anggota berbeda” inilah inti nomor 4.
+
 Untuk tiga kelompok A, B, C, mula-mula jumlahkan $|A|+|B|+|C|$. Kurangi tiga irisan pasangan karena anggota dua kelompok dihitung dua kali. Namun anggota yang berada di **ketiganya** semula dihitung tiga kali lalu dikurangi tiga kali, sehingga hasil sementara nol. Tambahkan irisan tiga sekali agar tiap orang dihitung satu kali:
+
+Periksa satu kartu agar alasan tambah-kurangnya terasa nyata. Kartu yang hanya punya A dihitung sekali dan tidak dikurangi. Kartu yang punya A dan B dihitung dua kali, lalu dikurangi sekali melalui $A\cap B$: tinggal sekali. Kartu yang punya A, B, dan C dihitung tiga kali, lalu dikurangi sekali pada **masing-masing** dari tiga irisan pasangan: tinggal nol. Itulah sebabnya kartu terakhir perlu ditambahkan kembali sekali.
 
 $$
 \begin{aligned}
@@ -186,6 +220,8 @@ Pada soal responsi, ukurannya berturut-turut 50, 30, 20; irisan pasangan 15, 10,
 
 **Pemeriksaan tanpa rumus.** Tepat di ketiga kondisi ada 2 solusi. Tepat di A dan B ada $15-2=13$; tepat di A dan C ada $10-2=8$; tepat di B dan C ada $5-2=3$. Hanya A ada $50-13-8-2=27$; hanya B ada $30-13-3-2=12$; hanya C ada $20-8-3-2=7$. Ketujuh daerah ini tidak tumpang tindih, sehingga jumlahnya $27+12+7+13+8+3+2=72$. Ini memeriksa hasil dari rumus, sekaligus menunjukkan setiap solusi terhitung tepat satu kali.
 
+Mengapa irisan pasangan dikurangi 2 ketika mencari daerah “tepat dua”? Karena angka $|A\cap B|=15$ **sudah mencakup** dua solusi yang juga berada di C. Setelah dua kartu berstempel tiga dikeluarkan, tersisa 13 kartu yang hanya punya stempel A dan B. Prinsip yang sama dipakai untuk AC dan BC. Mulai dari irisan tiga membuat penghitungan per daerah lebih aman daripada mulai dari “hanya A”.
+
 ## 5. Pembuktian: apakah klaimnya benar untuk semua bilangan?
 
 Empat nomor sebelumnya meminta satu angka atau titik. Nomor 5 meminta alasan untuk kalimat yang memakai kata **setiap**. Sepuluh contoh yang cocok belum membuktikan setiap bilangan. Sebaliknya, satu contoh yang tidak cocok cukup untuk membantah klaim “setiap”. Maka sebelum mencari bukti, uji dulu klaimnya dengan nilai kecil.
@@ -196,6 +232,8 @@ Bilangan bulat (*integer*) meliputi bilangan negatif, nol, dan positif. Bilangan
 
 **Soal sumber.** Jika integer $n$ genap, buktikan $3n+2$ genap. Kita memakai definisi genap.
 
+Cerita singkatnya: sejumlah benda genap dapat disusun menjadi pasangan tanpa sisa. Jika jumlah itu digandakan tiga kali, semua pasangan tetap utuh; menambah dua benda berarti menambah satu pasangan lagi. Cerita ini memberi dugaan. Definisi $n=2k$ mengubah dugaan itu menjadi alasan yang berlaku untuk *setiap* bilangan genap.
+
 Kita mulai dari klaim pendek: jika integer $n$ genap, maka $3n+2$ genap. Mulailah dari arti *genap*, bukan dari menebak-nebak angka. Jika $n$ genap, ada integer $k$ dengan $n=2k$. Substitusikan:
 
 $$3n+2=3(2k)+2=6k+2=2(3k+1).$$
@@ -204,11 +242,15 @@ Mengapa langkah terakhir cukup? Karena $3k+1$ tetap integer. Bentuk “2 dikali 
 
 ### 5b: satu contoh menyangkal klaim “selalu ganjil”
 
-**Soal sumber.** “Untuk setiap bilangan bulat positif $n$, $n^2+2$ pasti ganjil.” Pilih $n=2$, yang memenuhi syarat positif. Hasilnya $2^2+2=4+2=6$, sebuah bilangan genap. Maka klaim ini **salah**; tidak ada bukti sah untuk kalimat seperti tertulis. Jika ingin memperbaikinya, tambah syarat bahwa $n$ ganjil. Untuk $n=2k+1$, diperoleh $n^2+2=4k^2+4k+3=2(2k^2+2k+1)+1$, berbentuk ganjil. Tambahan syarat ini merupakan perbaikan, bukan bagian dari soal sumber.
+**Soal sumber.** “Untuk setiap bilangan bulat positif $n$, $n^2+2$ pasti ganjil.” Kata *setiap* berarti nilai 1, 2, 3, dan seterusnya semuanya harus cocok. Jadi kita mulai dengan menguji beberapa nilai yang diizinkan. Untuk $n=1$, hasilnya 3 dan tampak cocok. Namun satu contoh yang cocok belum cukup. Pilih $n=2$, yang juga positif. Hasilnya $2^2+2=4+2=6$, sebuah bilangan genap. Maka klaim ini **salah**; satu contoh yang melanggar sudah cukup untuk membantah kata *setiap*.
+
+Mengapa pilihan $n=2$ berhasil? Kuadrat bilangan genap tetap genap, dan menambah 2 tetap genap. Jika ingin memperbaiki klaim, tambah syarat bahwa $n$ ganjil. Untuk $n=2k+1$, diperoleh $n^2+2=4k^2+4k+3=2(2k^2+2k+1)+1$, berbentuk ganjil. Tambahan syarat ini merupakan perbaikan, bukan bagian dari soal sumber.
 
 ### 5c: rata-rata tiga bilangan genap berurutan
 
 **Soal sumber.** Jika $a,b,c$ tiga bilangan genap berurutan, buktikan rata-ratanya sama dengan $b$. Jika bilangan tengahnya $b$, bilangan sebelumnya adalah $b-2$ dan sesudahnya $b+2$. Selisihnya 2 karena kita berpindah dari satu bilangan genap ke bilangan genap berikutnya. Rata-ratanya ialah jumlah ketiganya dibagi banyak bilangan:
+
+Misalnya 4, 6, 8 memiliki rata-rata $(4+6+8)/3=6$. Namun contoh ini hanya memeriksa satu keadaan. Kita perlu menjelaskan **mengapa** semua tiga bilangan genap berurutan memiliki pola yang sama. Bilangan di kiri selalu berjarak 2 dari tengah, dan bilangan di kanan juga berjarak 2. Jarak yang seimbang itu membuat bilangan tengah menjadi titik rata-ratanya.
 
 $$
 \begin{aligned}
@@ -225,6 +267,8 @@ Angka $-2$ dan $+2$ saling meniadakan. Ini tidak bergantung pada nilai khusus $b
 
 Bukti kontradiksi dimulai dengan menganggap pernyataan yang ingin dibuktikan itu salah, lalu menunjukkan asumsi tersebut mustahil. Namun sebelum memakai cara ini, periksa klaimnya. Lembar responsi meminta membuktikan “untuk semua integer $a,b$, $a^2-4b-1\ne0$”. Klaim tersebut **salah**. Ambil $a=1$ dan $b=0$:
 
+Mengapa kita mencoba $a=1$? Karena $1^2-1=0$, lalu pilihan $b=0$ membuat suku $4b$ juga nol. Ini bukan tebakan acak. Kita sedang mencari **satu** pasangan yang memenuhi $a^2-4b-1=0$. Sebelum memilih metode pembuktian, mencari kasus sederhana seperti ini menghemat usaha dan mencegah bukti palsu.
+
 $$a^2-4b-1=1^2-4(0)-1=1-0-1=0.$$
 
 Kita menemukan satu pasangan yang membuat hasil nol. Tidak ada bukti kontradiksi yang sah untuk klaim universal yang sudah dipatahkan oleh contoh ini. Coba juga $a=3,b=2$: $9-8-1=0$. Jika menemui soal serupa dalam kelas, jelaskan contoh penyangkal dan kemungkinan ada salah ketik pada pernyataannya; jangan menciptakan “bukti” untuk jawaban yang salah.
@@ -232,6 +276,8 @@ Kita menemukan satu pasangan yang membuat hasil nol. Tidak ada bukti kontradiksi
 ### 5e: induksi untuk jumlah $1+2+\cdots+n$
 
 **Soal sumber.** Untuk setiap integer positif $n$, buktikan bahwa $1+2+\cdots+n=\frac{n(n+1)}2$. Memeriksa $n=1,2,3$ membantu menemukan kesalahan, tetapi belum cukup untuk semua $n$. Induksi menunjukkan bagaimana kebenaran untuk satu nilai membawa kebenaran ke nilai berikutnya.
+
+Bayangkan deretan kartu bernomor 1 sampai $n$. Saat satu kartu baru bernomor $n+1$ ditambahkan, jumlah lama tidak perlu dihitung ulang; cukup tambah nilai kartu baru. Itulah ide “jembatan” induksi. Jika rumus benar untuk jumlah lama dan penambahan satu kartu menghasilkan bentuk rumus yang sama, proses itu dapat diulang terus.
 
 Sering kita hendak membuktikan $P(n)$ untuk **setiap** integer $n\ge1$. Memeriksa $n=1,2,3$ hanya menunjukkan tiga kasus. Induksi memerlukan dua bagian:
 

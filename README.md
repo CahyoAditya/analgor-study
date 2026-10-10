@@ -14,7 +14,7 @@ Panduan ini ditujukan kepada peserta responsi. **Lembar kerja responsi menjadi u
 | 4 | Gabungan himpunan | Berapa solusi unik yang memenuhi setidaknya satu syarat? |
 | 5 | Pembuktian | Mana klaim yang benar, dan bagaimana membuktikan atau membantahnya? |
 
-Setiap pasangan fungsi dan setiap subsoal dibahas dengan konteksnya. Pada nomor 3b, jawaban bergantung pada apakah akar disebut level 0 atau 1; konvensi dinyatakan sebelum menghitung. Pada nomor 5b dan 5d, klaim pada lembar sumber salah sebagaimana tertulis, sehingga panduan menunjukkan contoh penyangkal. [Latihan Bab 1](latihan-bab-01.md) mengikuti lima kelompok yang sama, memuat 16 soal lengkap dan pembahasan.
+Kelima nomor dihubungkan oleh satu cerita, lalu setiap pasangan fungsi dan subsoal dibahas menurut apa yang diketahui, apa yang dicari, alasan langkah, dan cara memeriksa hasil. Pada nomor 3b, jawaban bergantung pada apakah akar disebut level 0 atau 1; konvensi dinyatakan sebelum menghitung. Pada nomor 5b dan 5d, klaim pada lembar sumber salah sebagaimana tertulis, sehingga panduan menunjukkan contoh penyangkal. [Latihan Bab 1](latihan-bab-01.md) mengikuti lima kelompok yang sama, memuat 16 soal lengkap dan pembahasan.
 
 ## Bacaan lain yang tersedia
 
