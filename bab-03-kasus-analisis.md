@@ -42,7 +42,7 @@ Jika *T(n) = 2n² + 3n + 1*, bukti O(n²): untuk *n ≥ 1*, T(n) ≤ 6n². Bukti
 
 Jika T(n) = cn³ dan T(50) = 0,5 detik, maka c = 0,5/50³. Untuk 400 item, rasio ukuran 400/50 = 8; rasio waktu 8³ = 512. Jadi T(400) = **256 detik**. Cara rasio menghindari menghitung *c* secara eksplisit. Namun asumsi model kubik persis, mesin sama, dan overhead diabaikan harus disebut.
 
-Misal tiga algoritme sama-sama 5 detik pada *n = 50*: P dengan model n³, Q n², R n log₂ n. Pada *n = 5000*, faktor ukuran 100. P ≈ 5·100³ = 5.000.000 detik; Q ≈ 5·100² = 50.000 detik; R ≈ 5·[5000 log₂5000/(50 log₂50)] ≈ 10.887 detik. Model ini perkiraan dari titik kalibrasi, bukan janji performa nyata.
+Misal tiga algoritme sama-sama 5 detik pada *n = 50*: P dengan model n³, Q n², R n log₂ n. Pada *n = 5000*, faktor ukuran 100. P ≈ 5·100³ = 5.000.000 detik; Q ≈ 5·100² = 50.000 detik; R ≈ 5·[5000 log₂5000/(50 log₂50)] ≈ 1.089 detik. Untuk R, faktor waktunya sekitar 217,72, bukan 100²: faktor 100 dari *n* masih dikalikan rasio logaritma sekitar 2,177. Model ini perkiraan dari titik kalibrasi, bukan janji performa nyata.
 
 ## 6. Membandingkan dua fungsi dengan konstanta
 
@@ -87,7 +87,7 @@ Tanyakan “apakah target pasti ada?”, “semua posisi sama mungkin?”, “ap
 8. **256 detik**, karena 0,5·(400/50)³ = 0,5·512.
 9. X lebih cepat untuk *0 < n < 2⁶⁰*, sama di *2⁶⁰*, dan lebih lambat di atasnya; anggap *n ≥ 1* agar log terdefinisi sesuai model.
 10. Ada C(n,2) pasangan. Pada permutasi seragam, masing-masing pasangan terbalik dengan peluang 1/2. Linearitas harapan memberi C(n,2)/2 = n(n−1)/4.
-11. P **5.000.000 s**, Q **50.000 s**, R sekitar **10.887 s**. Tiga angka bergantung pada model skala yang diasumsikan.
+11. P **5.000.000 s**, Q **50.000 s**, R sekitar **1.089 s**. Untuk R, hitung 5·100·(log₂5000/log₂50) ≈ 1.088,6; tiga angka bergantung pada model skala yang diasumsikan.
 12. Tidak. Jika target hampir selalu di posisi pertama, misalnya peluang 1−1/n di indeks 0 dan 1/n tidak ditemukan, A(n) = (1−1/n)·1 + (1/n)·n = 2−1/n = Θ(1), meskipun worst Θ(n).
 
 **Sumber bab:** Kuliah 3; Lembar Kerja Responsi Pertemuan 3; Bank Soal K3 dalam ZIP yang diberikan.
