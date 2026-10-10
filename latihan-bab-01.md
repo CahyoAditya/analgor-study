@@ -1,205 +1,123 @@
-# Latihan Bab 1 — Dasar Matematika
+# Latihan Bab 1 — Responsi Pertemuan 1
 
-Bacaan pendamping: [bab-01-dasar-matematika.md](bab-01-dasar-matematika.md). Kerjakan soal sebelum membuka pembahasan di bagian bawah. Semua konteks yang dibutuhkan ada pada masing-masing soal.
-
-**Asal soal.** “Adaptasi” berarti isi soal sumber ditulis ulang atau diberi syarat penjelas; “dikembangkan dari” berarti pertanyaan diperluas. Soal baru dibuat untuk panduan ini. Nama dan nomor sumber tercantum pada setiap soal. PDF sumber tidak disertakan di repositori ini.
+Bacaan pendamping: [Bab 1](bab-01-dasar-matematika.md). Latihan ini mengikuti lima nomor pada **Lembar Kerja Responsi Pertemuan 1 Analgor, semester ganjil 2025–2026**. Soal sumber ditulis ulang agar lengkap tanpa PDF. Pertanyaan tambahan diberi label jelas. Kerjakan satu kelompok sesudah membaca bagian bernomor sama, lalu periksa pembahasan di bawah.
 
 ## Soal
 
-### 1. Persamaan
+### Nomor responsi 1 — Titik potong fungsi
 
-*Tingkat: Mudah.*
+**1. Pasangan pertama.** Dua fungsi menerima masukan $x$ yang sama: $f(x)=2x+3$ dan $g(x)=-x+5$. Carilah semua titik $(x,y)$ yang memenuhi kedua fungsi. Jelaskan operasi pada kedua sisi persamaan dan periksa nilai $y$ pada kedua fungsi.
 
-**Soal lengkap.** Selesaikan $3x+4=19$. Tuliskan operasi yang dilakukan pada kedua sisi dan periksa jawabannya.
+*Asal:* Responsi pertemuan 1, nomor 1, pasangan pertama; permintaan menjelaskan pemeriksaan ditambahkan.
 
-**Asal:** Soal latihan baru untuk panduan ini.
+**2. Pasangan kedua.** Diketahui $f(x)=3x-4$ dan $g(x)=2x+1$. Pada nilai $x$ berapa keluarannya sama, dan berapa nilai keluaran itu? Tuliskan titik potongnya.
 
-### 2. Interval
+*Asal:* Responsi pertemuan 1, nomor 1, pasangan kedua; pertanyaan ditulis ulang.
 
-*Tingkat: Mudah.*
+**3. Pasangan ketiga.** Diketahui parabola $f(x)=x^2-4x+3$ dan garis $g(x)=x+1$. Carilah **semua** titik potongnya. Jelaskan mengapa ada lebih dari satu jawaban.
 
-**Soal lengkap.** Sebuah array memakai indeks integer yang dimulai dari 0. Bagian array yang akan diproses memakai interval setengah terbuka $[2,6)$: batas kiri termasuk, batas kanan tidak. Indeks mana saja yang diproses? Mengapa jumlahnya $6-2$?
+*Asal:* Responsi pertemuan 1, nomor 1, pasangan ketiga; penjelasan banyak jawaban ditambahkan.
 
-**Asal:** Soal latihan baru untuk panduan ini.
+**4. Pasangan keempat.** Diketahui $f(x)=\frac12x+2$ dan $g(x)=-\frac14x+\frac74$. Carilah titik potongnya. Tunjukkan cara menghilangkan penyebut pecahan tanpa mengubah kesetaraan kedua sisi.
 
-### 3. Proposisi
+*Asal:* Responsi pertemuan 1, nomor 1, pasangan keempat; penjelasan langkah pecahan ditambahkan.
 
-*Tingkat: Mudah.*
+### Nomor responsi 2 — Memilih kelompok
 
-**Soal lengkap.** Dalam logika, proposisi harus mempunyai nilai benar atau salah yang dapat ditentukan. Pertimbangkan kalimat “$x+2=5$” tanpa nilai $x$. Apakah kalimat itu sudah proposisi? Beri satu nilai $x$ yang menjadikannya benar dan satu yang menjadikannya salah.
+**5. Empat proyek.** Suatu perusahaan mempunyai 10 proyek berbeda dan manajernya memilih tepat 4 proyek. Urutan memilih tidak dianggap berbeda; misalnya proyek A lalu B sama dengan B lalu A jika kelompok akhirnya sama. Berapa kelompok empat proyek yang mungkin? Jelaskan mengapa hasil hitungan berurutan perlu dibagi.
 
-**Asal:** Dikembangkan dari bank soal “Latihan Soal K1 - Konsep Dasar Matematika untuk Analisis Algoritme”, nomor 2.
+*Asal:* Responsi pertemuan 1, nomor 2a; syarat urutan diperjelas.
 
-### 4. Bukti langsung
+**6. Tidak memilih proyek.** Dari 10 proyek berbeda yang tersedia, manajer memutuskan tidak mengambil proyek satu pun. Berapa **cara memilih** yang mungkin? Bedakan jawaban itu dari **jumlah proyek terpilih**.
 
-*Tingkat: Mudah.*
+*Asal:* Responsi pertemuan 1, nomor 2b; pembedaan dua pertanyaan ditambahkan.
 
-**Soal lengkap.** Buktikan: jika integer $n$ genap, $3n+2$ genap.
+**7. Sub-tim.** Sebuah proyek memiliki lima anggota A, B, C, D, E. Pilih tepat dua orang untuk satu sub-tim tanpa membedakan jabatan. Berapa sub-tim berbeda? Daftarkan seluruhnya untuk memeriksa hitungan.
 
-**Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 1 Analgor”, nomor 5a.
+*Asal:* Responsi pertemuan 1, nomor 2c; nama anggota dan permintaan daftar ditambahkan.
 
-### 5. Jumlah 1 sampai 20
+### Nomor responsi 3 — Tree keputusan
 
-*Tingkat: Mudah.*
+**8. Semua simpul.** Sebuah algoritme menelusuri *tree* pilihan. Akar berada pada kedalaman 0. Setiap simpul pada kedalaman 0, 1, dan 2 mempunyai tepat dua anak; simpul kedalaman 3 tidak mempunyai anak. Berapa simpul pada kedalaman 3, dan berapa total simpul dari kedalaman 0 sampai 3? Tunjukkan hitungan per kedalaman.
 
-**Soal lengkap.** Hitung $1+2+\cdots+20$ dengan rumus dan periksa dengan cara memasangkan suku ujung.
+*Asal:* Responsi pertemuan 1, nomor 3a; konvensi akar dan daun diperjelas.
 
-**Asal:** Soal latihan baru untuk panduan ini; rumusnya dibahas pada materi Kuliah 1.
+**9. Level kedua.** Sebuah *tree* mempunyai empat level dan setiap simpul bukan daun mempunyai tiga anak. Hitung simpul pada level ke-2 dengan dua konvensi: (i) akar disebut level 1, dan (ii) akar disebut level 0. Jelaskan mengapa jawabannya berbeda.
 
-### 6. Titik potong
+*Asal:* Responsi pertemuan 1, nomor 3b; dua konvensi ditambahkan karena soal sumber tidak menetapkannya.
 
-*Tingkat: Sedang.*
+### Nomor responsi 4 — Gabungan kondisi
 
-**Soal lengkap.** Temukan titik potong $f(x)=3x-4$ dan $g(x)=2x+1$. Periksa pada kedua fungsi.
+**10. Tiga kondisi.** Dalam proyek optimisasi, A, B, C adalah kelompok solusi yang memenuhi tiga kondisi. Diketahui $|A|=50$, $|B|=30$, $|C|=20$, $|A\cap B|=15$, $|A\cap C|=10$, $|B\cap C|=5$, dan $|A\cap B\cap C|=2$. Berapa solusi berbeda yang memenuhi **setidaknya satu** kondisi? Jelaskan alasan mengurangkan irisan pasangan dan menambahkan irisan tiga.
 
-**Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 1 Analgor”, nomor 1, pasangan fungsi kedua.
+*Asal:* Responsi pertemuan 1, nomor 4; alasan tiap koreksi diminta secara eksplisit.
 
-### 7. Tim dua orang
+**11. Periksa per daerah.** Gunakan data A, B, C yang disebut lengkap pada soal 10: $|A|=50$, $|B|=30$, $|C|=20$, $|A\cap B|=15$, $|A\cap C|=10$, $|B\cap C|=5$, $|A\cap B\cap C|=2$. Hitung banyak solusi yang **hanya** memenuhi A, hanya B, hanya C, tepat A dan B, tepat A dan C, tepat B dan C, serta ketiganya. Jumlahkan ketujuh daerah untuk memeriksa soal 10.
 
-*Tingkat: Sedang.*
+*Asal:* Pengembangan dari Responsi pertemuan 1, nomor 4; pemeriksaan per daerah adalah latihan tambahan.
 
-**Soal lengkap.** Sebuah kelompok memiliki lima anggota bernama A, B, C, D, dan E. Kelompok itu hendak memilih tepat dua orang untuk satu sub-tim. Kedua anggota sub-tim memiliki peran yang sama, sehingga memilih A lalu B menghasilkan sub-tim yang sama dengan memilih B lalu A. Berapa sub-tim berbeda yang dapat dibentuk? Jelaskan mengapa jawabannya bukan $5\times4$.
+### Nomor responsi 5 — Bukti atau contoh penyangkal
 
-**Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 1 Analgor”, nomor 2c.
+**12. Genap.** Buktikan untuk setiap bilangan bulat $n$: jika $n$ genap, maka $3n+2$ genap. Gunakan definisi bilangan genap, bukan hanya contoh angka.
 
-### 8. Pohon biner
+*Asal:* Responsi pertemuan 1, nomor 5a; metode penjelasan ditambahkan.
 
-*Tingkat: Sedang.*
+**13. Selalu ganjil?** Periksa klaim “untuk setiap bilangan bulat positif $n$, nilai $n^2+2$ ganjil”. Jika klaim benar, buktikan. Jika salah, berikan satu nilai $n$ yang memenuhi syarat tetapi membantah klaim. Tuliskan satu syarat tambahan yang membuat klaim benar.
 
-**Soal lengkap.** Sebuah pencarian mencoba semua cabang dalam *tree* keputusan. Akar berada pada kedalaman 0. Setiap simpul pada kedalaman 0, 1, dan 2 mempunyai tepat dua anak; simpul pada kedalaman 3 tidak punya anak. Berapa simpul pada kedalaman 3, dan berapa total simpul dari kedalaman 0 sampai 3?
+*Asal:* Responsi pertemuan 1, nomor 5b; permintaan memperbaiki klaim adalah tambahan. Klaim sumber salah sebagaimana tertulis.
 
-**Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 1 Analgor”, nomor 3a; akar dinyatakan berkedalaman 0.
+**14. Rata-rata.** Bilangan bulat $a,b,c$ adalah tiga bilangan genap berurutan dari kecil ke besar. Buktikan bahwa $(a+b+c)/3=b$. Jelaskan mengapa bilangan di kiri dan kanan $b$ dapat ditulis $b-2$ dan $b+2$.
 
-### 9. Gabungan tiga himpunan
+*Asal:* Responsi pertemuan 1, nomor 5c; penjelasan bentuk bilangan ditambahkan.
 
-*Tingkat: Sedang.*
+**15. Kontradiksi?** Periksa klaim “untuk setiap bilangan bulat $a$ dan $b$, $a^2-4b-1\ne0$”. Lembar sumber meminta bukti kontradiksi. Tentukan terlebih dahulu apakah klaimnya benar; jika tidak, berikan pasangan integer penyangkal dan jelaskan mengapa bukti yang diminta tidak mungkin dibuat secara sah.
 
-**Soal lengkap.** Dalam sebuah proyek, $A$, $B$, dan $C$ adalah kelompok solusi yang memenuhi tiga syarat. Diketahui $|A|=50$, $|B|=30$, $|C|=20$, $|A\cap B|=15$, $|A\cap C|=10$, $|B\cap C|=5$, dan $|A\cap B\cap C|=2$. Berapa solusi berbeda yang memenuhi setidaknya satu syarat, yaitu $|A\cup B\cup C|$? Terangkan mengapa irisan tiga ditambahkan kembali.
+*Asal:* Responsi pertemuan 1, nomor 5d; klaim sumber salah sebagaimana tertulis.
 
-**Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 1 Analgor”, nomor 4.
+**16. Induksi.** Buktikan untuk setiap bilangan bulat positif $n$ bahwa $1+2+\cdots+n=n(n+1)/2$. Tuliskan basis induksi, hipotesis untuk $k$, suku baru saat beralih ke $k+1$, cara menyamakan penyebut, dan kesimpulannya.
 
-### 10. Induksi jumlah bilangan pertama
-
-*Tingkat: Sedang.*
-
-**Soal lengkap.** Buktikan $1+2+\cdots+n=n(n+1)/2$ untuk setiap integer $n\ge1$. Jangan melewati langkah menyamakan penyebut.
-
-**Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 1 Analgor”, nomor 5e.
-
-### 11. Pernyataan $n^2+2$ selalu ganjil
-
-*Tingkat: Sulit.*
-
-**Soal lengkap.** Nilailah klaim “untuk semua integer positif $n$, $n^2+2$ ganjil”. Berikan bukti bila benar atau contoh penyangkal bila salah. Dapatkah klaim diperbaiki dengan syarat tambahan?
-
-**Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 1 Analgor”, nomor 5b; ditambah pertanyaan perbaikan klaim.
-
-### 12. Pernyataan $a^2-4b-1\ne0$
-
-*Tingkat: Sulit.*
-
-**Soal lengkap.** Nilailah klaim “untuk setiap integer $a,b$, $a^2-4b-1\ne0$”. Jelaskan mengapa permintaan untuk membuktikannya dengan kontradiksi tidak dapat dipenuhi seperti tertulis.
-
-**Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 1 Analgor”, nomor 5d; pernyataan sumber memang salah.
-
-### 13. Titik potong parabola dan garis
-
-*Tingkat: Sulit.*
-
-**Soal lengkap.** Cari semua titik potong $y=x^2-4x+3$ dan $y=x+1$. Jelaskan asal dua jawabannya.
-
-**Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 1 Analgor”, nomor 1, pasangan fungsi ketiga.
-
-### 14. Memilih 0 sampai $n$ barang
-
-*Tingkat: Sulit.*
-
-**Soal lengkap.** Ada $n$ barang yang berbeda. Setiap barang boleh dipilih paling banyak sekali, dan memilih tidak satu pun barang juga diperbolehkan. Berapa himpunan pilihan yang mungkin? Jelaskan dengan dua cara: keputusan per barang dan pengelompokan menurut banyak barang yang dipilih.
-
-**Asal:** Adaptasi “UTS Analisis Algoritme 2018”, nomor 1; ditambah asumsi barang berbeda dan permintaan dua cara pembuktian.
-
-### 15. Jumlah bilangan ganjil pertama
-
-*Tingkat: Sulit.*
-
-**Soal lengkap.** Buktikan $1+3+5+\cdots+(2n-1)=n^2$ untuk $n\ge1$. Jelaskan dengan jelas dari mana suku $2k+1$ muncul pada langkah $k\to k+1$.
-
-**Asal:** Soal latihan baru untuk panduan ini.
-
-### 16. Loop yang menambahkan 2
-
-*Tingkat: Sulit.*
-
-**Soal lengkap.** Sebuah loop dimulai dengan $S=0,i=0$. Selama $i<n$, ia melakukan $S\leftarrow S+2$ dan $i\leftarrow i+1$. Untuk $n\ge0$, tulis invariant yang menghubungkan $S$ dan $i$, buktikan sebelum loop, sesudah satu putaran, dan saat berhenti. Apa hasil akhirnya?
-
-**Asal:** Soal latihan baru untuk panduan ini.
+*Asal:* Responsi pertemuan 1, nomor 5e; langkah yang harus ditunjukkan diperjelas.
 
 ## Pembahasan
 
-### 1. Persamaan
+### Nomor responsi 1
 
-Mulai dari $3x+4=19$. Kurangi 4 pada **kedua** sisi: $3x+4-4=19-4$, sehingga $3x=15$. Bagi kedua sisi dengan 3: $x=5$. Pemeriksaan: $3(5)+4=15+4=19$. Jadi $x=5$ benar.
+**1.** Pada titik potong $2x+3=-x+5$. Tambahkan $x$ pada kedua sisi: $3x+3=5$. Kurangi 3 pada kedua sisi: $3x=2$. Bagi kedua sisi dengan 3: $x=2/3$. Fungsi pertama memberi $y=2(2/3)+3=4/3+9/3=13/3$. Fungsi kedua memberi $y=-2/3+5=-2/3+15/3=13/3$. Jadi titiknya $\left(2/3,13/3\right)$.
 
-### 2. Interval
+**2.** Samakan $3x-4=2x+1$. Kurangi $2x$ pada kedua sisi sehingga $x-4=1$; tambah 4 sehingga $x=5$. Nilai bersama $y=3(5)-4=11=2(5)+1$. Titiknya $(5,11)$.
 
-$[2,6)$ memasukkan 2 dan mengecualikan 6. Indeks integer yang tersisa: 2, 3, 4, 5. Ada empat angka. Selisih batas $6-2=4$ cocok karena kita mulai dari 2 dan berhenti tepat sebelum 6.
+**3.** Samakan $x^2-4x+3=x+1$. Kurangi $(x+1)$ pada kedua sisi dan gabungkan suku: $x^2-5x+2=0$. Rumus kuadrat dengan $a=1,b=-5,c=2$ memberi $x=(5\pm\sqrt{25-8})/2=(5\pm\sqrt{17})/2$. Dari $y=x+1$, titiknya $\left((5+\sqrt{17})/2,(7+\sqrt{17})/2\right)$ dan $\left((5-\sqrt{17})/2,(7-\sqrt{17})/2\right)$. Ada dua titik karena persamaan kuadrat itu memiliki dua akar nyata.
 
-### 3. Proposisi
+**4.** Samakan $\frac12x+2=-\frac14x+\frac74$. Kalikan kedua sisi dengan 4 dan **setiap suku** ikut dikalikan: $2x+8=-x+7$. Tambah $x$ dan kurangi 8 pada kedua sisi: $3x=-1$, sehingga $x=-1/3$. Nilai $y=\frac12(-1/3)+2=-1/6+12/6=11/6$. Pemeriksaan pada fungsi kedua memberi $1/12+7/4=1/12+21/12=22/12=11/6$. Titiknya $(-1/3,11/6)$.
 
-Kalimat $x+2=5$ belum menjadi proposisi tertutup karena nilai $x$ belum ditentukan. “Untuk $x=3$, $x+2=5$” benar sebab $3+2=5$. “Untuk $x=4$, $x+2=5$” salah sebab $4+2=6\ne5$. Sekarang masing-masing punya nilai benar atau salah yang jelas.
+### Nomor responsi 2
 
-### 4. Bukti langsung
+**5.** Hitungan berurutan $10\times9\times8\times7=5040$. Setiap kelompok empat proyek dapat diurutkan $4!=24$ cara, tetapi seluruh urutan itu kelompok yang sama. Jadi $5040/24=210$ kelompok.
 
-Karena $n$ genap, tulis $n=2k$ untuk suatu integer $k$. Maka $3n+2=3(2k)+2=6k+2=2(3k+1)$. Nilai $3k+1$ integer, sehingga $3n+2$ berbentuk $2$ kali integer. Itu persis definisi genap.
+**6.** Jumlah proyek terpilih nol, tetapi hanya ada satu kelompok yang memilih tidak satu pun proyek: kelompok kosong. Karena soal bertanya banyak **cara**, jawabannya $1=\binom{10}{0}$.
 
-### 5. Jumlah 1 sampai 20
+**7.** Hitungan berurutan $5\times4=20$. Setiap pasangan masuk dua kali, seperti AB dan BA; bagi 2 sehingga ada 10 sub-tim. Daftar lengkap: AB, AC, AD, AE, BC, BD, BE, CD, CE, DE.
 
-Rumus memberi $20(20+1)/2=20\times21/2=10\times21=210$. Cara pasangan: $(1+20)=(2+19)=\cdots=(10+11)=21$. Ada 10 pasangan, sehingga jumlahnya $10\times21=210$. Dua cara saling memeriksa.
+### Nomor responsi 3
 
-### 6. Titik potong
+**8.** Kedalaman 0 berisi 1 simpul, kedalaman 1 berisi $1\times2=2$, kedalaman 2 berisi $2\times2=4$, dan kedalaman 3 berisi $4\times2=8$. Jadi lapisan terakhir berisi 8, sedangkan totalnya $1+2+4+8=15$ simpul.
 
-Samakan output: $3x-4=2x+1$. Kurangi $2x$ pada kedua sisi: $x-4=1$. Tambahkan 4 pada kedua sisi: $x=5$. Masukkan ke fungsi pertama: $y=3(5)-4=11$. Fungsi kedua juga memberi $y=2(5)+1=11$. Jadi titiknya $(5,11)$.
+**9.** Jika akar level 1, level 2 adalah anak langsung akar: 3 simpul. Jika akar level 0, level 1 berisi 3 dan level 2 berisi $3\times3=9$. Angka berbeda karena label “level ke-2” menunjuk lapisan fisik yang berbeda.
 
-### 7. Tim dua orang
+### Nomor responsi 4
 
-Bayangkan kita mula-mula mengisi dua kursi bernama “pilihan pertama” dan “pilihan kedua”. Kursi pertama bisa diisi salah satu dari 5 orang. Setelah satu orang duduk, kursi kedua tinggal memiliki 4 pilihan. Itulah asal $5\times4=20$.
+**10.** Jumlah ukuran awal $50+30+20=100$. Kurangi irisan pasangan $15+10+5=30$, sehingga tersisa 70. Solusi yang memenuhi ketiganya semula terhitung tiga kali lalu terkurangi tiga kali, jadi perlu ditambahkan kembali sekali: $70+2=72$.
 
-Namun, soal meminta *anggota sub-tim*, bukan urutan duduk. Pasangan (A, B) dan (B, A) merupakan satu sub-tim yang sama. Hal yang sama terjadi pada setiap pasangan: selalu ada tepat dua urutan. Karena hitungan 20 memasukkan setiap sub-tim dua kali, kita membaginya dengan 2. Hasilnya $20/2=10$ sub-tim.
+**11.** Ketiganya: 2. Tepat AB: $15-2=13$; tepat AC: $10-2=8$; tepat BC: $5-2=3$. Hanya A: $50-13-8-2=27$; hanya B: $30-13-3-2=12$; hanya C: $20-8-3-2=7$. Jumlahnya $2+13+8+3+27+12+7=72$.
 
-Kita dapat memeriksa dengan mendaftar tanpa mengulang urutan: A-B, A-C, A-D, A-E; B-C, B-D, B-E; C-D, C-E; dan D-E. Ada $4+3+2+1=10$ pasangan. Rumus kombinasi memberi hasil yang sama, $\binom52=5!/(2!3!)=(5\times4)/(2\times1)=10$.
+### Nomor responsi 5
 
-### 8. Pohon biner
+**12.** Karena $n$ genap, ada integer $k$ sehingga $n=2k$. Maka $3n+2=3(2k)+2=6k+2=2(3k+1)$. Nilai $3k+1$ integer, jadi hasilnya dua kali integer: genap.
 
-Kedalaman 0 berisi 1 simpul. Karena setiap simpul punya 2 anak, kedalaman 1 berisi 2, kedalaman 2 berisi 4, dan kedalaman 3 berisi 8. Jadi pada kedalaman 3 ada **8** simpul. Totalnya $1+2+4+8=15$. Jangan menghitung hanya tiga level: dari kedalaman 0 sampai 3 terdapat empat level.
+**13.** Klaim sumber salah. Ambil $n=2>0$: $n^2+2=4+2=6$, genap. Syarat tambahan yang benar ialah $n$ ganjil. Jika $n=2k+1$, maka $n^2+2=4k^2+4k+3=2(2k^2+2k+1)+1$, yaitu ganjil.
 
-### 9. Gabungan tiga himpunan
+**14.** Bilangan genap berurutan berbeda 2. Maka $a=b-2$ dan $c=b+2$. Rata-ratanya $((b-2)+b+(b+2))/3=3b/3=b$. Suku $-2$ dan $+2$ saling meniadakan.
 
-Jumlah ukuran awal $50+30+20=100$. Kurangi irisan pasangan $15+10+5=30$, sehingga tersisa 70. Tambahkan irisan tiga 2 sehingga $|A\cup B\cup C|=72$. Anggota yang berada di ketiga kelompok semula dihitung 3 kali, lalu dikurangi 3 kali; tambahan terakhir membuatnya terhitung tepat 1 kali.
+**15.** Klaim sumber salah. Pilih $a=1,b=0$: $a^2-4b-1=1-0-1=0$. Karena satu pasangan integer memenuhi kesamaan nol, klaim “tidak sama dengan nol untuk setiap pasangan” terpatahkan. Bukti kontradiksi untuk klaim salah tidak dapat dibuat secara sah.
 
-### 10. Induksi jumlah bilangan pertama
-
-Basis $n=1$: kiri 1, kanan $1(2)/2=1$. Anggap benar untuk $n=k$, sehingga $1+\cdots+k=k(k+1)/2$. Untuk $k+1$, tambahkan satu suku baru: $1+\cdots+k+(k+1)=k(k+1)/2+(k+1)$. Tulis suku kedua sebagai $2(k+1)/2$, karena $2/2=1$. Jumlahkan pembilang: $[k(k+1)+2(k+1)]/2$. Keluarkan $(k+1)$: $(k+1)(k+2)/2$. Itu bentuk rumus untuk $n=k+1$. Basis dan langkah induksi selesai.
-
-### 11. Pernyataan $n^2+2$ selalu ganjil
-
-Klaimnya salah. Pilih $n=2$, yang positif: $n^2+2=4+2=6$, genap. Satu contoh ini cukup membantah kata “untuk semua”. Pernyataan dapat diperbaiki menjadi: **jika $n$ positif dan ganjil, maka $n^2+2$ ganjil**. Sebab $n=2k+1$ menghasilkan $n^2+2=4k^2+4k+3=2(2k^2+2k+1)+1$, yaitu bentuk ganjil.
-
-### 12. Pernyataan $a^2-4b-1\ne0$
-
-Ambil $a=1$ dan $b=0$. Keduanya integer dan $1^2-4(0)-1=0$. Jadi klaim universal itu salah. Permintaan “buktikan dengan kontradiksi” tidak dapat menghasilkan bukti yang sah untuk kalimat seperti tertulis. Contoh penyangkal harus disampaikan lebih dulu.
-
-### 13. Titik potong parabola dan garis
-
-Titik potong memenuhi $x^2-4x+3=x+1$. Kurangi $x+1$ pada kedua sisi sehingga $x^2-5x+2=0$. Dalam rumus kuadrat, $a=1,b=-5,c=2$. Diskriminannya $b^2-4ac=(-5)^2-4(1)(2)=25-8=17$, positif. Karena akar kuadrat bilangan positif memiliki dua tanda, diperoleh $x=(5+\sqrt{17})/2$ dan $x=(5-\sqrt{17})/2$. Dari $y=x+1$, koordinat $y$ masing-masing $(7+\sqrt{17})/2$ dan $(7-\sqrt{17})/2$. Kedua jawaban muncul karena persamaan kuadratnya mempunyai dua akar real.
-
-### 14. Memilih 0 sampai $n$ barang
-
-Cara pertama: setiap barang punya dua keputusan independen, ambil atau tidak. Untuk $n$ barang berbeda, aturan perkalian memberi $2\times2\times\cdots\times2=2^n$ hasil. Cara kedua: bila tepat $r$ barang diambil, ada $\binom nr$ hasil. Nilai $r$ boleh 0, 1, dan seterusnya sampai $n$. Kelompok-kelompok ini tidak tumpang tindih dan mencakup semua hasil, sehingga jumlahnya $\sum_{r=0}^{n}\binom nr$. Karena kedua cara menghitung kumpulan hasil yang sama, jumlah tersebut sama dengan $2^n$. Untuk $n=3$, periksa $1+3+3+1=8=2^3$.
-
-### 15. Jumlah bilangan ganjil pertama
-
-Basis $n=1$: kiri 1, kanan $1^2=1$. Anggap jumlah $k$ suku ganjil pertama adalah $k^2$. Suku ganjil ke-$j$ berbentuk $2j-1$; maka suku setelah suku ke-$k$ memiliki indeks $j=k+1$ dan nilainya $2(k+1)-1=2k+1$. Jumlah baru ialah $k^2+(2k+1)=k^2+2k+1=(k+1)^2$. Itu rumus yang harus ditunjukkan untuk $k+1$. Jadi klaim berlaku untuk setiap $n\ge1$.
-
-### 16. Loop yang menambahkan 2
-
-Invariant-nya $S=2i$. Sebelum loop, $S=0$ dan $i=0$, sehingga $0=2(0)$. Andaikan sebelum suatu putaran $S=2i$. Setelah perintah pertama, $S'=S+2=2i+2=2(i+1)$. Setelah perintah kedua, $i'=i+1$, sehingga $S'=2i'$ dan invariant tetap benar. Untuk $n\ge0$, $i$ mulai dari 0 dan naik satu-satu sampai kondisi $i<n$ salah, yakni saat $i=n$. Maka $S=2i=2n$. Jumlah putarannya tepat $n$; bila $n=0$, loop tidak berjalan dan hasil 0 tetap sesuai.
+**16.** Basis $n=1$: $1=1(2)/2$. Anggap untuk suatu $k\ge1$ bahwa $1+\cdots+k=k(k+1)/2$. Tambah satu suku baru: $1+\cdots+k+(k+1)=k(k+1)/2+(k+1)$. Samakan penyebut: $(k+1)=2(k+1)/2$. Maka jumlah menjadi $[k(k+1)+2(k+1)]/2=(k+1)(k+2)/2$. Bentuk terakhir ialah rumus untuk $n=k+1$. Basis dan langkah induksi membuktikannya untuk semua integer positif.
