@@ -1,6 +1,6 @@
 # Panduan Belajar Analisis Algoritme: Kuliah 1–7
 
-Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu berlatih menjelaskannya. Urutan bab mengikuti tujuh berkas kuliah dalam materi yang diberikan. **Bab 1 sudah ditulis ulang sebagai bacaan bertahap bergaya buku**: dimulai dari contoh konkret, menjelaskan setiap perubahan bentuk, dan diakhiri 16 latihan bertingkat beserta pembahasan. Bab 2–7 masih menggunakan versi ringkas sebelumnya dan akan ditulis ulang satu per satu.
+Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu berlatih menjelaskannya. Urutan bab mengikuti tujuh berkas kuliah dalam materi yang diberikan. **Bab 1 dan Bab 2 sudah ditulis ulang sebagai bacaan bertahap bergaya buku.** Bab 2 mengikuti satu cerita dari penghitungan perbandingan sampai notasi asimtotik, lalu membahas soal responsi langkah demi langkah. Masing-masing bab ini memiliki 16 latihan lengkap dengan pembahasan. Bab 3–7 masih menggunakan versi ringkas sebelumnya dan akan ditulis ulang satu per satu.
 
 | Bab | Bacaan | Pertanyaan inti |
 | --- | --- | --- |
@@ -14,7 +14,7 @@ Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu b
 
 ## Mulai dari sini jika rumus terasa melompat
 
-Mulai dari Bab 1. Bacalah ceritanya secara berurutan, lalu coba ulangi tiap contoh dengan angka kecil tanpa melihat penjelasannya. Pada setiap perubahan bentuk, tanyakan: apa yang dihitung, dari mana angka itu berasal, dan mengapa langkah berikutnya sah? Jika tersendat, kembali ke langkah terakhir yang masih jelas; tidak perlu memaksa menghafal rumus.
+Mulai dari Bab 1 untuk dasar aljabar yang diperlukan. Pada Bab 2, ikuti cerita pencarian nama dari awal sampai akhir sebelum masuk ke soal loop. Coba ulangi tiap contoh dengan angka kecil tanpa melihat penjelasannya. Pada setiap perubahan bentuk, tanyakan: apa yang dihitung, dari mana angka itu berasal, dan mengapa langkah berikutnya sah? Jika tersendat, kembali ke langkah terakhir yang masih jelas; tidak perlu memaksa menghafal rumus.
 
 Urutan belajar yang membantu: **Bab 1** untuk deret dan bukti → **Bab 2** untuk mengubah hitungan menjadi Θ → **Bab 3** untuk memahami asumsi peluang → **Bab 4** untuk jumlah operasi loop → **Bab 5** untuk pohon rekursi → **Bab 6–7** untuk menerapkan semuanya pada algoritme. Untuk waktu singkat, pahami satu contoh tuntas per bab sebelum berpindah.
 
