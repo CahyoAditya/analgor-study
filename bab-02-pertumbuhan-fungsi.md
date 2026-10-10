@@ -1,282 +1,220 @@
-# Bab 2 — Mengapa Waktu Program Bertambah Saat Data Bertambah?
+# Bab 2 — Panduan Responsi Pertemuan 2
 
-> Pertanyaan bab ini: Ketika daftar berisi 10, 100, lalu sejuta nama, bagaimana pekerjaan pencarian berubah?
+Lembar responsi kedua menanyakan empat hal: memilih suku yang paling berpengaruh saat input membesar, memilih paket perangkat lunak pada ukuran data tertentu, menghitung pekerjaan di dalam loop, dan menghitung waktu dua cara mencari rata-rata. Bab ini mengikuti **urutan keempat nomor itu**. Semua bagian memakai satu cerita: panitia mengolah daftar nilai peserta yang terus bertambah. Cerita membantu memahami *mengapa* perhitungan diperlukan; angka dalam pembahasan tetap mengikuti lembar responsi.
 
-Bab ini memakai satu cerita sebagai benang merah. Kita mulai dengan mencari nama dalam daftar, menghitung pekerjaan yang nyata, lalu menulis fungsi biaya. Sesudah itu barulah kita mempelajari laju pertumbuhan dan notasi $O$, $\Omega$, serta $\Theta$. Di bagian akhir, cara yang sama dipakai untuk soal responsi. Setiap contoh menyebut soal lengkapnya terlebih dahulu.
+| Nomor responsi | Pertanyaan | Hasil yang dicari |
+| --- | --- | --- |
+| 1 | Dari beberapa bagian biaya, mana yang akhirnya paling besar? | Suku dominan dan batas Big-O tujuh ekspresi. |
+| 2a–b | Paket A atau B lebih cepat pada jumlah record yang diminta? | Perbandingan waktu pada rentang input soal. |
+| 3a–c | Berapa kali pekerjaan terdalam dijalankan? | Fungsi $F(n)$ dan kelas pertumbuhannya. |
+| 4a–b | Bagaimana menghitung waktu setiap baris dua algoritme rata-rata? | Tabel jumlah pelaksanaan, biaya, dan pilihan algoritme. |
 
-**Peta jalan:** daftar nama → banyak perbandingan → fungsi $T(n)$ → pola pertumbuhan → batas formal → soal loop dan pilihan paket.
+**Empat pertanyaan yang dipakai berulang:** apa ukuran inputnya, pekerjaan apa yang dihitung, mengapa operasi hitungnya penjumlahan atau perkalian, dan bagaimana hasilnya diperiksa dengan ukuran kecil? Jangan mengganti hitungan waktu nyata dengan Big-O: keduanya menjawab pertanyaan berbeda.
 
-## 1. Mencari nama dalam daftar
+## 1. Suku dominan: bagian biaya mana yang akhirnya menguasai?
 
-Seorang peserta mempunyai daftar nama [Ari, Bima, Citra, Danu, Nisa] yang belum diurutkan. Untuk mencari “Nisa”, kita dapat membandingkan nama pertama dengan target, lalu melanjutkan sampai cocok atau sampai daftar habis.
+Panitia dapat memakai sebuah program yang pertama kali menyiapkan daftar, lalu membaca setiap nama, lalu membandingkan beberapa pasangan nama. Jika ukuran daftar $n$, masing-masing tahap mungkin memerlukan waktu tetap, waktu sebanding $n$, atau waktu sebanding $n^2$. Waktu total adalah **jumlah** ketiganya karena tahap-tahap itu dikerjakan berurutan. Contohnya $T(n)=5+2n+0{,}01n^2$.
 
-| Target | Letak | Perbandingan |
-| --- | ---: | ---: |
-| Ari | Pertama | 1 |
-| Citra | Ketiga | 3 |
-| Nisa | Kelima | 5 |
-| Rani | Tidak ada | 5 |
+Pada $n=10$, suku $2n$ bernilai 20, sedangkan suku $0{,}01n^2$ baru 1. Namun pada $n=10.000$, keduanya menjadi 20.000 dan 1.000.000. Jadi “dominan” berarti suku yang menguasai *ketika $n$ terus membesar*, bukan suku terbesar pada setiap ukuran. Koefisien kecil tetap penting untuk waktu tepat pada input tertentu.
 
-Kita memilih *banyak nama* sebagai **ukuran input**, ditulis $n$. Kita memilih *satu perbandingan nama dengan target* sebagai **operasi dasar**. Pilihan ini membuat kalimat “program bekerja lebih banyak” dapat dihitung.
+### Mengapa kita boleh menyebut Big-O?
 
-**Soal lengkap.** Daftar berisi $n$ nama. Target tidak ada dalam daftar. Berapa perbandingan?
-
-Setiap nama harus dibandingkan sekali. Ada $n$ nama, sehingga
+Kalimat $T(n)\in O(g(n))$ berarti ada bilangan tetap $c>0$ dan $n_0$ sehingga $T(n)\le c g(n)$ untuk **semua** $n\ge n_0$. Ini batas atas, bukan waktu dalam detik dan bukan persamaan $T(n)=g(n)$. Sebagai pemanasan, untuk $T(n)=5+2n+0{,}01n^2$ dan $n\ge1$, kita tahu $1\le n^2$ dan $n\le n^2$. Karena itu
 
 $$
-T(n)=\underbrace{1+1+\cdots+1}_{n\text{ kali}}=n.
+5+2n+0{,}01n^2\le5n^2+2n^2+0{,}01n^2=7{,}01n^2.
 $$
 
-Untuk lima nama, $T(5)=5$; untuk seratus nama, $T(100)=100$. Namun jika target ada di posisi ketiga, hanya tiga perbandingan. Jadi fungsi tadi berlaku untuk skenario *target tidak ada*. Pada Bab 3, kita akan membedakan kasus terbaik, rata-rata, dan terburuk.
+Pilih $c=7{,}01$ dan $n_0=1$: terbukti $T(n)\in O(n^2)$. Karena $T(n)\ge0{,}01n^2$, fungsi itu juga punya batas bawah sebanding $n^2$. Bila dua batas diperlukan, kita menulis $T(n)\in\Theta(n^2)$. Lembar responsi nomor 1 hanya meminta *suku dominan dan Big-O*. Menunjukkan batas atas tetap berguna agar jawaban tidak sekadar menebak pangkat tertinggi.
 
-Ukuran input tidak selalu satu angka. Pada perkalian matriks berukuran $n\times m$ dan $m\times p$, ada $np$ posisi hasil dan setiap posisi membutuhkan $m$ perkalian bilangan. Jadi banyak perkalian pada cara biasa ialah $nmp$. Untuk graf, jumlah simpul $V$ dan sisi $E$ sering lebih berguna daripada satu $n$. Ukuran harus mengikuti masalahnya.
+Untuk membandingkan bentuk yang sering muncul, ingat urutan akhirnya: $\log\log n$ tumbuh lebih lambat daripada $\log n$; lalu $\sqrt n=n^{0{,}5}$, $n$, $n\log n$, $n^{1{,}25}$, $n^{1{,}5}$, $n^2$, dan $n^3$. Jika dua suku sama-sama berpangkat $n$, faktor $\log n$ membuat $n\log n$ akhirnya lebih besar daripada $n$; jika pangkatnya berbeda, $n^{1{,}5}$ akhirnya mengalahkan $n\log n$. Basis logaritma yang tetap dan lebih besar dari 1 hanya mengubah faktor pengali, bukan kelasnya.
 
-## 2. Dari pekerjaan ke biaya
+### Tujuh baris pada nomor 1
 
-**Soal lengkap.** Persiapan program memerlukan 20 satuan waktu. Memeriksa satu nama memerlukan 3 satuan waktu. Berapa biaya jika semua $n$ nama diperiksa?
+**Soal sumber.** Anggap setiap ekspresi pada tabel berikut adalah waktu pemrosesan $T(n)$ untuk masalah berukuran $n$. Tentukan suku dominan dan Big-O masing-masing. Baris terakhir pada lembar responsi sudah memuat contoh jawaban. Bentuk ekspresi di bawah ditranskripsikan dari tabel pada halaman 1; tanda koma desimal mengikuti penulisan Indonesia.
 
-Persiapan dilakukan **sekali**, jadi biayanya 20. Pemeriksaan dilakukan **sebanyak $n$ kali**, masing-masing berbiaya 3, jadi $3n$. Kedua pekerjaan dilakukan, sehingga dijumlahkan:
+| Baris | $T(n)$ dari lembar responsi | Suku dominan | Big-O |
+| ---: | --- | --- | --- |
+| 1 | $5+0{,}001n^3+0{,}025n$ | $0{,}001n^3$ | $O(n^3)$ |
+| 2 | $500n+100n^{1{,}5}+50n\log_{10}n$ | $100n^{1{,}5}$ | $O(n^{1{,}5})$ |
+| 3 | $100n+0{,}01n^2$ | $0{,}01n^2$ | $O(n^2)$ |
+| 4 | $0{,}01n+100n^2$ | $100n^2$ | $O(n^2)$ |
+| 5 | $2n+n^{0{,}5}+0{,}5n^{1{,}25}$ | $0{,}5n^{1{,}25}$ | $O(n^{1{,}25})$ |
+| 6 | $100n\log_3n+n^3+100n$ | $n^3$ | $O(n^3)$ |
+| 7 | $0{,}003\log_4n+\log_2(\log_2n)$ | $0{,}003\log_4n$ | $O(\log n)$ |
 
-$$
-T(n)=20+3n.
-$$
+**Baris 1 — mengapa koefisien kecil tidak mengubah jawabannya?** Konstanta 5 tidak bertambah saat $n$ bertambah. Suku $0{,}025n$ bertambah sebanding $n$. Suku $0{,}001n^3$ bertambah sebanding $n^3$. Jika $n$ digandakan, bagian kubik menjadi delapan kali, sedangkan bagian linear hanya dua kali. Untuk $n\ge1$, $5\le5n^3$ dan $0{,}025n\le0{,}025n^3$, sehingga $T(n)\le5{,}026n^3$. Nilai $0{,}001$ yang kecil dapat menunda kapan suku kubik tampak terbesar, tetapi tidak mengubah arah pertumbuhan untuk $n$ besar.
 
-Pada $n=5$, biayanya $20+3(5)=35$. Pada $n=100$, biayanya 320; pada $n=200$, 620. Ukuran dua kali lebih besar membuat biaya *hampir* dua kali, tetapi tidak tepat: $620/320=1{,}9375$. Biaya persiapan tetap dibayar sekali.
+**Baris 2 — mengapa $n^{1{,}5}$ mengalahkan $n\log n$?** Bagi keduanya dengan $n>0$. Pertanyaannya menjadi apakah $\sqrt n$ atau $\log_{10}n$ yang tumbuh lebih cepat. Akar bertambah lebih cepat pada akhirnya. Untuk melihat bahwa koefisien tidak menyelamatkan suku logaritmik, bandingkan rasio $(50n\log_{10}n)/(100n^{1{,}5})=(\log_{10}n)/(2\sqrt n)$; rasio ini menuju nol ketika $n$ membesar. Suku $500n$ juga kalah dari $n^{1{,}5}$ karena rasionya $5/\sqrt n\to0$. Jadi suku tengah dominan.
 
-Ada dua pertanyaan yang harus dipisahkan. “Berapa $T(100)$?” membutuhkan angka 20 dan 3. “Bagaimana biaya tumbuh ketika $n$ sangat besar?” terutama melihat bentuk $n$. Konstanta tidak boleh dihapus ketika menghitung waktu pada ukuran tertentu.
+**Baris 3 dan 4 — mengapa hasilnya sama meski koefisiennya terbalik?** Keduanya mempunyai satu suku linear dan satu suku kuadrat. Di baris 3, $0{,}01n^2$ mungkin kalah dari $100n$ untuk input kecil. Di baris 4, $100n^2$ sudah besar lebih awal. Namun untuk $n$ yang terus membesar, keduanya tetap mengikuti $n^2$. Titik saat dua suku baris 3 sama adalah $100n=0{,}01n^2$, yaitu $n=10.000$ setelah membagi kedua sisi dengan $0{,}01n>0$. Titik itu menjelaskan *kapan* suku kuadrat mulai mengungguli suku linear pada baris tersebut; Big-O menjelaskan *bagaimana* pertumbuhan jangka panjangnya.
 
-## 3. Empat pola pertumbuhan dari pekerjaan nyata
+**Baris 5 — mengapa pangkat pecahan bisa dominan?** $n^{0{,}5}=\sqrt n$, sedangkan $n^{1{,}25}=n\sqrt[4]n$. Dibandingkan $2n$, suku terakhir mempunyai faktor tambahan $n^{0{,}25}$ yang terus bertambah. Misalnya saat $n=16$, $n^{1{,}25}=16\cdot2=32$. Faktor $0{,}5$ hanya mengalikan hasil; ketika $n$ cukup besar, suku berpangkat $1{,}25$ tetap dominan.
 
-### 3.1 Konstan
+**Baris 6 — mengapa kubik mengalahkan $n\log n$?** Suku $100n\log_3n$ boleh tampak besar pada ukuran tertentu. Tetapi $(100n\log_3n)/n^3=100\log_3n/n^2\to0$; suku $100n$ pun menjadi $100/n^2$ jika dibandingkan dengan $n^3$. Dua rasio itu menyusut, sehingga $n^3$ dominan. Dua pekerjaan linear dan logaritmik dijumlahkan dengan pekerjaan kubik, bukan mengubahnya menjadi $n^4$.
 
-**Soal lengkap.** Program mengambil elemen pertama dari array yang sudah tersedia. Berapa akses elemen pada array berisi 10, 100, atau 1.000 elemen?
+**Baris 7 — logaritma di dalam logaritma.** $\log_2(\log_2 n)$ berarti mula-mula hitung $\log_2n$, kemudian ambil logaritmanya lagi; untuk pembahasan ini ambil $n>2$ agar kedua nilainya positif. Contoh $n=2^{16}$ memberi $\log_2n=16$ dan $\log_2(\log_2n)=4$, sedangkan $\log_4n=8$. Angka $0{,}003$ membuat suku pertama kecil pada contoh tersebut, tetapi $\log\log n$ akhirnya tumbuh lebih lambat daripada $\log n$. Karena $\log_4n=\tfrac12\log_2n$, suku pertama sebanding $\log n$, tepat seperti contoh jawaban pada lembar.
 
-Dalam model akses langsung, jawabannya satu pada ketiga ukuran: $T(n)=1$. “Konstan” berarti banyak akses yang kita hitung tidak meningkat bersama $n$, bukan berarti semua komputer pasti memerlukan satu detik.
+**Periksa sebelum lanjut.** Suku dominan adalah *suku asli* seperti $0{,}001n^3$; kolom Big-O membuang koefisien tetap dan menulis kelas seperti $O(n^3)$. Jika diminta waktu pada $n$ tertentu, masukkan $n$ ke **seluruh** ekspresi, jangan hanya ke suku dominan.
 
-### 3.2 Linear
+## 2. Dua paket: mana yang lebih cepat pada data yang benar-benar diminta?
 
-Pencarian target yang tidak ada memeriksa $n$ nama, jadi $T(n)=n$. Jika jumlah nama digandakan, banyak perbandingan juga digandakan. Itulah pola linear.
+Nomor 1 menatap pertumbuhan saat $n$ makin besar. Nomor 2 menanyakan keputusan untuk jumlah record yang *dibatasi*. Paket dengan kelas pertumbuhan yang akhirnya lebih baik belum tentu lebih cepat dalam rentang itu, sebab faktor pengalinya berbeda. Anggap panitia harus membeli satu dari dua paket untuk memproses data. Kita samakan satuan, cari tempat waktunya sama, lalu cek di sisi ukuran yang ditanya.
 
-### 3.3 Kuadrat
+### 2a. Paket dengan $n\log n$ melawan paket linear
 
-**Soal lengkap.** Untuk setiap satu dari $n$ nama, program membandingkannya dengan *semua* $n$ nama, termasuk dirinya sendiri. Berapa perbandingan?
+**Soal sumber.** Waktu rata-rata A ialah $T_A(n)=0{,}1n\log_2n$ mikrodetik dan B ialah $T_B(n)=5n$ mikrodetik. Mana lebih cepat untuk basis data hingga $10^{12}$ record?
 
-Nama pertama menghasilkan $n$ perbandingan. Begitu juga nama kedua, sampai nama ke-$n$. Ada $n$ kelompok yang masing-masing berisi $n$ pekerjaan:
-
-$$
-T(n)=\underbrace{n+n+\cdots+n}_{n\text{ kelompok}}=n^2.
-$$
-
-Untuk $n=4$, hitungannya $4+4+4+4=16$. Untuk $n=8$, hasilnya 64. Dua kali lebih banyak data membuat **dua faktor $n$** sama-sama dua kali, sehingga pekerjaan menjadi empat kali. Jika soal melarang membandingkan nama dengan dirinya atau menganggap pasangan A–B sama dengan B–A, jumlah tepatnya berubah. Bacalah syaratnya.
-
-### 3.4 Logaritmik
-
-**Soal lengkap.** Ada 16 kartu yang *sudah diurutkan*. Setiap langkah memungkinkan kita menentukan separuh mana yang mungkin berisi target dan membuang separuh lain. Berapa pembagian sampai tinggal satu kartu?
-
-Ukuran kandidat berubah $16\to8\to4\to2\to1$. Ada empat panah, jadi empat pembagian. Karena $16=2^4$, banyak pembagian ditulis $\log_2 16=4$. Untuk 32 kartu, dibutuhkan lima pembagian: $32\to16\to8\to4\to2\to1$.
-
-Syarat “sudah diurutkan” penting. Tanpa cara mengetahui separuh yang benar, kita bisa membuang target. Di sini yang dihitung ialah *tingkat pembagian*, bukan jumlah perbandingan tepat dalam semua versi binary search.
-
-| $n$ | 1 | 2 | 4 | 8 | 16 |
-| ---: | ---: | ---: | ---: | ---: | ---: |
-| $\log_2n$ | 0 | 1 | 2 | 3 | 4 |
-| $n$ | 1 | 2 | 4 | 8 | 16 |
-| $n^2$ | 1 | 4 | 16 | 64 | 256 |
-
-Tabel membantu melihat pola, tetapi beberapa nilai kecil saja belum membuktikan perilaku untuk semua $n$ besar.
-
-## 4. Mengapa ada suku dominan?
-
-Pertimbangkan $T(n)=4n^2+100n+7$. Pada $n=1$, suku $100n$ lebih besar daripada $4n^2$; jadi “dominan” bukan berarti terbesar pada setiap ukuran. Kita ingin tahu apa yang terjadi ketika $n$ terus membesar.
-
-Karena $n>0$, bagi semua suku dengan $n^2$:
+Kedua waktu sudah dalam mikrodetik. Kata “lebih cepat” berarti **waktu lebih kecil**. Kita belum boleh memilih B hanya karena $n$ akhirnya tumbuh lebih lambat daripada $n\log n$; rentangnya dibatasi. Cari ukuran saat keduanya sama:
 
 $$
-\frac{T(n)}{n^2}
-=\frac{4n^2}{n^2}+\frac{100n}{n^2}+\frac7{n^2}
-=4+\frac{100}{n}+\frac7{n^2}.
+\begin{aligned}
+0{,}1n\log_2n&=5n\\
+0{,}1\log_2n&=5 &&\text{bagi kedua sisi dengan }n>0\\
+\log_2n&=50 &&\text{bagi kedua sisi dengan }0{,}1\\
+n&=2^{50}\approx1{,}126\times10^{15}.
+\end{aligned}
 $$
 
-Mengapa $100n/n^2=100/n$? Penyebut $n^2=n\cdot n$. Satu faktor $n$ di atas dan bawah dapat dicoret karena $n\ne0$. Saat $n$ bertambah, $100/n$ dan $7/n^2$ mendekati nol. Perbandingan $T(n)/n^2$ mendekati 4. Jadi bentuk pertumbuhan yang paling menentukan ialah $n^2$.
+Mengapa $\log_2n=50$ menjadi $n=2^{50}$? Logaritma menanyakan “2 dipangkatkan berapa agar menjadi $n$?” Jawabannya 50, jadi $n$ ialah $2^{50}$. Angka ini jauh di atas $10^{12}$. Untuk mengecek sisi yang benar, ambil $n=2^{40}$ yang masih di bawah titik potong: $T_A=0{,}1n(40)=4n<5n=T_B$. Fungsi $\log_2n$ meningkat bersama $n$, sehingga untuk seluruh bilangan record $1\le n\le10^{12}<2^{50}$, $0{,}1\log_2n<5$. Jadi **A lebih cepat dalam rentang soal**. Pada $n=1$, $T_A(1)=0$ menurut model yang diberikan; ini hasil rumus model, bukan janji waktu komputer sesungguhnya nol.
 
-**Jangan pakai suku dominan sebagai waktu tepat.** Pada $n=10$, $T(10)=4(100)+100(10)+7=1407$, bukan 400. Pengabaian suku kecil hanya menjelaskan laju pertumbuhan.
+### 2b. Paket linear melawan paket akar
 
-Mengganti basis logaritma juga hanya mengubah faktor konstan: $\log_a n=\log_b n/\log_b a$ untuk basis positif selain 1. Saat mencari banyak langkah tepat, basisnya tetap perlu diketahui.
+**Soal sumber.** Waktu rata-rata A ialah $T_A(n)=0{,}001n$ milidetik dan B ialah $T_B(n)=500\sqrt n$ milidetik. Mana lebih cepat untuk basis data hingga $10^9$ record?
 
-## 5. Tiga jenis batas
-
-Bayangkan tinggi rak. “Paling tinggi dua meter” adalah batas atas. “Paling rendah satu meter” adalah batas bawah. Untuk fungsi, pembatasnya adalah kelipatan fungsi lain yang berlaku mulai suatu ukuran input. Kita membahas fungsi biaya yang tidak negatif.
-
-### 5.1 $O$: batas atas
-
-$f(n)\in O(g(n))$ berarti ada konstanta $c>0$ dan ukuran awal $n_0$ sehingga
+Satuannya sama. Cari titik potong positif; syarat $n>0$ penting sebelum membagi dengan akar:
 
 $$
-f(n)\le c\,g(n)\qquad\text{untuk setiap }n\ge n_0.
+\begin{aligned}
+0{,}001n&=500\sqrt n\\
+0{,}001\sqrt n&=500 &&\text{bagi dengan }\sqrt n>0;\ n=(\sqrt n)^2\\
+\sqrt n&=500.000\\
+n&=(500.000)^2=250.000.000.000=2{,}5\times10^{11}.
+\end{aligned}
 $$
 
-**Soal lengkap.** Buktikan $3n+8\in O(n)$. Tunjukkan nilai $c$ dan $n_0$.
+Titik potong itu di atas $10^9$. Pada batas soal, $T_A(10^9)=1.000.000$ milidetik, sedangkan $T_B(10^9)=500\sqrt{10^9}\approx15.811.388$ milidetik. A lebih cepat. Kita juga dapat membandingkan tanpa menghitung dua angka besar: bagi ketaksamaan $0{,}001n<500\sqrt n$ dengan $\sqrt n>0$. Ini setara dengan $0{,}001\sqrt n<500$, benar ketika $n<2{,}5\times10^{11}$. Maka **A lebih cepat untuk seluruh rentang $1\le n\le10^9$**. B baru unggul setelah titik potong meskipun fungsi akar tumbuh lebih lambat.
 
-Untuk $n\ge1$, berlaku $8\le8n$. Tambahkan $3n$ pada kedua sisi:
+**Mengapa langkah ini penting?** Pada 2a, A yang mengandung logaritma menang dalam rentang soal, tetapi akhirnya B menang. Pada 2b, A yang linear menang dalam rentang soal, tetapi akhirnya B yang berakar menang. Jadi jangan menjawab pilihan paket hanya dari simbol $O(\cdot)$; pakai fungsi waktu dan batas $n$ yang diberikan.
 
-$$
-3n+8\le3n+8n=11n.
-$$
+## 3. Loop: hitung pekerjaan, bukan sekadar jumlah kata `for`
 
-Maka $c=11,n_0=1$ bekerja. Konstanta itu tidak wajib paling kecil; cukup membuat ketaksamaan benar. Kalimat “buang 8” belum menjelaskan alasan; ketaksamaan di atas menjelaskannya.
+Sekarang panitia menulis program untuk memproses daftar. $F(n)$ di bagian ini berarti **jumlah pelaksanaan satu operasi pada bagian paling dalam**. Jika tiap operasi itu berbiaya tetap positif, kelas waktu pekerjaan tersebut mengikuti $F(n)$. Biaya pemeriksaan syarat loop dapat menambah suku, tetapi tidak mengubah kelas pada tiga contoh ini. Kita mulai dengan $n=8$ agar setiap nilai indeks dapat dilihat, lalu menulis rumus umum.
 
-### 5.2 $\Omega$: batas bawah
+**Aturan sederhana.** Dua tahap yang berjalan **berurutan** dijumlahkan. Loop yang benar-benar **bersarang**, dengan panjang dalam yang sama pada setiap putaran luar, dikalikan. Jika panjang dalam berubah mengikuti indeks luar, jumlahkan pekerjaan per putaran luar satu demi satu. Batas $j<n$ tidak memasukkan $n$; batas $bound\le n$ memasukkan $n$.
 
-$f(n)\in\Omega(g(n))$ berarti ada $c>0,n_0$ sehingga $f(n)\ge c\,g(n)$ untuk semua $n\ge n_0$. Untuk contoh tadi, $3n+8\ge3n$ karena 8 positif. Pilih $c=3,n_0=1$.
+### 3a. Tiga loop bersarang yang masing-masing panjangnya $n$
 
-### 5.3 $\Theta$: kedua batas sekaligus
+**Soal sumber.** Loop $i$, $j$, dan $k$ masing-masing mengambil nilai integer $0,1,\ldots,n-1$. Loop $j$ ada di dalam $i$, loop $k$ di dalam $j$, dan setiap kombinasi menjalankan satu pekerjaan tetap. Tentukan $F(n)$ dan kelasnya.
 
-$f(n)\in\Theta(g(n))$ berarti ada $c_1,c_2>0,n_0$ sehingga
+Untuk $n=2$, pasangan $(i,j)$ adalah $(0,0),(0,1),(1,0),(1,1)$: ada empat. Untuk *setiap* pasangan, $k$ bisa 0 atau 1: dua pekerjaan. Jadi $F(2)=4\cdot2=8$. Pada $n$ umum, setiap indeks punya $n$ nilai, dan panjang $j$ maupun $k$ tidak bergantung pada nilai indeks luarnya. Karena itu
 
-$$
-c_1g(n)\le f(n)\le c_2g(n)\qquad(n\ge n_0).
-$$
+$$F(n)=\underbrace{n\cdot n\cdot n}_{\text{tiga pilihan indeks}}=n^3\in\Theta(n^3).$$
 
-Kita sudah mendapat $3n\le3n+8\le11n$ pada $n\ge1$. Jadi $3n+8\in\Theta(n)$.
+Pemeriksaan: untuk $n=3$, ada $3\cdot3\cdot3=27$ kombinasi. Tiga loop menghasilkan kubik **di soal ini** karena ketiganya berjalan sepanjang $n$ dan bersarang; jumlah kata `for` saja tidak cukup untuk menyimpulkan kubik.
 
-**Soal lengkap.** Buktikan kelas pertumbuhan ketat $f(n)=3n^2+5n+2$.
+### 3b. Membagi, menggandakan, dan melangkah dua
 
-Untuk $n\ge1$, $n\le n^2$: kalikan $n\ge1$ dengan $n>0$. Juga $1\le n^2$. Maka $5n\le5n^2$ dan $2\le2n^2$. Jumlahkan:
+**Soal sumber.** Loop luar dimulai dari $i=n$, terus memakai pembagian bilangan bulat $i\leftarrow\lfloor i/2\rfloor$ selama $i>0$. Di dalamnya $j$ dimulai dari 1 dan digandakan selama $j<n$. Di dalamnya lagi $k$ dimulai dari 0 dan bertambah 2 selama $k<n$. Setiap kombinasi menjalankan satu pekerjaan tetap. Tentukan $F(n)$ dan kelasnya.
 
-$$
-f(n)\le3n^2+5n^2+2n^2=10n^2.
-$$
+Untuk $n=8$, tulis nilainya sebelum menebak rumus:
 
-Sebaliknya, $5n+2$ tidak negatif, sehingga $f(n)\ge3n^2$. Jadi $3n^2\le f(n)\le10n^2$ untuk $n\ge1$; kesimpulannya $f(n)\in\Theta(n^2)$.
+| Indeks | Nilai yang dipakai | Banyak nilai | Mengapa berhenti? |
+| --- | --- | ---: | --- |
+| $i$ | 8, 4, 2, 1 | 4 | Setelah 1 dibagi dua sebagai integer, hasilnya 0. |
+| $j$ | 1, 2, 4 | 3 | Nilai berikutnya 8, tidak memenuhi $j<8$. |
+| $k$ | 0, 2, 4, 6 | 4 | Nilai berikutnya 8, tidak memenuhi $k<8$. |
 
-Batas atas bisa longgar: $n\in O(n^2)$ karena $n\le n^2$ pada $n\ge1$, tetapi $n\notin\Theta(n^2)$. Jika diminta kelas yang paling informatif, cari batas dari kedua sisi.
+Pada setiap nilai $i$, ketiga loop dalam dimulai lagi dari nilai awalnya. Pada setiap nilai $j$, loop $k$ juga diulang. Jadi $F(8)=4\cdot3\cdot4=48$. Bukan $4+3+4$, karena ketiga pekerjaan tersarang.
 
-**Dua istilah berbeda:** *worst case* memilih input yang paling berat di antara input berukuran sama. Big-O menyatakan batas atas untuk fungsi biaya yang telah dipilih. Worst case tidak identik dengan Big-O; Bab 3 menjelaskan kasus-kasusnya.
-
-## 6. Urutan pertumbuhan dan pilihan nyata
-
-Untuk ukuran yang terus membesar, urutan umum ialah
+Untuk integer $n>1$, loop $i$ memiliki $\lfloor\log_2n\rfloor+1$ nilai. Loop $j$ memiliki $\lceil\log_2n\rceil$ nilai: untuk $n=8$, pangkat 2 yang lebih kecil dari 8 ialah $2^0,2^1,2^2$. Loop $k$ memiliki $\lceil n/2\rceil$ nilai, karena dari setiap dua angka berurutan kita mengambil satu angka genap mulai dari nol. Maka
 
 $$
-1\prec\log n\prec n\prec n\log n\prec n^2\prec n^3\prec2^n\prec n!.
-$$
-
-Tanda $\prec$ berarti fungsi kiri akhirnya tumbuh lebih lambat. $n\log n$ memiliki faktor $\log n$ tambahan dibanding $n$. Untuk membandingkan $n\log n$ dan $n^2$, bagi keduanya dengan $n>0$: tinggal membandingkan $\log n$ dan $n$. Fungsi $2^n$ berlipat dua saat $n$ naik satu; $n!$ menghitung urutan semua $n$ benda berbeda.
-
-Namun kelas pertumbuhan **tidak cukup** untuk memilih program pada ukuran tertentu.
-
-**Soal lengkap.** Paket A membutuhkan $100n$ satuan kerja, sedangkan B membutuhkan $n^2$. Mana lebih murah pada $n=10$ dan $n=1000$? Kapan keduanya sama?
-
-Pada $n=10$, A = 1000 dan B = 100, jadi B lebih murah. Pada $n=1000$, A = 100.000 dan B = 1.000.000, jadi A lebih murah. Untuk titik sama, tulis $100n=n^2$. Karena $n>0$, bagi **kedua sisi** dengan $n$, sehingga $100=n$. Titik potongnya 100. Menguji nilai di kiri dan kanan titik potong menunjukkan arah perbandingan.
-
-### 6.1 Dua paket dalam responsi: logaritma
-
-**Soal lengkap (adaptasi Responsi Pertemuan 2).** Paket A memerlukan $T_A(n)=0{,}1n\log_2n$ mikrodetik dan paket B $T_B(n)=5n$ mikrodetik. Mana lebih cepat untuk basis data hingga $10^{12}$ record?
-
-Satuannya sama. Samakan biayanya: $0{,}1n\log_2n=5n$. Karena $n>0$, bagi kedua sisi dengan $n$: $0{,}1\log_2n=5$. Bagi dengan $0{,}1$: $\log_2n=50$, yang berarti $n=2^{50}\approx1{,}126\times10^{15}$.
-
-Karena $10^{12}<2^{50}$, pada rentang yang ditanyakan berlaku $0{,}1\log_2n<5$; kalikan dengan $n>0$ dan dapat $T_A(n)<T_B(n)$. Jadi **A lebih cepat**. Pada $n=10^{12}$, $\log_2n\approx39{,}86$, maka A sekitar $3{,}986n$ mikrodetik dan B $5n$. Pada ukuran jauh di atas titik potong, B akhirnya unggul.
-
-### 6.2 Dua paket dalam responsi: akar
-
-**Soal lengkap (adaptasi Responsi Pertemuan 2).** Paket A memerlukan $0{,}001n$ milidetik dan B $500\sqrt n$ milidetik. Mana lebih cepat untuk hingga $10^9$ record?
-
-Samakan: $0{,}001n=500\sqrt n$. Untuk $n>0$, bagi kedua sisi dengan $\sqrt n$. Karena $n=\sqrt n\cdot\sqrt n$, diperoleh $0{,}001\sqrt n=500$. Bagi lagi dengan $0{,}001$: $\sqrt n=500.000$. Kuadratkan kedua sisi: $n=250.000.000.000=2{,}5\times10^{11}$.
-
-Pada $10^9$, A = $10^6$ ms, sedangkan B $\approx1{,}581\times10^7$ ms. Jadi A lebih cepat pada batas soal. Setelah titik potong, B akhirnya lebih cepat karena $\sqrt n$ tumbuh lebih lambat daripada $n$.
-
-## 7. Menghitung loop dari nilai indeksnya
-
-Pada soal responsi, $F(n)$ kita pakai untuk banyak pelaksanaan operasi di bagian terdalam. Jika tiap operasi berbiaya konstan positif, kelas waktu mengikuti $F(n)$. **Tulis nilai indeks untuk ukuran kecil sebelum menggunakan rumus.**
-
-### 7.1 Tiga loop yang panjangnya sama
-
-**Soal lengkap (adaptasi Responsi 2 nomor 3a).** Ada tiga loop bersarang. Masing-masing mulai dari 0, naik satu, dan berhenti sebelum $n$. Bagian terdalam melakukan satu operasi. Berapa operasinya?
-
-Pada $n=2$, setiap indeks mempunyai nilai 0 dan 1. Ada $2\cdot2\cdot2=8$ kombinasi. Untuk $n$ umum, tiap indeks mempunyai $n$ nilai dan panjangnya tidak bergantung pada indeks lain. Maka $F(n)=n\cdot n\cdot n=n^3$, sehingga $\Theta(n^3)$.
-
-### 7.2 Panjang loop dalam berubah
-
-**Soal lengkap.** Indeks luar bernilai $i=1,2,\ldots,n$. Pada tiap nilai $i$, loop dalam melakukan tepat $i$ operasi. Berapa totalnya?
-
-Untuk $n=4$, pekerjaan per putaran ialah 1, 2, 3, dan 4. Total 10, **bukan** $4\cdot4=16$. Secara umum
-
-$$
-F(n)=1+2+\cdots+n=\frac{n(n+1)}2.
-$$
-
-Rumus jumlah ini berasal dari memasangkan ujung deret, seperti di Bab 1. Untuk $n\ge1$, $n\le n+1\le2n$. Kalikan semua sisi dengan $n/2>0$: $n^2/2\le F(n)\le n^2$. Jadi $F(n)\in\Theta(n^2)$, walaupun nilai tepatnya bukan $n^2$.
-
-### 7.3 Loop yang menggandakan indeks
-
-**Soal lengkap.** Indeks dimulai dari 1, dikali 2 setelah tiap putaran, dan berjalan selama $i<n$. Berapa putaran pada $n=16$ dan $n=17$?
-
-Pada $n=16$, nilai yang diproses ialah 1, 2, 4, 8: empat putaran. Nilai 16 tidak masuk karena syaratnya $i<16$. Pada $n=17$, nilai 16 ikut: lima putaran. Untuk $n>1$, banyak putaran tepatnya $\lceil\log_2n\rceil$. Jika syarat berubah menjadi $i\le n$, hitungan tepat pada pangkat dua berubah. Selalu baca tanda $<$ dan $\le$.
-
-### 7.4 Tiga pola bersarang dari responsi
-
-**Soal lengkap (adaptasi Responsi 2 nomor 3b).** Loop $i$ mulai dari $n$, dibagi dua dengan pembagian bilangan bulat selama $i>0$. Di dalamnya loop $j$ mulai dari 1, dikalikan 2 selama $j<n$. Di dalamnya lagi loop $k$ mulai dari 0, ditambah 2 selama $k<n$. Hitung operasi terdalam untuk $n=8$, lalu kelasnya.
-
-Untuk $n=8$, nilai $i$: 8, 4, 2, 1 (empat); $j$: 1, 2, 4 (tiga); $k$: 0, 2, 4, 6 (empat). Ketiganya bersarang, jadi $4\cdot3\cdot4=48$.
-
-Untuk $n>1$, banyak nilai masing-masing ialah $\lfloor\log_2n\rfloor+1$, $\lceil\log_2n\rceil$, dan $\lceil n/2\rceil$. Maka
-
-$$
-F(n)=(\lfloor\log_2n\rfloor+1)\lceil\log_2n\rceil\lceil n/2\rceil
+F(n)=\bigl(\lfloor\log_2n\rfloor+1\bigr)
+\bigl(\lceil\log_2n\rceil\bigr)
+\bigl(\lceil n/2\rceil\bigr)
 \in\Theta(n\log^2n).
 $$
 
-Dua faktor pertama tumbuh seperti $\log n$; faktor terakhir seperti $n$. Jadi tiga loop di sini **bukan** $\Theta(n^3)$.
+Mengapa ada kuadrat pada logaritma? Dua loop pertama masing-masing memiliki sekitar $\log_2n$ putaran, sehingga hasil perkaliannya sekitar $(\log_2n)^2$. Loop ketiga menyumbang sekitar $n/2$. Untuk $n=1$, loop $j$ tidak berjalan dan $F(1)=0$; rumus tepat di atas juga memberi nol. Pernyataan $\Theta(n\log^2n)$ dipakai untuk input yang cukup besar.
 
-### 7.5 Dua loop *berurutan* di dalam loop luar
+### 3c. Dua loop dalam berurutan pada setiap putaran luar
 
-**Soal lengkap (adaptasi Responsi 2 nomor 3c).** Loop luar menggunakan nilai bound = 1, 2, 4, ... selama bound $\le n$. Pada setiap putaran luar, loop pertama memakai $j=0,2,4,\ldots<n$. *Sesudahnya*, loop kedua memakai $j=1,2,4,\ldots<n$. Tiap putaran dalam melakukan satu operasi. Hitung untuk $n=8$ dan kelasnya.
+**Soal sumber.** Loop luar memakai $bound=1,2,4,\ldots$ selama $bound\le n$. Pada *setiap* putaran luar, loop dalam pertama memakai $j=0,2,4,\ldots<n$ dan melakukan satu pekerjaan per nilai. Setelah loop pertama selesai, loop dalam kedua memakai $j=1,2,4,\ldots<n$ dan melakukan satu pekerjaan per nilai. Tentukan $F(n)$ dan kelasnya.
 
-Pada $n=8$, bound bernilai 1, 2, 4, 8: empat putaran. Loop pertama memakai 0, 2, 4, 6: empat operasi. Loop kedua memakai 1, 2, 4: tiga operasi. Karena kedua loop dalam **berurutan**, biaya satu putaran luar $4+3=7$, bukan $4\cdot3$. Total $4(7)=28$.
+Untuk $n=8$, loop luar mempunyai 1, 2, 4, 8: empat putaran. Loop dalam pertama mempunyai 0, 2, 4, 6: empat pekerjaan. Loop dalam kedua mempunyai 1, 2, 4: tiga pekerjaan. Karena dua loop dalam **tidak saling membungkus**, satu putaran luar berisi $4+3=7$ pekerjaan, bukan $4\cdot3=12$. Seluruhnya $F(8)=4(7)=28$.
 
-Secara umum,
+Secara umum, banyak putaran luar $\lfloor\log_2n\rfloor+1$ untuk $n\ge1$; loop pertama $\lceil n/2\rceil$; loop kedua $\lceil\log_2n\rceil$ untuk $n>1$ dan nol untuk $n=1$. Maka
 
 $$
-F(n)=(\lfloor\log_2n\rfloor+1)
+F(n)=\bigl(\lfloor\log_2n\rfloor+1\bigr)
 \left(\lceil n/2\rceil+\lceil\log_2n\rceil\right)
-\in\Theta(n\log n).
+\in\Theta(n\log n)\quad(n\text{ cukup besar}).
 $$
 
-Jumlah dalam kurung tumbuh seperti $n$; jumlah itu diulang sekitar $\log n$ kali.
+Bagian dalam kurung tumbuh seperti $n$, karena $n/2$ akhirnya lebih besar daripada $\log n$. Bagian luar tumbuh seperti $\log n$. Inilah alasan kelasnya $n\log n$, sedangkan 3b menjadi $n\log^2n$. Bentuk kurung pada rumus mencerminkan letak kurung pada program: *jumlah dua pekerjaan dalam* dikalikan *jumlah pengulangan luar*.
 
-## 8. Jika ukuran input digandakan
+## 4. Rata-rata: mengapa dua program dengan hasil sama punya biaya berbeda?
 
-**Soal lengkap (tema Kuliah 2).** Sebuah algoritme memerlukan 1 detik pada ukuran 8. Perkirakan waktu pada ukuran 16 jika model pekerjaan dominannya berturut-turut $1$, $\log_2n$, $n$, $n\log_2n$, $n^2$, $n^3$, atau $2^n$.
+Panitia mempunyai array nilai $A[1],A[2],\ldots,A[n]$ dan ingin menghitung rata-ratanya. Kedua algoritme pada lembar responsi menjumlahkan nilai yang sama lalu membagi dengan $n$. Karena itu **hasil rata-ratanya sama** untuk $n>0$; yang dibandingkan adalah jumlah pekerjaan. Jika $n=4$ dan nilainya 2, 4, 6, 8, keduanya memberi $(2+4+6+8)/4=5$.
 
-Jika waktu kira-kira $a f(n)$ dengan konstanta mesin $a$ yang sama pada kedua ukuran, perbandingan waktunya kira-kira $f(16)/f(8)$: faktor $a$ saling habis.
+**Soal sumber nomor 4.** Pelajari contoh penghitungan $F(n)$ pada halaman 3, kemudian isi jumlah pelaksanaan (*kali*) dan satuan waktu (*waktu*) untuk Rata-1 dan Rata-2 pada dua tabel perbandingan di halaman 4. Tentukan algoritme yang lebih baik. Lembar memperlihatkan dua cara menghitung: setiap baris berbiaya satu satuan, dan biaya menurut jenis instruksi. Di sini Plana memakai konvensi yang tertulis pada contoh agar setiap baris bisa diperiksa.
 
-| Model $f(n)$ | Rasio $f(16)/f(8)$ | Perkiraan |
-| --- | ---: | ---: |
-| $1$ | 1 | 1 detik |
-| $\log_2n$ | $4/3$ | $4/3$ detik |
-| $n$ | $16/8=2$ | 2 detik |
-| $n\log_2n$ | $(16\cdot4)/(8\cdot3)=8/3$ | $8/3$ detik |
-| $n^2$ | $16^2/8^2=4$ | 4 detik |
-| $n^3$ | $16^3/8^3=8$ | 8 detik |
-| $2^n$ | $2^{16}/2^8=256$ | 256 detik |
+### Mengapa kondisi `while` diperiksa $n+1$ kali?
 
-Ini **perkiraan bersyarat**, bukan akibat otomatis dari label Big-O. $T(n)=n$ juga termasuk $O(n^2)$, tetapi rasionya ketika digandakan adalah dua, bukan empat. Bahkan $T(n)=n^2+1000$ tidak mempunyai rasio tepat empat pada 8 dan 16.
+Rata-1 memakai bentuk `for i = 1 sampai n`: inisialisasi jumlah, pengulangan penjumlahan $n$ kali, lalu pembagian sekali. Rata-2 memakai `while i <= n`: inisialisasi $i$ dan jumlah, memeriksa syarat, menjumlahkan dan menaikkan $i$ selama syarat benar, lalu membagi sekali. Pada $n=4$, syarat `i <= 4` diperiksa saat $i=1,2,3,4$ (benar) **dan** saat $i=5$ (salah, untuk keluar). Jadi ada lima pemeriksaan. Tanpa pemeriksaan terakhir, program belum tahu kapan berhenti.
 
-## 9. Urutan kerja saat mengerjakan soal
+Pada contoh lembar, baris `for` Rata-1 dihitung $n$ kali sebagai satu baris pengulangan. Itu **konvensi penyederhanaan**; penghitungan yang memisahkan inisialisasi, pemeriksaan akhir, dan kenaikan indeks `for` akan memberi fungsi tepat berbeda. Jangan mencampur dua konvensi dalam satu tabel.
 
-1. Sebutkan ukuran input dan operasi yang dihitung.
-2. Nyatakan skenario atau syarat: target ada di mana, data sudah terurut atau belum, dan pembagian indeks memakai bilangan bulat atau bukan.
-3. Coba $n=4$ atau $n=8$; tulis nilai indeks satu per satu.
-4. Jumlahkan tahap yang berurutan. Kalikan loop bersarang jika panjangnya independen. Jika panjang loop dalam bergantung pada indeks luar, jumlahkan pekerjaan per indeks.
-5. Tulis fungsi tepat bila mungkin, lalu buktikan $O$, $\Omega$, atau $\Theta$ sesuai pertanyaan.
-6. Untuk memilih program pada rentang nyata, samakan satuan, cari titik potong, lalu uji ukuran yang ditanyakan.
+### 4a. Setiap pelaksanaan baris berbiaya satu satuan
 
-## Latihan mandiri
+**Soal lengkap.** Dengan konvensi satu pelaksanaan baris = satu satuan waktu, isilah tabel untuk $n=4$ dan $n$ umum. Baris `for` Rata-1 dihitung $n$ kali, sedangkan pemeriksaan `while` Rata-2 dihitung $n+1$ kali, sesuai contoh lembar.
 
-Enam belas soal bertingkat dan pembahasannya tersedia di [Latihan Bab 2](latihan-bab-02.md). Setiap soal memiliki konteks lengkap dan catatan asalnya, sehingga bacaan utama ini dapat diikuti tanpa memotong alur untuk daftar soal.
+| Algoritme dan baris | Kali saat $n=4$ | Kali umum | Biaya per kali | Waktu umum |
+| --- | ---: | ---: | ---: | ---: |
+| Rata-1: `jml ← 0` | 1 | 1 | 1 | 1 |
+| Rata-1: `for i ← 1 to n` | 4 | $n$ | 1 | $n$ |
+| Rata-1: `jml ← jml + A[i]` | 4 | $n$ | 1 | $n$ |
+| Rata-1: `rata ← jml/n` | 1 | 1 | 1 | 1 |
+| **Total Rata-1** | **10** | | | **$F_1(n)=2+2n$** |
+| Rata-2: `i ← 1` | 1 | 1 | 1 | 1 |
+| Rata-2: `jml ← 0` | 1 | 1 | 1 | 1 |
+| Rata-2: cek `i <= n` | 5 | $n+1$ | 1 | $n+1$ |
+| Rata-2: `jml ← jml + A[i]` | 4 | $n$ | 1 | $n$ |
+| Rata-2: `i ← i + 1` | 4 | $n$ | 1 | $n$ |
+| Rata-2: `rata ← jml/n` | 1 | 1 | 1 | 1 |
+| **Total Rata-2** | **16** | | | **$F_2(n)=4+3n$** |
 
-## 10. Ringkasan untuk peserta
+Untuk Rata-1, dua baris sekali jalan menghasilkan 2, dan dua baris yang masing-masing berjalan $n$ kali menghasilkan $2n$. Untuk Rata-2, tiga baris sekali jalan ditambah **satu pemeriksaan akhir** menghasilkan 4, lalu pemeriksaan berhasil, penjumlahan, dan kenaikan indeks masing-masing menyumbang $n$: total $4+3n$. Pada $n=4$, tabel memberi 10 dan 16, sesuai menghitung satu per satu. Selisih $F_2(n)-F_1(n)=2+n>0$ untuk $n>0$, jadi **Rata-1 lebih murah menurut model 4a**.
 
-Ulangi pencarian lima nama dan hitung perbandingannya. Setelah asal $T(n)$ jelas, periksa tiga batas lewat satu fungsi yang diapit dua ketaksamaan. Untuk soal loop, tulis nilai indeks pada $n=8$ sebelum memakai logaritma. Untuk memilih paket, samakan satuan, cari titik potong, dan uji ukuran yang benar-benar ditanyakan.
+### 4b. Biaya tiap jenis instruksi berbeda
 
-**Sumber:** *Kuliah 2 Analgor 2026–2027*, *Lembar Kerja Responsi Pertemuan 2*, bank soal K2, dan UTS 2018 dari materi pendamping kuliah. Soal berlabel adaptasi ditulis ulang untuk belajar. Bagian responsi yang berupa gambar tanpa teks terbaca tidak dipakai untuk mengklaim hitungan tertentu. Asal setiap soal latihan dicatat di [Latihan Bab 2](latihan-bab-02.md).
+**Soal lengkap.** Hitung ulang dua algoritme dengan bobot *per baris* pada contoh lembar. Baris penugasan sederhana dan pemeriksaan logika bernilai $\tfrac12$ satuan; baris `for` Rata-1 bernilai 2 satuan; baris gabungan `jml ← jml + A[i]`, `i ← i + 1`, dan `rata ← jml/n` masing-masing bernilai $1\tfrac12$ satuan. Lembar memperlakukan baris gabungan sebagai satu biaya tetap; jangan menghitung operasi penyusunnya dua kali.
+
+| Algoritme dan baris | Kali umum | Biaya per kali | Waktu umum |
+| --- | ---: | ---: | ---: |
+| Rata-1: `jml ← 0` | 1 | $\tfrac12$ | $\tfrac12$ |
+| Rata-1: `for i ← 1 to n` | $n$ | $2$ | $2n$ |
+| Rata-1: `jml ← jml + A[i]` | $n$ | $1\tfrac12$ | $1\tfrac12n$ |
+| Rata-1: `rata ← jml/n` | 1 | $1\tfrac12$ | $1\tfrac12$ |
+| **Total Rata-1** | | | **$F_1(n)=2+3\tfrac12n$** |
+| Rata-2: `i ← 1` | 1 | $\tfrac12$ | $\tfrac12$ |
+| Rata-2: `jml ← 0` | 1 | $\tfrac12$ | $\tfrac12$ |
+| Rata-2: cek `i <= n` | $n+1$ | $\tfrac12$ | $\tfrac12n+\tfrac12$ |
+| Rata-2: `jml ← jml + A[i]` | $n$ | $1\tfrac12$ | $1\tfrac12n$ |
+| Rata-2: `i ← i + 1` | $n$ | $1\tfrac12$ | $1\tfrac12n$ |
+| Rata-2: `rata ← jml/n` | 1 | $1\tfrac12$ | $1\tfrac12$ |
+| **Total Rata-2** | | | **$F_2(n)=3+3\tfrac12n$** |
+
+Periksa konstanta Rata-2: $\tfrac12+\tfrac12+\tfrac12+1\tfrac12=3$. Periksa bagian yang berulang: $\tfrac12n+1\tfrac12n+1\tfrac12n=3\tfrac12n$. Pada $n=4$, Rata-1 memakai $2+3{,}5(4)=16$ satuan dan Rata-2 memakai $3+3{,}5(4)=17$ satuan. Selisihnya selalu 1 satuan dalam **model bobot 4b**. Jadi Rata-1 tetap lebih murah menurut model ini, tetapi alasannya berbeda dari 4a. Keduanya tetap $\Theta(n)$ karena sama-sama mengolah $n$ nilai. Kelas yang sama tidak berarti waktu tepatnya sama.
+
+**Batas kesimpulan.** Tabel halaman 4 menyediakan tempat kosong tanpa menetapkan bobot baru untuk perbandingan kedua. Di sini 4a dan 4b memakai *dua konvensi contoh* pada halaman 3 supaya kedua perbandingan dapat dikerjakan secara transparan. Jika pengajar memberi bobot lain untuk 4b, ganti kolom “biaya per kali” lalu jumlahkan ulang; jangan menganggap angka waktu di atas berlaku untuk semua model komputer. Perintah `for` pada program nyata pun dapat diurai lebih rinci, sehingga model hitung yang berbeda dapat menghasilkan fungsi tepat lain walaupun kelasnya tetap linear.
+
+## Cara memakai bab ini saat mengerjakan responsi
+
+1. Untuk nomor 1, tulis semua suku, bandingkan pertumbuhannya saat $n$ besar, lalu pisahkan *suku dominan* dari *kelas Big-O*.
+2. Untuk nomor 2, samakan satuan, selesaikan persamaan waktu kedua paket, dan cek seluruh rentang $n$ yang ditanyakan.
+3. Untuk nomor 3, tulis nilai indeks pada $n$ kecil. Jumlahkan loop berurutan dan kalikan loop bersarang hanya setelah melihat jumlah putarannya.
+4. Untuk nomor 4, isi kolom “kali” dahulu, baru kalikan bobot waktu. Pemeriksaan `while` yang terakhir tetap dihitung meskipun badan loop tidak dijalankan.
+
+Latihan bertingkat tersedia di [Latihan Bab 2](latihan-bab-02.md). Soal latihan ditulis dengan konteks dan asal masing-masing. **Sumber utama bab:** *Lembar Kerja Responsi Pertemuan 2 Analgor, semester ganjil 2026–2027*, halaman 1–4. Ungkapan soal di sini ditulis ulang untuk belajar; contoh panitia dan input kecil ditambahkan sebagai penjelas.

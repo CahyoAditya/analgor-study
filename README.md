@@ -16,18 +16,21 @@ Panduan ini ditujukan kepada peserta responsi. **Lembar kerja responsi menjadi u
 
 Kelima nomor dihubungkan oleh satu cerita, lalu setiap pasangan fungsi dan subsoal dibahas menurut apa yang diketahui, apa yang dicari, alasan langkah, dan cara memeriksa hasil. Pada nomor 3b, jawaban bergantung pada apakah akar disebut level 0 atau 1; konvensi dinyatakan sebelum menghitung. Pada nomor 5b dan 5d, klaim pada lembar sumber salah sebagaimana tertulis, sehingga panduan menunjukkan contoh penyangkal. [Latihan Bab 1](latihan-bab-01.md) mengikuti lima kelompok yang sama, memuat 16 soal lengkap dan pembahasan.
 
+## Responsi kedua
+
+[Bab 2 — Panduan Responsi Pertemuan 2](bab-02-pertumbuhan-fungsi.md) mengikuti keempat nomor pada lembar: tujuh ekspresi pertumbuhan (nomor 1), dua pilihan paket (nomor 2a–b), tiga pola loop (nomor 3a–c), dan dua cara menghitung waktu algoritme rata-rata (nomor 4a–b). Setiap nomor dimulai dari alasan perlunya perhitungan, lalu contoh kecil dan penyelesaian terperinci. [Latihan Bab 2](latihan-bab-02.md) tetap berada di dokumen terpisah.
+
 ## Bacaan lain yang tersedia
 
 | Pertemuan | Bacaan | Keadaan saat ini |
 | --- | --- | --- |
-| 2 | [Pertumbuhan fungsi](bab-02-pertumbuhan-fungsi.md) dan [latihan](latihan-bab-02.md) | Sudah memuat soal responsi, tetapi alurnya masih memakai pengantar konsep yang lebih luas. |
 | 3 | [Kasus analisis](bab-03-kasus-analisis.md) | Catatan lama; belum disusun ulang menurut nomor responsi. |
 | 4 | [Algoritme iteratif](bab-04-algoritme-iteratif.md) | Catatan lama; belum disusun ulang menurut nomor responsi. |
 | 5 | [Algoritme rekursif](bab-05-algoritme-rekursif.md) | Catatan lama; belum disusun ulang menurut nomor responsi. |
 | 6 | [Pencarian](bab-06-pencarian.md) | Catatan lama; cakupannya belum sepenuhnya mengikuti lembar responsi. |
 | 7 | [Pengurutan](bab-07-pengurutan.md) | Catatan lama; belum disusun ulang menurut nomor responsi. |
 
-Tabel ini sengaja membedakan bacaan responsi yang sudah disusun ulang dari catatan lama. Jangan menganggap Bab 2–7 sudah mengikuti nomor pada lembar kerja sebagaimana Bab 1.
+Tabel ini membedakan dua bab yang sudah disusun menurut lembar responsi dari catatan lama. Bab 3–7 belum mengikuti nomor lembar kerja sebagaimana Bab 1–2.
 
 ## Cara memakai panduan
 

@@ -134,6 +134,30 @@ Bacaan pendamping: [bab-02-pertumbuhan-fungsi.md](bab-02-pertumbuhan-fungsi.md).
 
 **Asal:** Soal latihan baru untuk panduan ini.
 
+### 17. Tiga suku pada tabel responsi
+
+*Tingkat: Sedang; terkait responsi nomor 1.*
+
+**Soal lengkap.** Untuk ukuran input integer $n\ge3$, waktu suatu algoritme mengikuti $T(n)=500n+100n^{1{,}5}+50n\log_{10}n$. Tentukan suku yang akhirnya dominan dan kelas Big-O-nya. Jelaskan mengapa koefisien 500 tidak membuat suku $500n$ dominan untuk semua $n$ besar.
+
+**Asal:** Adaptasi baris kedua tabel “Lembar Kerja Responsi Pertemuan 2 Analgor”, nomor 1; pertanyaan alasan ditambahkan.
+
+### 18. Rata-rata dengan biaya setiap baris sama
+
+*Tingkat: Sedang; terkait responsi nomor 4a.*
+
+**Soal lengkap.** Dua algoritme menghitung rata-rata dari array berisi $n>0$ angka. Rata-1 menjalankan `jml ← 0` sekali, baris `for` sebanyak $n$ kali, penjumlahan sebanyak $n$ kali, dan pembagian akhir sekali. Rata-2 menjalankan dua inisialisasi sekali masing-masing, pemeriksaan `while` sebanyak $n+1$ kali, penjumlahan $n$ kali, kenaikan indeks $n$ kali, dan pembagian akhir sekali. Jika setiap pelaksanaan baris berbiaya satu satuan waktu, tentukan $F_1(n)$, $F_2(n)$, biaya saat $n=4$, serta algoritme yang lebih murah.
+
+**Asal:** Dikembangkan dari dua algoritme rata-rata pada “Lembar Kerja Responsi Pertemuan 2 Analgor”, nomor 4, dengan konvensi satu baris satu satuan pada contoh halaman 3.
+
+### 19. Rata-rata dengan biaya per baris berbeda
+
+*Tingkat: Sulit; terkait responsi nomor 4b.*
+
+**Soal lengkap.** Pakai dua algoritme dan jumlah pelaksanaan baris dari soal 18. Sekarang biaya inisialisasi dan pemeriksaan kondisi masing-masing $\tfrac12$ satuan, baris `for` Rata-1 bernilai 2 satuan, sedangkan setiap penjumlahan, kenaikan indeks, dan pembagian akhir bernilai $1\tfrac12$ satuan. Tentukan kedua fungsi biaya, bandingkan ketika $n=4$, dan jelaskan apakah keduanya memiliki kelas pertumbuhan yang sama. Anggap biaya tersebut berlaku untuk satu baris lengkap sehingga operasi di dalam baris tidak dihitung lagi.
+
+**Asal:** Dikembangkan dari dua algoritme rata-rata pada “Lembar Kerja Responsi Pertemuan 2 Analgor”, nomor 4 dan bobot per baris pada contoh halaman 3.
+
 ## Pembahasan
 
 ### 1. Daftar tujuh nama
@@ -199,3 +223,15 @@ Kurangkan B dari A: $(2n^2-n^2)+(975n-75n)+(90-90)=n^2+900n>0$. Maka A selalu le
 ### 16. Klaim “pasti empat kali”
 
 Tidak. Pertama, $O(n^2)$ hanya batas atas. $T(n)=n$ juga memenuhinya tetapi rasionya dua. Kedua, bahkan fungsi $\Theta(n^2)$ dapat memiliki biaya tambahan. $T(n)=n^2+1000$ berubah dari 1100 pada $n=10$ menjadi 1400 pada $n=20$, bukan 4400. Rasio empat hanya pendekatan ketika suku kuadrat sudah dominan.
+
+### 17. Tiga suku pada tabel responsi
+
+Bandingkan masing-masing suku dengan $n^{1{,}5}$. Rasio $500n/(100n^{1{,}5})=5/\sqrt n$ menuju nol. Rasio $50n\log_{10}n/(100n^{1{,}5})=\log_{10}n/(2\sqrt n)$ juga menuju nol. Jadi $100n^{1{,}5}$ dominan dan $T(n)\in O(n^{1{,}5})$. Koefisien 500 hanya menggeser ukuran ketika suku-suku saling menyusul; ia tidak mengubah pangkat $n$.
+
+### 18. Rata-rata dengan biaya setiap baris sama
+
+Untuk Rata-1 ada dua baris yang berjalan sekali dan dua baris yang berjalan $n$ kali, sehingga $F_1(n)=2+2n$ dan $F_1(4)=10$. Untuk Rata-2, dua inisialisasi dan satu pembagian menyumbang 3; pemeriksaan `while` menyumbang $n+1$; penjumlahan dan kenaikan indeks menyumbang $2n$. Maka $F_2(n)=3+(n+1)+2n=4+3n$ dan $F_2(4)=16$. Selisihnya $F_2-F_1=n+2>0$, jadi Rata-1 lebih murah menurut bobot ini.
+
+### 19. Rata-rata dengan biaya per baris berbeda
+
+Rata-1: inisialisasi dan pembagian akhir memberi $\tfrac12+1\tfrac12=2$; pengulangan dan penjumlahan memberi $2n+1\tfrac12n=3\tfrac12n$. Jadi $F_1(n)=2+3\tfrac12n$ dan $F_1(4)=16$. Rata-2: dua inisialisasi, satu pemeriksaan akhir, dan pembagian memberi $\tfrac12+\tfrac12+\tfrac12+1\tfrac12=3$; pemeriksaan yang berhasil, penjumlahan, dan kenaikan indeks memberi $\tfrac12n+1\tfrac12n+1\tfrac12n=3\tfrac12n$. Jadi $F_2(n)=3+3\tfrac12n$ dan $F_2(4)=17$. Rata-1 lebih murah satu satuan dalam model ini; keduanya $\Theta(n)$.
