@@ -15,7 +15,7 @@ Ada dua pertanyaan yang berbeda.
 1. **Benarkah hasilnya?** Jika algoritme mengatakan “ketemu di indeks 2”, memang harus ada 8 di sana. Jika mengatakan “tidak ada”, seluruh posisi yang mungkin harus sudah diperiksa.
 2. **Berapa pekerjaannya?** Dalam contoh ini angka 8 baru ditemukan pada pemeriksaan ketiga. Jika array berisi satu juta angka, jumlah pemeriksaan mungkin jauh lebih besar.
 
-Kita perlu menyepakati **ukuran input**. Untuk mencari nilai dalam array, pilihan alami ialah n= banyak elemen. Untuk bilangan bulat (*integer*) N, ukuran input biasanya banyak *bit* yang dipakai untuk menuliskannya, bukan besarnya N itu sendiri. Angka 1024, misalnya, hanya memerlukan 11 bit dalam representasi biner. Menghitung sampai 1024 berarti melakukan pekerjaan yang jauh lebih banyak daripada 11 langkah.
+Kita perlu menyepakati **ukuran input**. Untuk mencari nilai dalam array, pilihan alami ialah $n=$ banyak elemen. Untuk bilangan bulat (*integer*) $N$, ukuran input biasanya banyak *bit* yang dipakai untuk menuliskannya, bukan besarnya $N$ itu sendiri. Angka 1024, misalnya, hanya memerlukan 11 bit dalam representasi biner. Menghitung sampai 1024 berarti melakukan pekerjaan yang jauh lebih banyak daripada 11 langkah.
 
 Kita juga perlu memilih **operasi dasar**, yakni pekerjaan yang dihitung berulang. Dalam pencarian tadi, operasi dasarnya bisa berupa “membandingkan elemen array dengan angka 8”. Dengan definisi itu, contoh tadi memerlukan tiga perbandingan. Pemilihan operasi harus konsisten dari awal sampai akhir; kita tidak boleh menghitung perbandingan pada satu algoritme dan menghitung baris program pada algoritme lain seolah-olah keduanya ukuran yang sama.
 
@@ -25,78 +25,85 @@ Pengukuran dengan stopwatch tetap berguna, tetapi bergantung pada mesin, bahasa,
 
 ### 2.1 Apa arti tanda sama dengan?
 
-Persamaan 2x+3=11 mengatakan bahwa sisi kiri dan sisi kanan bernilai sama. Kita ingin mengetahui nilai x yang membuatnya benar.
+Persamaan $2x+3=11$ mengatakan bahwa sisi kiri dan sisi kanan bernilai sama. Kita ingin mengetahui nilai $x$ yang membuatnya benar.
 
 Langkah pertama sering disebut “memindahkan 3 ke kanan”. Ungkapan itu cepat, tetapi menyembunyikan alasannya. Yang sesungguhnya dilakukan ialah **mengurangi 3 pada kedua sisi**:
 
-> 2x+3=11
-> 2x+3-3=11-3
-> 2x=8.
-
+$$
+\begin{aligned}
+2x+3&=11 \\
+2x+3-3&=11-3 \\
+2x&=8.
+\end{aligned}
+$$
 
 Mengapa boleh? Jika dua benda sama berat, mengambil 3 satuan dari keduanya menjaga keduanya tetap sama berat. Selanjutnya kita **membagi kedua sisi dengan 2**:
 
-> 2x=8
-> 2x/2=8/2
-> x=4.
+$$
+\begin{aligned}
+2x&=8 \\
+\frac{2x}{2}&=\frac{8}{2} \\
+x&=4.
+\end{aligned}
+$$
 
-
-Pembagian ini sah karena 2 bukan nol. Terakhir, masukkan x=4 ke persamaan awal: 2(4)+3=8+3=11. Pemeriksaan ini menangkap salah hitung sebelum kita melanjutkan.
+Pembagian ini sah karena 2 bukan nol. Terakhir, masukkan $x=4$ ke persamaan awal: $2(4)+3=8+3=11$. Pemeriksaan ini menangkap salah hitung sebelum kita melanjutkan.
 
 > **Kebiasaan penting.** Setiap kali suatu suku tampak “berpindah ruas”, tanyakan operasi apa yang sebenarnya diterapkan pada *kedua* sisi. Jika membagi dengan suatu ekspresi, periksa bahwa ekspresi itu tidak nol.
 
 ### 2.2 Pertidaksamaan punya satu jebakan tambahan
 
-Untuk 2x+3<11, kita tetap boleh mengurangi 3 pada kedua sisi: 2x<8. Membagi dengan 2 yang positif menghasilkan x<4.
+Untuk $2x+3<11$, kita tetap boleh mengurangi 3 pada kedua sisi: $2x<8$. Membagi dengan 2 yang positif menghasilkan $x<4$.
 
-Tetapi dari -2x<8, membagi dengan -2 menghasilkan **x>-4**, bukan x<-4. Arah tanda berbalik karena perkalian bilangan negatif membalik urutan: 1<2, tetapi -1>-2. Periksa dengan x=0: persamaan awal memberi 0<8, benar; hasil 0>-4 juga benar.
+Tetapi dari $-2x<8$, membagi dengan $-2$ menghasilkan **$x>-4$**, bukan $x<-4$. Arah tanda berbalik karena perkalian bilangan negatif membalik urutan: $1<2$, tetapi $-1>-2$. Periksa dengan $x=0$: persamaan awal memberi $0<8$, benar; hasil $0>-4$ juga benar.
 
 ### 2.3 Titik potong dua fungsi: kapan dua biaya sama?
 
-Dalam lembar responsi, ada f(x)=2x+3 dan g(x)=-x+5. Titik potong berarti satu nilai x menghasilkan nilai y yang sama pada dua fungsi. Karena itu kita mulai dengan menyamakan hasilnya:
+Dalam lembar responsi, ada $f(x)=2x+3$ dan $g(x)=-x+5$. Titik potong berarti satu nilai $x$ menghasilkan nilai $y$ yang sama pada dua fungsi. Karena itu kita mulai dengan menyamakan hasilnya:
 
-> 2x+3=-x+5.
+$$2x+3=-x+5.$$
 
+Tambahkan $x$ pada kedua sisi agar suku yang memuat $x$ berada bersama: $3x+3=5$. Kurangi 3 pada kedua sisi: $3x=2$. Bagi dengan 3: $x=2/3$. Kita belum selesai karena *titik* memiliki dua koordinat. Masukkan $x=2/3$ ke fungsi yang lebih mudah:
 
-Tambahkan x pada kedua sisi agar suku yang memuat x berada bersama: 3x+3=5. Kurangi 3 pada kedua sisi: 3x=2. Bagi dengan 3: x=2/3. Kita belum selesai karena *titik* memiliki dua koordinat. Masukkan x=2/3 ke fungsi yang lebih mudah:
+$$y=2(2/3)+3=4/3+9/3=13/3.$$
 
-> y=2(2/3)+3=4/3+9/3=13/3.
+Pemeriksaan dengan fungsi kedua memberi $-(2/3)+5=-2/3+15/3=13/3$. Jadi titik potongnya $(2/3,13/3)$.
 
+Ada alasan praktis mempelajarinya. Jika $f(n)$ dan $g(n)$ adalah jumlah operasi dua algoritme, titik saat keduanya sama dapat menjadi tempat pilihan yang lebih cepat berubah. Kita masih harus memeriksa **sisi kiri dan kanan** titik itu; kesamaan di satu titik saja belum mengatakan algoritme mana yang lebih baik untuk input lain.
 
-Pemeriksaan dengan fungsi kedua memberi -(2/3)+5=-2/3+15/3=13/3. Jadi titik potongnya (2/3,13/3).
+**Contoh kedua, juga dari responsi.** Untuk $f(x)=3x-4$ dan $g(x)=2x+1$, samakan $3x-4=2x+1$. Kurangi $2x$ dari kedua sisi sehingga $x-4=1$. Tambah 4 pada kedua sisi sehingga $x=5$. Kedua fungsi bernilai 11: $3(5)-4=11$ dan $2(5)+1=11$. Titik potongnya $(5,11)$.
 
-Ada alasan praktis mempelajarinya. Jika f(n) dan g(n) adalah jumlah operasi dua algoritme, titik saat keduanya sama dapat menjadi tempat pilihan yang lebih cepat berubah. Kita masih harus memeriksa **sisi kiri dan kanan** titik itu; kesamaan di satu titik saja belum mengatakan algoritme mana yang lebih baik untuk input lain.
+**Contoh ketiga: pecahan tidak perlu ditakuti.** Dua fungsi lain di responsi adalah $f(x)=\tfrac12x+2$ dan $g(x)=-\tfrac14x+\tfrac74$. Titik potongnya memenuhi
 
-**Contoh kedua, juga dari responsi.** Untuk f(x)=3x-4 dan g(x)=2x+1, samakan 3x-4=2x+1. Kurangi 2x dari kedua sisi sehingga x-4=1. Tambah 4 pada kedua sisi sehingga x=5. Kedua fungsi bernilai 11: 3(5)-4=11 dan 2(5)+1=11. Titik potongnya (5,11).
-
-**Contoh ketiga: pecahan tidak perlu ditakuti.** Dua fungsi lain di responsi adalah f(x)=(1/2)x+2 dan g(x)=-(1/4)x+7/4. Titik potongnya memenuhi
-
-> (1/2)x+2=-(1/4)x+7/4.
-
+$$\frac12x+2=-\frac14x+\frac74.$$
 
 Penyebut 2 dan 4 membuat hitungan kurang nyaman. Kita boleh mengalikan **kedua sisi** dengan 4, karena 4 bukan nol dan perkalian yang sama mempertahankan kesamaan:
 
-> 4((1/2)x+2)=4(-(1/4)x+7/4).
+$$
+4\left(\frac12x+2\right)=4\left(-\frac14x+\frac74\right).
+$$
 
+Distribusikan 4 ke setiap suku, bukan hanya suku pertama. Di kiri, $4(\tfrac12x)=2x$ dan $4(2)=8$. Di kanan, $4(-\tfrac14x)=-x$ dan $4(\tfrac74)=7$. Sekarang persamaannya lebih sederhana: $2x+8=-x+7$. Tambah $x$ pada kedua sisi sehingga $3x+8=7$. Kurangi 8 pada kedua sisi sehingga $3x=-1$. Bagi dengan 3 sehingga $x=-1/3$.
 
-Distribusikan 4 ke setiap suku, bukan hanya suku pertama. Di kiri, 4((1/2)x)=2x dan 4(2)=8. Di kanan, 4(-(1/4)x)=-x dan 4(7/4)=7. Sekarang persamaannya lebih sederhana: 2x+8=-x+7. Tambah x pada kedua sisi sehingga 3x+8=7. Kurangi 8 pada kedua sisi sehingga 3x=-1. Bagi dengan 3 sehingga x=-1/3.
+Nilai $y$ dari fungsi pertama ialah $(1/2)(-1/3)+2=-1/6+12/6=11/6$. Dari fungsi kedua, $-(-1/3)/4+7/4=1/12+21/12=22/12=11/6$. Hasil yang sama dari kedua fungsi memastikan titik potongnya $(-1/3,11/6)$. Perhatikan bahwa menghilangkan pecahan di awal hanyalah pilihan untuk memudahkan hitungan; jawaban akhirnya tetap boleh berupa pecahan.
 
-Nilai y dari fungsi pertama ialah (1/2)(-1/3)+2=-1/6+12/6=11/6. Dari fungsi kedua, -(-1/3)/4+7/4=1/12+21/12=22/12=11/6. Hasil yang sama dari kedua fungsi memastikan titik potongnya (-1/3,11/6). Perhatikan bahwa menghilangkan pecahan di awal hanyalah pilihan untuk memudahkan hitungan; jawaban akhirnya tetap boleh berupa pecahan.
+**Saat satu fungsi melengkung.** Responsi juga memberi $f(x)=x^2-4x+3$ dan $g(x)=x+1$. Samakan keduanya, lalu kurangi $(x+1)$ pada kedua sisi:
 
-**Saat satu fungsi melengkung.** Responsi juga memberi f(x)=x^2-4x+3 dan g(x)=x+1. Samakan keduanya, lalu kurangi (x+1) pada kedua sisi:
+$$
+\begin{aligned}
+x^2-4x+3&=x+1 \\
+x^2-4x+3-x-1&=0 \\
+x^2-5x+2&=0.
+\end{aligned}
+$$
 
-> x^2-4x+3=x+1
-> x^2-4x+3-x-1=0
-> x^2-5x+2=0.
-
-
-Rumus kuadrat untuk ax^2+bx+c=0 ialah x=(-b ± √(b^2-4ac))/(2a). Di sini a=1, b=-5, dan c=2. Maka -b=5 dan b^2-4ac=25-8=17. Kita mendapat dua nilai x, yaitu (5+√(17))/2 dan (5-√(17))/2. Untuk masing-masing, y=x+1, sehingga titiknya ((5+√(17))/2,(7+√(17))/2) dan ((5-√(17))/2,(7-√(17))/2). Dua titik masuk akal: garis dapat memotong parabola di dua tempat.
+Rumus kuadrat untuk $ax^2+bx+c=0$ ialah $x=(-b\pm\sqrt{b^2-4ac})/(2a)$. Di sini $a=1$, $b=-5$, dan $c=2$. Maka $-b=5$ dan $b^2-4ac=25-8=17$. Kita mendapat dua nilai $x$, yaitu $(5+\sqrt{17})/2$ dan $(5-\sqrt{17})/2$. Untuk masing-masing, $y=x+1$, sehingga titiknya $((5+\sqrt{17})/2,(7+\sqrt{17})/2)$ dan $((5-\sqrt{17})/2,(7-\sqrt{17})/2)$. Dua titik masuk akal: garis dapat memotong parabola di dua tempat.
 
 ### 2.4 Interval: siapa yang termasuk batas?
 
-Notasi [2,5) berarti semua angka dari 2 sampai sebelum 5: angka 2 masuk, angka 5 tidak. Kurung siku `[` atau `]` berarti batas itu termasuk; kurung biasa `(` atau `)` berarti tidak termasuk. Untuk indeks integer, [2,5) berarti indeks 2, 3, dan 4, jadi ada 5-2=3 posisi.
+Notasi $[2,5)$ berarti semua angka dari 2 sampai sebelum 5: angka 2 masuk, angka 5 tidak. Kurung siku `[` atau `]` berarti batas itu termasuk; kurung biasa `(` atau `)` berarti tidak termasuk. Untuk indeks integer, $[2,5)$ berarti indeks 2, 3, dan 4, jadi ada $5-2=3$ posisi.
 
-Ini berguna untuk membagi array tanpa tumpang tindih. Bagian [0,3) memuat indeks 0, 1, 2; bagian [3,5) memuat 3, 4. Kedua bagian menyambung tepat di batas 3 tanpa mengulang posisi 3. Nanti bentuk ini membantu memahami binary search.
+Ini berguna untuk membagi array tanpa tumpang tindih. Bagian $[0,3)$ memuat indeks 0, 1, 2; bagian $[3,5)$ memuat 3, 4. Kedua bagian menyambung tepat di batas 3 tanpa mengulang posisi 3. Nanti bentuk ini membantu memahami binary search.
 
 ## 3. Logika: apa tepatnya yang hendak dibuktikan?
 
@@ -117,7 +124,7 @@ Misalkan P berbunyi “n genap” dan Q berbunyi “n habis dibagi 4”.
 
 - P ∧ Q berarti keduanya benar.
 - P ∨ Q berarti setidaknya satu benar; dalam logika matematika, **atau** juga benar jika keduanya benar.
--¬ P berarti P salah.
+- ¬P berarti P salah.
 - Q ⇒ P berarti *jika* n habis dibagi 4, *maka* n genap.
 
 Implikasi Q ⇒ P benar. Sebab n=4k untuk suatu integer k, sehingga n=2(2k) dan n genap. Arah sebaliknya, P ⇒ Q, salah: n=6 genap tetapi tidak habis dibagi 4. Jadi “jika A maka B” tidak boleh dibalik begitu saja.
@@ -147,15 +154,15 @@ Kalimat “P **jika dan hanya jika** Q” ditulis P ⇔ Q. Artinya dua arah haru
 
 Ada pula aturan untuk menyangkal pernyataan gabungan. Misalkan P berbunyi “tugas sudah dibaca” dan Q berbunyi “tugas sudah dikerjakan”. Kalimat “**tidak benar bahwa** tugas sudah dibaca *dan* dikerjakan” berarti **setidaknya salah satu** belum terjadi. Dalam simbol:
 
->¬(P ∧ Q) ⇔ (¬ P ∨¬ Q).
+> ¬(P ∧ Q) ⇔ (¬ P ∨ ¬Q).
 
 
 Kebalikannya, “tidak benar bahwa tugas sudah dibaca *atau* dikerjakan” berarti **keduanya** belum terjadi:
 
->¬(P ∨ Q) ⇔ (¬ P ∧¬ Q).
+> ¬(P ∨ Q) ⇔ (¬ P ∧ ¬Q).
 
 
-Ini disebut aturan De Morgan. Coba keadaan kecil: jika tugas sudah dibaca tetapi belum dikerjakan, kalimat “belum keduanya selesai” benar. Bentuk¬ P ∨¬ Q juga benar karena¬ Q benar. Pemeriksaan contoh membantu memahami aturan, sedangkan tabel kebenaran lengkap dapat membuktikan bahwa dua bentuk selalu sepadan.
+Ini disebut aturan De Morgan. Coba keadaan kecil: jika tugas sudah dibaca tetapi belum dikerjakan, kalimat “belum keduanya selesai” benar. Bentuk ¬P ∨ ¬Q juga benar karena ¬Q benar. Pemeriksaan contoh membantu memahami aturan, sedangkan tabel kebenaran lengkap dapat membuktikan bahwa dua bentuk selalu sepadan.
 
 ## 4. Pembuktian: dari beberapa contoh menuju semua kasus
 
@@ -171,8 +178,11 @@ Mengapa langkah terakhir cukup? Karena 3k+1 tetap integer. Bentuk “2 dikali in
 **Contoh lain dari responsi: rata-rata tiga bilangan genap berurutan.** Jika bilangan tengahnya b, bilangan sebelumnya adalah b-2 dan sesudahnya b+2. Selisihnya 2 karena kita berpindah dari satu bilangan genap ke bilangan genap berikutnya. Rata-ratanya ialah jumlah ketiganya dibagi banyak bilangan:
 
 > ((b-2)+b+(b+2))/(3)
+>
 > =(b-2+b+b+2)/(3)
+>
 > =3b/3
+>
 > =b.
 
 
@@ -185,8 +195,11 @@ Kita ingin membuktikan: **jika n^2 genap, maka n genap**. Membuka bentuk n^2 unt
 Untuk integer, tidak genap berarti ganjil. Tulis n=2k+1 dengan k integer. Kuadratkan dengan mengalikan dua kurung:
 
 > n^2=(2k+1)(2k+1)
+>
 > =4k^2+2k+2k+1
+>
 > =4k^2+4k+1
+>
 > =2(2k^2+2k)+1.
 
 
@@ -230,6 +243,7 @@ Ganti S(k) memakai hipotesis:
 Untuk menjumlahkan pecahan, samakan penyebut. Tulis (k+1)=2(k+1)/2. Maka
 
 > S(k+1)=(k(k+1))/(2)+(2(k+1))/(2)
+>
 > =(k(k+1)+2(k+1))/(2).
 
 
@@ -243,11 +257,10 @@ Ini tepat rumus awal dengan n diganti k+1: (k+1)((k+1)+1)/2. Jadi langkah induks
 **Mengapa rumusnya masuk akal sebelum dibuktikan?** Tulis jumlah dari kiri ke kanan dan dari kanan ke kiri:
 
 > S=1+2+…+n,
+>
+> S=n+(n-1)+…+1.
 
-
-S=n+(n-1)+…+1.
-
-> Jika tiap kolom dijumlah, selalu diperoleh n+1. Ada n kolom. Jadi 2S=n(n+1); karena setiap jumlah dihitung dua kali, bagi kedua sisi dengan 2: S=n(n+1)/2. Cara pasangan ini memberi intuisi; induksi memastikan rumus berlaku untuk semua n.
+Jika tiap kolom dijumlah, selalu diperoleh n+1. Ada n kolom. Jadi 2S=n(n+1); karena setiap jumlah dihitung dua kali, bagi kedua sisi dengan 2: S=n(n+1)/2. Cara pasangan ini memberi intuisi; induksi memastikan rumus berlaku untuk semua n.
 
 ### 4.5 Induksi juga menjelaskan program: loop invariant
 
@@ -355,7 +368,9 @@ Misalkan A adalah siswa yang suka matematika dan B adalah siswa yang suka pemrog
 Untuk tiga kelompok A, B, C, mula-mula jumlahkan |A|+|B|+|C|. Kurangi tiga irisan pasangan karena anggota dua kelompok dihitung dua kali. Namun anggota yang berada di **ketiganya** semula dihitung tiga kali lalu dikurangi tiga kali, sehingga hasil sementara nol. Tambahkan irisan tiga sekali agar tiap orang dihitung satu kali:
 
 > |A ∪ B ∪ C| = |A|+|B|+|C|
+>
 > -|A ∩ B|-|A ∩ C|-|B ∩ C|
+>
 > +|A ∩ B ∩ C|.
 
 
