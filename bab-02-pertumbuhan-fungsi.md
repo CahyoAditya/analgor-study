@@ -275,7 +275,7 @@ Ini **perkiraan bersyarat**, bukan akibat otomatis dari label Big-O. $T(n)=n$ ju
 
 Enam belas soal bertingkat dan pembahasannya tersedia di [Latihan Bab 2](latihan-bab-02.md). Setiap soal memiliki konteks lengkap dan catatan asalnya, sehingga bacaan utama ini dapat diikuti tanpa memotong alur untuk daftar soal.
 
-## 11. Ringkasan untuk peserta
+## 10. Ringkasan untuk peserta
 
 Ulangi pencarian lima nama dan hitung perbandingannya. Setelah asal $T(n)$ jelas, periksa tiga batas lewat satu fungsi yang diapit dua ketaksamaan. Untuk soal loop, tulis nilai indeks pada $n=8$ sebelum memakai logaritma. Untuk memilih paket, samakan satuan, cari titik potong, dan uji ukuran yang benar-benar ditanyakan.
 
