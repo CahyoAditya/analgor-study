@@ -20,17 +20,20 @@ Kelima nomor dihubungkan oleh satu cerita, lalu setiap pasangan fungsi dan subso
 
 [Bab 2 — Panduan Responsi Pertemuan 2](bab-02-pertumbuhan-fungsi.md) mengikuti keempat nomor pada lembar: tujuh ekspresi pertumbuhan (nomor 1), dua pilihan paket (nomor 2a–b), tiga pola loop (nomor 3a–c), dan dua cara menghitung waktu algoritme rata-rata (nomor 4a–b). Setiap nomor dimulai dari alasan perlunya perhitungan, lalu contoh kecil dan penyelesaian terperinci. [Latihan Bab 2](latihan-bab-02.md) tetap berada di dokumen terpisah.
 
+## Responsi ketiga
+
+[Bab 3 — Panduan Responsi Pertemuan 3](bab-03-kasus-analisis.md) mengikuti seluruh nomor 1–6: bukti Big-O, perkiraan waktu, perbandingan algoritme, dan biaya program. Setiap potongan kode dihitung dengan tabel *Code–Cost–Frequency–Total* sesuai model biaya yang dinyatakan. Pembagian indeks dibulatkan ke bawah agar frekuensinya jelas. [Latihan Bab 3](latihan-bab-03.md) berisi soal bertingkat dengan konteks lengkap, asal, dan pembahasan terpisah dari bacaan utama.
+
 ## Bacaan lain yang tersedia
 
 | Pertemuan | Bacaan | Keadaan saat ini |
 | --- | --- | --- |
-| 3 | [Kasus analisis](bab-03-kasus-analisis.md) | Catatan lama; belum disusun ulang menurut nomor responsi. |
 | 4 | [Algoritme iteratif](bab-04-algoritme-iteratif.md) | Catatan lama; belum disusun ulang menurut nomor responsi. |
 | 5 | [Algoritme rekursif](bab-05-algoritme-rekursif.md) | Catatan lama; belum disusun ulang menurut nomor responsi. |
 | 6 | [Pencarian](bab-06-pencarian.md) | Catatan lama; cakupannya belum sepenuhnya mengikuti lembar responsi. |
 | 7 | [Pengurutan](bab-07-pengurutan.md) | Catatan lama; belum disusun ulang menurut nomor responsi. |
 
-Tabel ini membedakan dua bab yang sudah disusun menurut lembar responsi dari catatan lama. Bab 3–7 belum mengikuti nomor lembar kerja sebagaimana Bab 1–2.
+Tabel ini memisahkan panduan responsi 1–3 dari catatan lama. Bab 4–7 belum mengikuti nomor lembar kerja sebagaimana Bab 1–3.
 
 ## Cara memakai panduan
 
