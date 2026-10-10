@@ -2,11 +2,13 @@
 
 > **Pertanyaan pembuka.** Dua cara sama-sama berhasil mencari nama dalam sebuah daftar yang sudah diurutkan. Cara pertama memeriksa nama dari awal sampai ketemu. Cara kedua berkali-kali membagi bagian daftar yang mungkin berisi nama itu. Mana yang lebih baik? Jawabannya perlu lebih dari sekadar melihat satu kali percobaan: kita harus menjelaskan *kapan* cara itu benar, *berapa banyak* pekerjaan yang dilakukan, dan *mengapa* hitungan tersebut berlaku.
 
-Bab ini dibaca seperti cerita yang bergerak dari satu pertanyaan ke pertanyaan berikutnya. Mulailah dari contoh kecil. Rumus umum baru muncul setelah alasan di baliknya terlihat. Jika sebuah simbol terasa asing, baca kalimat sebelum dan sesudahnya; simbol selalu mewakili sesuatu yang konkret.
+Bab ini mengikuti satu pekerjaan: mencari dan menghitung data dalam sebuah array. Mula-mula kita sepakati apa yang dihitung. Lalu kita belajar aljabar untuk mengolah hitungan itu, logika untuk menyatakan klaim dengan tepat, dan pembuktian untuk memastikan klaim berlaku umum. Setelah itu, barisan dan deret membantu menghitung pekerjaan yang berulang. Bagian akhir memperluas cara hitung yang sama ke pilihan bercabang, kelompok yang tumpang tindih, dan peluang. Setiap perpindahan bagian akan dijelaskan hubungannya dengan pekerjaan awal.
+
+**Peta jalan:** satu pencarian konkret → persamaan untuk biaya → pernyataan yang dapat diuji → bukti umum → penjumlahan pekerjaan berulang → penghitungan pilihan → peluang dan sisa pembagian. Jika baru pertama belajar, selesaikan bagian 1–5 dahulu. Bagian 6–7 memperluas alat yang sudah dipelajari, bukan prasyarat untuk memahami Bab 2.
 
 ## 1. Sebelum menghitung, apa sebenarnya yang sedang kita bahas?
 
-Bayangkan Sensei mencari angka 8 dalam **array** `[4, 1, 8, 2]`. Array adalah daftar data yang dapat diakses melalui posisi. Kita memakai istilah *array* karena istilah itu umum di pemrograman. Dalam contoh ini indeksnya dimulai dari 0. Jadi 4 berada di indeks 0 dan 8 berada di indeks 2. Daftar ini belum diurutkan, sehingga pencarian dengan membagi dua bagian belum boleh dipakai begitu saja.
+Bayangkan seorang peserta mencari angka 8 dalam **array** `[4, 1, 8, 2]`. Array adalah daftar data yang dapat diakses melalui posisi. Kita memakai istilah *array* karena istilah itu umum di pemrograman. Dalam contoh ini indeksnya dimulai dari 0. Jadi 4 berada di indeks 0 dan 8 berada di indeks 2. Daftar ini belum diurutkan, sehingga pencarian dengan membagi dua bagian belum boleh dipakai begitu saja.
 
 Salah satu algoritme pencarian sederhana ialah: periksa posisi 0, lalu 1, lalu 2, dan berhenti ketika nilainya 8. Algoritme berarti urutan langkah yang jelas, menerima *input*, menghasilkan *output*, dan berhenti setelah sejumlah langkah berhingga. Untuk contoh tadi, inputnya array serta angka yang dicari; outputnya indeks 2.
 
@@ -23,9 +25,11 @@ Pengukuran dengan stopwatch tetap berguna, tetapi bergantung pada mesin, bahasa,
 
 ## 2. Aljabar adalah cara menjaga dua sisi tetap seimbang
 
+Pada pencarian tadi, angka 8 ditemukan setelah tiga perbandingan. Bayangkan sebelum pencarian ada pekerjaan persiapan berbiaya 3 satuan, lalu setiap perbandingan berbiaya 2 satuan. Jika banyak perbandingan kita tulis $x$, total biaya adalah $2x+3$. Untuk tiga perbandingan, biayanya $2(3)+3=9$ satuan. Bagaimana jika batas biaya yang tersedia adalah 11 satuan? Persamaan $2x+3=11$ membantu mencari berapa perbandingan yang dapat dilakukan. Jadi $x$ berikut ini mewakili pekerjaan yang bisa dihitung, bukan sekadar huruf tanpa arti.
+
 ### 2.1 Apa arti tanda sama dengan?
 
-Persamaan $2x+3=11$ mengatakan bahwa sisi kiri dan sisi kanan bernilai sama. Kita ingin mengetahui nilai $x$ yang membuatnya benar.
+Persamaan $2x+3=11$ mengatakan bahwa biaya dari $x$ perbandingan sama dengan 11 satuan. Kita ingin mengetahui nilai $x$ yang membuatnya benar.
 
 Langkah pertama sering disebut “memindahkan 3 ke kanan”. Ungkapan itu cepat, tetapi menyembunyikan alasannya. Yang sesungguhnya dilakukan ialah **mengurangi 3 pada kedua sisi**:
 
@@ -107,6 +111,8 @@ Ini berguna untuk membagi array tanpa tumpang tindih. Bagian $[0,3)$ memuat inde
 
 ## 3. Logika: apa tepatnya yang hendak dibuktikan?
 
+Aljabar memberi nilai yang memenuhi persamaan. Namun analisis algoritme juga membuat kalimat seperti “pencarian selalu berhenti” atau “hasilnya selalu benar”. Sebelum membuktikan kalimat seperti itu, kita harus tahu persis arti *selalu*, *ada*, dan *jika*. Itulah tugas logika.
+
 ### 3.1 Kalimat, variabel, dan arti “semua”
 
 Pernyataan “$7$ adalah bilangan prima” mempunyai nilai benar. “$7$ adalah bilangan genap” mempunyai nilai salah. Keduanya disebut **proposisi** karena nilai benarnya dapat ditentukan. Kalimat “$x+2=5$” belum punya satu nilai benar atau salah sebelum $x$ diberi nilai atau diberi keterangan seperti “ada $x$” atau “untuk semua $x$”. Pertanyaan dan perintah juga bukan proposisi.
@@ -164,9 +170,11 @@ Ini disebut aturan De Morgan. Coba keadaan kecil: jika tugas sudah dibaca tetapi
 
 ## 4. Pembuktian: dari beberapa contoh menuju semua kasus
 
+Bagian 3 membedakan klaim “ada satu contoh” dari klaim “untuk semua input”. Sekarang kita belajar memberi alasan untuk klaim umum. Menguji beberapa array kecil dapat menemukan kesalahan, tetapi tidak cukup untuk menjamin semua array.
+
 ### 4.1 Bukti langsung memakai definisi
 
-Soal responsi meminta membuktikan: jika integer $n$ genap, maka $3n+2$ genap. Mulailah dari arti *genap*, bukan dari menebak-nebak angka. Jika $n$ genap, ada integer $k$ dengan $n=2k$. Substitusikan:
+Kita mulai dari klaim bilangan yang pendek agar bentuk sebuah bukti terlihat jelas sebelum menerapkannya ke loop. Soal responsi meminta membuktikan: jika integer $n$ genap, maka $3n+2$ genap. Mulailah dari arti *genap*, bukan dari menebak-nebak angka. Jika $n$ genap, ada integer $k$ dengan $n=2k$. Substitusikan:
 
 $$3n+2=3(2k)+2=6k+2=2(3k+1).$$
 
@@ -269,6 +277,8 @@ Langkah terakhir penting. “Invariant tetap benar” saja belum cukup; kita jug
 
 ## 5. Barisan, deret, dan simbol sigma: membaca kerja yang berulang
 
+Kita sudah melihat bahwa sebuah loop dapat benar karena suatu sifat tetap terjaga pada setiap putaran. Pertanyaan berikutnya: berapa pekerjaan yang terkumpul dari semua putaran? Jika putaran pertama melakukan satu pekerjaan, putaran kedua dua pekerjaan, dan seterusnya, kita perlu menjumlahkan pola. Di sinilah barisan dan deret masuk; keduanya muncul dari loop, bukan sebagai topik yang terpisah tanpa alasan.
+
 **Barisan** adalah daftar suku, misalnya $2,4,6,8,\ldots$. **Deret** adalah hasil penjumlahannya, misalnya $2+4+6+8+\cdots$. Perbedaan ini kecil tetapi penting: yang satu menjelaskan nilai pada posisi tertentu; yang lain menjelaskan totalnya.
 
 ### 5.1 Barisan aritmetika: bertambah dengan selisih tetap
@@ -307,6 +317,8 @@ $\log_2 8=3$ karena $2^3=8$. Bila jumlah kemungkinan menjadi dua kali lipat pada
 
 ## 6. Menghitung kemungkinan tanpa mendaftar semuanya
 
+Sampai sini kita menghitung *langkah yang benar-benar dijalankan*. Pada algoritme yang mencoba beberapa pilihan, pertanyaan bergeser: berapa jalur yang *mungkin* dicoba? Kita mulai dari memilih dua hal kecil, lalu melihat bagaimana pilihan bercabang membentuk sebuah *tree*. Setelah itu, kita hitung kelompok hasil yang dapat saling tumpang tindih.
+
 ### 6.1 Aturan tambah dan kali
 
 Di kantin ada 3 pilihan nasi dan 2 pilihan mi. Jika seseorang memilih **satu nasi atau satu mi**, ada $3+2=5$ pilihan, karena kedua kelompok tidak tumpang tindih. Ini **aturan penjumlahan**.
@@ -343,6 +355,8 @@ Ini juga jawaban soal pertama UTS 2018 tentang mengambil 0 sampai $n$ barang, de
 
 ### 6.5 Pohon keputusan: kemungkinan pada setiap kedalaman
 
+Pilihan “ambil atau tidak” pada bagian sebelumnya dapat digambar sebagai dua cabang. Satu cabang mewakili “ambil”, cabang lain “tidak”. Menggambar semua cabang menghasilkan *tree*; rumus pangkat dua yang baru kita peroleh sekarang punya gambaran visual.
+
 Bayangkan setiap simpul pada sebuah pohon mempunyai 2 anak. Akar ada pada **kedalaman 0**. Pada kedalaman 0 ada 1 simpul; kedalaman 1 ada 2; kedalaman 2 ada 4; kedalaman 3 ada 8. Total sampai kedalaman 3 adalah $1+2+4+8=15$ simpul. Jumlah pada kedalaman $d$ ialah $2^d$ karena setiap perpindahan menggandakan banyak simpul.
 
 Secara umum, bila setiap simpul punya $b$ anak, level kedalaman $d$ memuat $b^d$ simpul. Total dari akar sampai kedalaman $d$ adalah $1+b+b^2+\cdots+b^d$. Rumus deret geometri memberi $(b^{d+1}-1)/(b-1)$ untuk $b\ne1$.
@@ -350,6 +364,8 @@ Secara umum, bila setiap simpul punya $b$ anak, level kedalaman $d$ memuat $b^d$
 > **Hati-hati membaca soal.** “Level ke-2” bisa berarti kedalaman 1 bila akar disebut level 1, atau kedalaman 2 bila akar disebut level 0. Pada responsi, bagian ini tidak menetapkan konvensi secara tegas. Tulis konvensi yang dipakai: dengan akar level 1 dan 3 cabang per simpul, level 2 berisi 3 simpul; dengan akar level 0, level 2 berisi 9 simpul.
 
 ### 6.6 Menghitung gabungan yang tumpang tindih
+
+Perkalian pilihan pada *tree* menghitung jalur yang berbeda. Kadang satu hasil memenuhi beberapa syarat sekaligus; jika kita menjumlahkan banyak hasil per syarat, hasil yang sama bisa terhitung berulang. Untuk keadaan ini, kita perlu menghitung *gabungan* kelompok, bukan jumlah cabang.
 
 Misalkan A adalah siswa yang suka matematika dan B adalah siswa yang suka pemrograman. Jika ada 5 siswa di A dan 4 siswa di B, belum tentu ada 9 siswa berbeda. Orang yang masuk kedua kelompok terhitung dua kali. Bila irisan $A\cap B$ berisi 2 siswa, jumlah yang berada di setidaknya satu kelompok ialah $5+4-2=7$.
 
@@ -366,6 +382,8 @@ $$
 Pada soal responsi, ukurannya berturut-turut 50, 30, 20; irisan pasangan 15, 10, 5; irisan tiga 2. Hitung perlahan: $50+30+20=100$; jumlah tiga irisan pasangan $15+10+5=30$; jadi sementara $100-30=70$; tambahkan 2 sehingga hasilnya **72**. Menulis setiap subtotal membantu menghindari lupa mengembalikan irisan tiga.
 
 ## 7. Peluang, sisa pembagian, dan hitungan langkah: jembatan ke bab berikutnya
+
+Bagian ini berisi tiga penerapan pendek dari alat yang sudah diperoleh. Peluang memberi bobot pada beberapa jenis input; sisa pembagian merangkum pola bilangan; hitungan kondisi loop memperjelas apa yang dimaksud “satu langkah”. Ketiganya akan muncul lagi pada bab sesudah ini, tetapi boleh dibaca setelah inti bagian 1–5 dipahami.
 
 ### 7.1 Rata-rata yang berbobot peluang
 
@@ -395,7 +413,7 @@ Perhatikan prosedur: mulai dengan $i=1$; selama $i\le n$, lakukan satu pekerjaan
 
 Jika pekerjaan pada putaran ke-$i$ memerlukan $i$ operasi, totalnya bukan $n$ tetapi $1+2+\cdots+n=n(n+1)/2$. Dari sini matematika bab ini mulai berubah menjadi analisis algoritme yang sesungguhnya.
 
-## 8. Cara memeriksa pemahaman sebelum mengajar
+## 8. Cara memeriksa pemahaman
 
 Ketika menemui soal baru, ajukan lima pertanyaan secara berurutan.
 
@@ -407,131 +425,12 @@ Ketika menemui soal baru, ajukan lima pertanyaan secara berurutan.
 
 Contoh kecil adalah alat pemeriksa, bukan pengganti bukti umum. Jika contoh kecil tidak cocok, ada kesalahan. Jika cocok, kita masih perlu alasan mengapa hal yang sama berlaku untuk semua input.
 
-## 9. Latihan bertingkat
+## Latihan mandiri
 
-Tutup pembahasan di bawah terlebih dahulu. Untuk soal yang diadaptasi dari responsi atau ujian lama, istilah dan susunannya ditulis ulang agar bisa dikerjakan tanpa melihat PDF. Label *adaptasi* bukan berarti teks soal ini salinan resmi.
-
-1. **Mudah — persamaan.** Selesaikan $3x+4=19$. Tuliskan operasi yang dilakukan pada kedua sisi dan periksa jawabannya.
-2. **Mudah — interval.** Indeks integer apa saja dalam $[2,6)$? Mengapa banyaknya sama dengan $6-2$?
-3. **Mudah — logika.** Apakah “$x+2=5$” merupakan proposisi sebelum $x$ diberi nilai? Ubah menjadi dua proposisi berbeda, satu benar dan satu salah.
-4. **Mudah — pembuktian langsung; adaptasi responsi 1.** Buktikan: jika integer $n$ genap, $3n+2$ genap.
-5. **Mudah — deret.** Hitung $1+2+\cdots+20$ dengan rumus dan periksa dengan cara memasangkan suku ujung.
-6. **Sedang — titik potong; adaptasi responsi 1.** Temukan titik potong $f(x)=3x-4$ dan $g(x)=2x+1$. Periksa pada kedua fungsi.
-7. **Sedang — kombinasi; adaptasi responsi 1.** Sebuah kelompok memiliki lima anggota bernama A, B, C, D, dan E. Kelompok itu hendak memilih tepat dua orang untuk satu sub-tim. Kedua anggota sub-tim memiliki peran yang sama, sehingga memilih A lalu B menghasilkan sub-tim yang sama dengan memilih B lalu A. Berapa sub-tim berbeda yang dapat dibentuk? Jelaskan mengapa jawabannya bukan $5\times4$.
-8. **Sedang — pohon; adaptasi responsi 1.** Akar berada pada kedalaman 0. Setiap simpul memiliki 2 anak sampai kedalaman 3. Berapa simpul pada kedalaman 3 dan berapa total simpul?
-9. **Sedang — himpunan; adaptasi responsi 1.** Diberikan $|A|=50$, $|B|=30$, $|C|=20$, $|A\cap B|=15$, $|A\cap C|=10$, $|B\cap C|=5$, dan $|A\cap B\cap C|=2$. Berapa anggota $A\cup B\cup C$? Terangkan mengapa irisan tiga ditambahkan.
-10. **Sedang — induksi; adaptasi responsi 1.** Buktikan $1+2+\cdots+n=n(n+1)/2$ untuk setiap integer $n\ge1$. Jangan melewati langkah menyamakan penyebut.
-11. **Sulit — klaim salah; adaptasi responsi 1.** Nilailah klaim “untuk semua integer positif $n$, $n^2+2$ ganjil”. Berikan bukti bila benar atau contoh penyangkal bila salah. Dapatkah klaim diperbaiki dengan syarat tambahan?
-12. **Sulit — klaim salah; adaptasi responsi 1.** Nilailah klaim “untuk setiap integer $a,b$, $a^2-4b-1\ne0$”. Jelaskan mengapa permintaan untuk membuktikannya dengan kontradiksi tidak dapat dipenuhi seperti tertulis.
-13. **Sulit — parabola; adaptasi responsi 1.** Cari semua titik potong $y=x^2-4x+3$ dan $y=x+1$. Jelaskan asal dua jawabannya.
-14. **Sulit — subset; adaptasi UTS 2018.** Ada $n$ barang yang berbeda, setiap barang boleh diambil paling banyak sekali. Berapa cara memilih 0 sampai $n$ barang? Buktikan dengan keputusan per barang dan dengan mengelompokkan hasil menurut banyak barang yang diambil.
-15. **Sulit — induksi baru.** Buktikan $1+3+5+\cdots+(2n-1)=n^2$ untuk $n\ge1$. Jelaskan dengan jelas dari mana suku $2k+1$ muncul pada langkah $k\to k+1$.
-16. **Sulit — program.** Sebuah loop dimulai dengan $S=0,i=0$. Selama $i<n$, ia melakukan $S\leftarrow S+2$ dan $i\leftarrow i+1$. Untuk $n\ge0$, tulis invariant yang menghubungkan $S$ dan $i$, buktikan sebelum loop, sesudah satu putaran, dan saat berhenti. Apa hasil akhirnya?
-
-## 10. Pembahasan latihan, tanpa lompatan langkah
-
-### 1. Persamaan
-
-**Soal lengkap.** Selesaikan $3x+4=19$. Tuliskan operasi yang dilakukan pada kedua sisi dan periksa jawabannya.
-
-Mulai dari $3x+4=19$. Kurangi 4 pada **kedua** sisi: $3x+4-4=19-4$, sehingga $3x=15$. Bagi kedua sisi dengan 3: $x=5$. Pemeriksaan: $3(5)+4=15+4=19$. Jadi $x=5$ benar.
-
-### 2. Interval
-
-**Soal lengkap.** Indeks integer apa saja dalam $[2,6)$? Mengapa banyaknya sama dengan $6-2$?
-
-$[2,6)$ memasukkan 2 dan mengecualikan 6. Indeks integer yang tersisa: 2, 3, 4, 5. Ada empat angka. Selisih batas $6-2=4$ cocok karena kita mulai dari 2 dan berhenti tepat sebelum 6.
-
-### 3. Proposisi
-
-**Soal lengkap.** Apakah “$x+2=5$” merupakan proposisi sebelum $x$ diberi nilai? Ubah menjadi dua proposisi berbeda, satu benar dan satu salah.
-
-Kalimat $x+2=5$ belum menjadi proposisi tertutup karena nilai $x$ belum ditentukan. “Untuk $x=3$, $x+2=5$” benar sebab $3+2=5$. “Untuk $x=4$, $x+2=5$” salah sebab $4+2=6\ne5$. Sekarang masing-masing punya nilai benar atau salah yang jelas.
-
-### 4. Bukti langsung
-
-**Soal lengkap.** Buktikan: jika integer $n$ genap, $3n+2$ genap.
-
-Karena $n$ genap, tulis $n=2k$ untuk suatu integer $k$. Maka $3n+2=3(2k)+2=6k+2=2(3k+1)$. Nilai $3k+1$ integer, sehingga $3n+2$ berbentuk $2$ kali integer. Itu persis definisi genap.
-
-### 5. Jumlah 1 sampai 20
-
-**Soal lengkap.** Hitung $1+2+\cdots+20$ dengan rumus dan periksa dengan cara memasangkan suku ujung.
-
-Rumus memberi $20(20+1)/2=20\times21/2=10\times21=210$. Cara pasangan: $(1+20)=(2+19)=\cdots=(10+11)=21$. Ada 10 pasangan, sehingga jumlahnya $10\times21=210$. Dua cara saling memeriksa.
-
-### 6. Titik potong
-
-**Soal lengkap.** Temukan titik potong $f(x)=3x-4$ dan $g(x)=2x+1$. Periksa pada kedua fungsi.
-
-Samakan output: $3x-4=2x+1$. Kurangi $2x$ pada kedua sisi: $x-4=1$. Tambahkan 4 pada kedua sisi: $x=5$. Masukkan ke fungsi pertama: $y=3(5)-4=11$. Fungsi kedua juga memberi $y=2(5)+1=11$. Jadi titiknya $(5,11)$.
-
-### 7. Tim dua orang
-
-**Soal lengkap.** Sebuah kelompok memiliki lima anggota bernama A, B, C, D, dan E. Kelompok itu hendak memilih tepat dua orang untuk satu sub-tim. Kedua anggota sub-tim memiliki peran yang sama, sehingga memilih A lalu B menghasilkan sub-tim yang sama dengan memilih B lalu A. Berapa sub-tim berbeda yang dapat dibentuk? Jelaskan mengapa jawabannya bukan $5\times4$.
-
-Bayangkan kita mula-mula mengisi dua kursi bernama “pilihan pertama” dan “pilihan kedua”. Kursi pertama bisa diisi salah satu dari 5 orang. Setelah satu orang duduk, kursi kedua tinggal memiliki 4 pilihan. Itulah asal $5\times4=20$.
-
-Namun, soal meminta *anggota sub-tim*, bukan urutan duduk. Pasangan (A, B) dan (B, A) merupakan satu sub-tim yang sama. Hal yang sama terjadi pada setiap pasangan: selalu ada tepat dua urutan. Karena hitungan 20 memasukkan setiap sub-tim dua kali, kita membaginya dengan 2. Hasilnya $20/2=10$ sub-tim.
-
-Kita dapat memeriksa dengan mendaftar tanpa mengulang urutan: A-B, A-C, A-D, A-E; B-C, B-D, B-E; C-D, C-E; dan D-E. Ada $4+3+2+1=10$ pasangan. Rumus kombinasi memberi hasil yang sama, $\binom52=5!/(2!3!)=(5\times4)/(2\times1)=10$.
-
-### 8. Pohon biner
-
-**Soal lengkap.** Akar berada pada kedalaman 0. Setiap simpul memiliki 2 anak sampai kedalaman 3. Berapa simpul pada kedalaman 3 dan berapa total simpul?
-
-Kedalaman 0 berisi 1 simpul. Karena setiap simpul punya 2 anak, kedalaman 1 berisi 2, kedalaman 2 berisi 4, dan kedalaman 3 berisi 8. Jadi pada kedalaman 3 ada **8** simpul. Totalnya $1+2+4+8=15$. Jangan menghitung hanya tiga level: dari kedalaman 0 sampai 3 terdapat empat level.
-
-### 9. Gabungan tiga himpunan
-
-**Soal lengkap.** Diberikan $|A|=50$, $|B|=30$, $|C|=20$, $|A\cap B|=15$, $|A\cap C|=10$, $|B\cap C|=5$, dan $|A\cap B\cap C|=2$. Berapa anggota $A\cup B\cup C$? Terangkan mengapa irisan tiga ditambahkan.
-
-Jumlah ukuran awal $50+30+20=100$. Kurangi irisan pasangan $15+10+5=30$, sehingga tersisa 70. Tambahkan irisan tiga 2 sehingga $|A\cup B\cup C|=72$. Anggota yang berada di ketiga kelompok semula dihitung 3 kali, lalu dikurangi 3 kali; tambahan terakhir membuatnya terhitung tepat 1 kali.
-
-### 10. Induksi jumlah bilangan pertama
-
-**Soal lengkap.** Buktikan $1+2+\cdots+n=n(n+1)/2$ untuk setiap integer $n\ge1$. Jangan melewati langkah menyamakan penyebut.
-
-Basis $n=1$: kiri 1, kanan $1(2)/2=1$. Anggap benar untuk $n=k$, sehingga $1+\cdots+k=k(k+1)/2$. Untuk $k+1$, tambahkan satu suku baru: $1+\cdots+k+(k+1)=k(k+1)/2+(k+1)$. Tulis suku kedua sebagai $2(k+1)/2$, karena $2/2=1$. Jumlahkan pembilang: $[k(k+1)+2(k+1)]/2$. Keluarkan $(k+1)$: $(k+1)(k+2)/2$. Itu bentuk rumus untuk $n=k+1$. Basis dan langkah induksi selesai.
-
-### 11. Pernyataan $n^2+2$ selalu ganjil
-
-**Soal lengkap.** Nilailah klaim “untuk semua integer positif $n$, $n^2+2$ ganjil”. Berikan bukti bila benar atau contoh penyangkal bila salah. Dapatkah klaim diperbaiki dengan syarat tambahan?
-
-Klaimnya salah. Pilih $n=2$, yang positif: $n^2+2=4+2=6$, genap. Satu contoh ini cukup membantah kata “untuk semua”. Pernyataan dapat diperbaiki menjadi: **jika $n$ positif dan ganjil, maka $n^2+2$ ganjil**. Sebab $n=2k+1$ menghasilkan $n^2+2=4k^2+4k+3=2(2k^2+2k+1)+1$, yaitu bentuk ganjil.
-
-### 12. Pernyataan $a^2-4b-1\ne0$
-
-**Soal lengkap.** Nilailah klaim “untuk setiap integer $a,b$, $a^2-4b-1\ne0$”. Jelaskan mengapa permintaan untuk membuktikannya dengan kontradiksi tidak dapat dipenuhi seperti tertulis.
-
-Ambil $a=1$ dan $b=0$. Keduanya integer dan $1^2-4(0)-1=0$. Jadi klaim universal itu salah. Permintaan “buktikan dengan kontradiksi” tidak dapat menghasilkan bukti yang sah untuk kalimat seperti tertulis. Contoh penyangkal harus disampaikan lebih dulu.
-
-### 13. Titik potong parabola dan garis
-
-**Soal lengkap.** Cari semua titik potong $y=x^2-4x+3$ dan $y=x+1$. Jelaskan asal dua jawabannya.
-
-Titik potong memenuhi $x^2-4x+3=x+1$. Kurangi $x+1$ pada kedua sisi sehingga $x^2-5x+2=0$. Dalam rumus kuadrat, $a=1,b=-5,c=2$. Diskriminannya $b^2-4ac=(-5)^2-4(1)(2)=25-8=17$, positif. Karena akar kuadrat bilangan positif memiliki dua tanda, diperoleh $x=(5+\sqrt{17})/2$ dan $x=(5-\sqrt{17})/2$. Dari $y=x+1$, koordinat $y$ masing-masing $(7+\sqrt{17})/2$ dan $(7-\sqrt{17})/2$. Kedua jawaban muncul karena persamaan kuadratnya mempunyai dua akar real.
-
-### 14. Memilih 0 sampai $n$ barang
-
-**Soal lengkap.** Ada $n$ barang yang berbeda, setiap barang boleh diambil paling banyak sekali. Berapa cara memilih 0 sampai $n$ barang? Buktikan dengan keputusan per barang dan dengan mengelompokkan hasil menurut banyak barang yang diambil.
-
-Cara pertama: setiap barang punya dua keputusan independen, ambil atau tidak. Untuk $n$ barang berbeda, aturan perkalian memberi $2\times2\times\cdots\times2=2^n$ hasil. Cara kedua: bila tepat $r$ barang diambil, ada $\binom nr$ hasil. Nilai $r$ boleh 0, 1, dan seterusnya sampai $n$. Kelompok-kelompok ini tidak tumpang tindih dan mencakup semua hasil, sehingga jumlahnya $\sum_{r=0}^{n}\binom nr$. Karena kedua cara menghitung kumpulan hasil yang sama, jumlah tersebut sama dengan $2^n$. Untuk $n=3$, periksa $1+3+3+1=8=2^3$.
-
-### 15. Jumlah bilangan ganjil pertama
-
-**Soal lengkap.** Buktikan $1+3+5+\cdots+(2n-1)=n^2$ untuk $n\ge1$. Jelaskan dengan jelas dari mana suku $2k+1$ muncul pada langkah $k\to k+1$.
-
-Basis $n=1$: kiri 1, kanan $1^2=1$. Anggap jumlah $k$ suku ganjil pertama adalah $k^2$. Suku ganjil ke-$j$ berbentuk $2j-1$; maka suku setelah suku ke-$k$ memiliki indeks $j=k+1$ dan nilainya $2(k+1)-1=2k+1$. Jumlah baru ialah $k^2+(2k+1)=k^2+2k+1=(k+1)^2$. Itu rumus yang harus ditunjukkan untuk $k+1$. Jadi klaim berlaku untuk setiap $n\ge1$.
-
-### 16. Loop yang menambahkan 2
-
-**Soal lengkap.** Sebuah loop dimulai dengan $S=0,i=0$. Selama $i<n$, ia melakukan $S\leftarrow S+2$ dan $i\leftarrow i+1$. Untuk $n\ge0$, tulis invariant yang menghubungkan $S$ dan $i$, buktikan sebelum loop, sesudah satu putaran, dan saat berhenti. Apa hasil akhirnya?
-
-Invariant-nya $S=2i$. Sebelum loop, $S=0$ dan $i=0$, sehingga $0=2(0)$. Andaikan sebelum suatu putaran $S=2i$. Setelah perintah pertama, $S'=S+2=2i+2=2(i+1)$. Setelah perintah kedua, $i'=i+1$, sehingga $S'=2i'$ dan invariant tetap benar. Untuk $n\ge0$, $i$ mulai dari 0 dan naik satu-satu sampai kondisi $i<n$ salah, yakni saat $i=n$. Maka $S=2i=2n$. Jumlah putarannya tepat $n$; bila $n=0$, loop tidak berjalan dan hasil 0 tetap sesuai.
+Enam belas soal bertingkat dan pembahasannya tersedia di [Latihan Bab 1](latihan-bab-01.md). Setiap soal memiliki konteks lengkap dan catatan asalnya, sehingga bacaan utama ini dapat diikuti tanpa memotong alur untuk daftar soal.
 
 ## Sumber dan batas pemakaian
 
-Materi inti dan tema soal bab ini diturunkan dari **Kuliah 1 Analisis Algoritme 2026–2027**, **Lembar Kerja Responsi Pertemuan 1**, **Latihan Soal K1**, dan **UTS Analisis Algoritme 2018** dalam arsip yang diberikan Sensei. Buku *Introduction to Algorithms*, edisi ketiga, oleh Cormen, Leiserson, Rivest, dan Stein dipakai sebagai contoh **alur penyajian**: mulai dari masalah, gagasan, alasan, lalu latihan. Cerita, kalimat, dan pembahasan di sini ditulis sendiri; bab ini tidak menyalin uraian buku tersebut. Beberapa slide kuliah berupa gambar sehingga teks yang diekstrak tidak memuat setiap detail visual; untuk gambar tertentu, lihat PDF aslinya.
+Materi inti dan tema contoh bab ini diturunkan dari **Kuliah 1 Analisis Algoritme 2026–2027**, **Lembar Kerja Responsi Pertemuan 1**, **Latihan Soal K1**, dan **UTS Analisis Algoritme 2018** dalam materi pendamping kuliah. Buku *Introduction to Algorithms*, edisi ketiga, oleh Cormen, Leiserson, Rivest, dan Stein dipakai sebagai contoh **alur penyajian**: mulai dari masalah, gagasan, alasan, lalu latihan. Cerita, kalimat, dan pembahasan di sini ditulis sendiri; bab ini tidak menyalin uraian buku tersebut. Beberapa slide kuliah berupa gambar sehingga teks yang diekstrak tidak memuat setiap detail visual; untuk gambar tertentu, lihat PDF aslinya.
 
 **Lanjutkan ke [Bab 2 — Pertumbuhan Fungsi](bab-02-pertumbuhan-fungsi.md)** setelah bisa menjelaskan sendiri mengapa jumlah $1+\cdots+n$ bernilai $n(n+1)/2$ dan mengapa suatu loop yang berjalan $n$ kali memeriksa kondisinya $n+1$ kali.

@@ -1,6 +1,6 @@
 # Panduan Belajar Analisis Algoritme: Kuliah 1–7
 
-Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu berlatih menjelaskannya. Urutan bab mengikuti tujuh berkas kuliah dalam materi yang diberikan. **Bab 1 dan Bab 2 sudah ditulis ulang sebagai bacaan bertahap bergaya buku.** Bab 2 mengikuti satu cerita dari penghitungan perbandingan sampai notasi asimtotik, lalu membahas soal responsi langkah demi langkah. Masing-masing bab ini memiliki 16 latihan lengkap dengan pembahasan. Bab 3–7 masih menggunakan versi ringkas sebelumnya dan akan ditulis ulang satu per satu.
+Panduan ini ditujukan kepada peserta yang sedang belajar analisis algoritme. Bacalah contoh dari masalahnya, ikuti alasan tiap langkah, lalu coba soal latihan secara mandiri. Urutan bab mengikuti tujuh berkas kuliah. **Bab 1 dan Bab 2 sudah berupa bacaan bertahap bergaya buku.** Masing-masing memiliki 16 latihan dan pembahasan dalam dokumen terpisah. Bab 3–7 masih menggunakan versi ringkas sebelumnya.
 
 | Bab | Bacaan | Pertanyaan inti |
 | --- | --- | --- |
@@ -12,18 +12,20 @@ Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu b
 | 6 | [Pencarian](bab-06-pencarian.md) | Asumsi data apa yang membenarkan strategi pencarian? |
 | 7 | [Pengurutan](bab-07-pengurutan.md) | Bagaimana memilih algoritme urut menurut data dan kebutuhan? |
 
+Latihan lengkap: [Bab 1](latihan-bab-01.md) · [Bab 2](latihan-bab-02.md). Setiap soal mencantumkan asalnya. Soal yang ditulis khusus untuk panduan ini diberi label jelas.
+
 ## Mulai dari sini jika rumus terasa melompat
 
-Mulai dari Bab 1 untuk dasar aljabar yang diperlukan. Pada Bab 2, ikuti cerita pencarian nama dari awal sampai akhir sebelum masuk ke soal loop. Coba ulangi tiap contoh dengan angka kecil tanpa melihat penjelasannya. Pada setiap perubahan bentuk, tanyakan: apa yang dihitung, dari mana angka itu berasal, dan mengapa langkah berikutnya sah? Jika tersendat, kembali ke langkah terakhir yang masih jelas; tidak perlu memaksa menghafal rumus.
+Mulai dari Bab 1 bagian 1–5 untuk mengikuti alur pencarian, aljabar, logika, bukti, dan penjumlahan pekerjaan loop. Bagian 6–7 memperluas cara hitung ke pilihan bercabang dan peluang; bagian itu boleh dibaca sesudah inti dipahami. Pada Bab 2, ikuti cerita pencarian nama dari awal sampai akhir sebelum masuk ke soal loop. Coba ulangi tiap contoh dengan angka kecil tanpa melihat penjelasannya. Pada setiap perubahan bentuk, tanyakan: apa yang dihitung, dari mana angka itu berasal, dan mengapa langkah berikutnya sah?
 
 Urutan belajar yang membantu: **Bab 1** untuk deret dan bukti → **Bab 2** untuk mengubah hitungan menjadi Θ → **Bab 3** untuk memahami asumsi peluang → **Bab 4** untuk jumlah operasi loop → **Bab 5** untuk pohon rekursi → **Bab 6–7** untuk menerapkan semuanya pada algoritme. Untuk waktu singkat, pahami satu contoh tuntas per bab sebelum berpindah.
 
-## Cara memakai panduan ini untuk mengajar
+## Cara memakai panduan ini
 
-1. Baca bagian **Intuisi** dan **Mengapa** pada setiap bab. Jelaskan kembali tanpa melihat teks.
-2. Kerjakan contoh sambil menyebut operasi yang sedang dihitung. Jangan langsung melompat ke notasi Big-O.
-3. Tutup jawaban latihan, kerjakan dua soal mudah dan satu soal menantang per bab. Periksa *alasan* di pembahasan, bukan hanya hasil akhir.
-4. Saat mengajar, pakai pola **masalah → asumsi → hitungan → alasan → pengecekan dengan input kecil**. Minta peserta menjelaskan asumsi mereka sebelum memakai rumus.
+1. Baca cerita pembuka dan peta jalan bab sebelum masuk ke rumus.
+2. Kerjakan ulang contoh sambil menyebut operasi yang dihitung. Jangan langsung melompat ke notasi Big-O.
+3. Buka dokumen latihan bab, kerjakan dua soal mudah dan satu soal menantang tanpa melihat pembahasan.
+4. Periksa alasan di pembahasan, lalu coba jelaskan ulang dengan urutan **masalah → asumsi → hitungan → alasan → pengecekan dengan input kecil**.
 
 Jika waktu terbatas, dahulukan Bab 1 bagian induksi dan jumlah deret; Bab 2 definisi O/Ω/Θ; Bab 3 expected value; Bab 4 loop bergantung; Bab 5 pohon rekurensi dan syarat Master; Bab 6 invariant binary search; Bab 7 stabilitas dan trade-off. Ketujuh bab saling bertumpu: tanpa penjumlahan deret sulit memahami loop dan pohon rekurensi, sedangkan tanpa asumsi input mudah salah memilih searching/sorting.
 

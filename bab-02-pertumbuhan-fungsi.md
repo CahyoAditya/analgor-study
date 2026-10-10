@@ -8,7 +8,7 @@ Bab ini memakai satu cerita sebagai benang merah. Kita mulai dengan mencari nama
 
 ## 1. Mencari nama dalam daftar
 
-Sensei mempunyai daftar peserta [Ari, Bima, Citra, Danu, Nisa] yang belum diurutkan. Untuk mencari “Nisa”, kita dapat membandingkan nama pertama dengan target, lalu melanjutkan sampai cocok atau sampai daftar habis.
+Seorang peserta mempunyai daftar nama [Ari, Bima, Citra, Danu, Nisa] yang belum diurutkan. Untuk mencari “Nisa”, kita dapat membandingkan nama pertama dengan target, lalu melanjutkan sampai cocok atau sampai daftar habis.
 
 | Target | Letak | Perbandingan |
 | --- | ---: | ---: |
@@ -271,125 +271,12 @@ Ini **perkiraan bersyarat**, bukan akibat otomatis dari label Big-O. $T(n)=n$ ju
 5. Tulis fungsi tepat bila mungkin, lalu buktikan $O$, $\Omega$, atau $\Theta$ sesuai pertanyaan.
 6. Untuk memilih program pada rentang nyata, samakan satuan, cari titik potong, lalu uji ukuran yang ditanyakan.
 
-## 10. Latihan bertingkat
+## Latihan mandiri
 
-1. **Mudah.** Daftar tidak terurut berisi tujuh nama. Target tidak ada dan tiap nama dibandingkan sekali. Berapa perbandingan? Tulis $T(n)$ untuk $n$ nama.
-2. **Mudah.** Program menyiapkan data selama 12 satuan waktu, lalu memproses setiap item selama 4 satuan. Tulis $T(n)$, $T(5)$, dan $T(10)$.
-3. **Mudah.** Daftar terurut memiliki 32 kandidat. Tuliskan seluruh ukuran kelompok saat terus dibagi dua sampai satu, lalu hitung pembagiannya.
-4. **Mudah.** Buktikan $6n+12\in O(n)$ dengan $c,n_0$. Apakah juga $\Omega(n)$?
-5. **Sedang.** Untuk $T(n)=5n^3+100n+20$, tentukan $\Theta$ paling ketat dengan batas atas dan bawah untuk $n\ge1$.
-6. **Sedang.** Tahap A melakukan $n^2$ operasi, lalu tahap B melakukan $20n$. Berapa total dan kelasnya? Mengapa tidak dikalikan?
-7. **Sedang.** Untuk setiap $i=1,2,\ldots,n$, program melakukan $i$ perbandingan. Hitung untuk $n=5$, tulis $F(n)$, dan buktikan kelasnya.
-8. **Sedang, adaptasi Responsi 2 nomor 3a.** Tiga loop bersarang, masing-masing dari 0 sampai sebelum $n$, naik satu. Hitung operasi terdalam untuk $n=3$ dan $n$ umum.
-9. **Sedang, adaptasi Responsi 2 nomor 3b.** Tiga loop bersarang: $i$ mulai $n$ lalu dibagi dua dengan pembagian bulat selama positif; $j$ mulai 1 lalu dikali dua selama $j<n$; $k$ mulai 0 lalu ditambah dua selama $k<n$. Hitung untuk $n=8$ dan tentukan $\Theta$.
-10. **Sedang, adaptasi Responsi 2 nomor 3c.** Loop luar menggandakan bound mulai 1 selama bound $\le n$. Di dalamnya ada dua loop berurutan: $j=0,2,4,\ldots<n$, lalu $j=1,2,4,\ldots<n$. Hitung untuk $n=8$ dan tentukan $\Theta$.
-11. **Sulit, adaptasi Responsi 2 nomor 2a.** Paket A memerlukan $0{,}1n\log_2n$ mikrodetik dan B $5n$. Cari titik potong. Pilih pada $n=2^{40}$ dan $n=2^{60}$.
-12. **Sulit, adaptasi Responsi 2 nomor 2b.** Paket A memerlukan $0{,}001n$ milidetik dan B $500\sqrt n$. Cari titik potong positif dan pilih pada $n=10^9$.
-13. **Sulit.** Algoritme terukur 1 detik pada $n=8$. Perkirakan pada $n=16$ jika model dominannya $n^3$. Mengapa label $O(n^3)$ saja tidak memastikan angka itu?
-14. **Sulit.** Tunjukkan $n\in O(n^2)$ untuk $n\ge1$, lalu jelaskan mengapa $n\notin\Theta(n^2)$.
-15. **Sulit, adaptasi UTS 2018.** $f_A(n)=2n^2+975n+90$ dan $f_B(n)=n^2+75n+90$, untuk $n>0$. Adakah ukuran positif saat B memerlukan lebih banyak pekerjaan? Apakah kelas $\Theta$ keduanya sama?
-16. **Tantangan.** Seseorang berkata, “Kompleksitas $O(n^2)$ berarti waktu pasti empat kali jika input digandakan.” Beri dua alasan mengapa belum tentu dan satu fungsi contoh.
+Enam belas soal bertingkat dan pembahasannya tersedia di [Latihan Bab 2](latihan-bab-02.md). Setiap soal memiliki konteks lengkap dan catatan asalnya, sehingga bacaan utama ini dapat diikuti tanpa memotong alur untuk daftar soal.
 
-## 11. Pembahasan latihan tanpa lompatan
+## 11. Ringkasan untuk peserta
 
-### 1. Daftar tujuh nama
+Ulangi pencarian lima nama dan hitung perbandingannya. Setelah asal $T(n)$ jelas, periksa tiga batas lewat satu fungsi yang diapit dua ketaksamaan. Untuk soal loop, tulis nilai indeks pada $n=8$ sebelum memakai logaritma. Untuk memilih paket, samakan satuan, cari titik potong, dan uji ukuran yang benar-benar ditanyakan.
 
-**Soal.** Tujuh nama diperiksa ketika target tidak ada; cari pula $T(n)$.
-
-Ada tujuh pekerjaan satu perbandingan, jadi $1+1+1+1+1+1+1=7$. Untuk $n$ nama, jumlahnya $T(n)=n$. Karena persis sebanding dengan $n$, kelasnya $\Theta(n)$.
-
-### 2. Biaya persiapan
-
-**Soal.** Persiapan 12 satuan dan 4 satuan per item.
-
-Persiapan terjadi sekali, pemrosesan terjadi $n$ kali: $T(n)=12+4n$. Untuk lima item $T(5)=12+4(5)=32$; untuk sepuluh item $T(10)=12+4(10)=52$. Lima item tambahan menambah $5\cdot4=20$ satuan.
-
-### 3. Pembagian dua
-
-**Soal.** Dari 32 kandidat sampai satu.
-
-Urutannya $32\to16\to8\to4\to2\to1$. Ada lima panah, jadi lima pembagian. Cek: $2^5=32$, maka $\log_2 32=5$.
-
-### 4. Dua batas fungsi linear
-
-**Soal.** Buktikan batas $6n+12$.
-
-Untuk $n\ge1$, $12\le12n$. Tambahkan $6n$: $6n+12\le18n$. Jadi $c=18,n_0=1$ membuktikan $O(n)$. Karena 12 tidak negatif, $6n+12\ge6n$; $c=6,n_0=1$ membuktikan $\Omega(n)$. Dua batas memberi $\Theta(n)$.
-
-### 5. Suku kubik
-
-**Soal.** Buktikan kelas $5n^3+100n+20$.
-
-Untuk $n\ge1$, $n\le n^3$ dan $1\le n^3$. Maka $100n\le100n^3$ dan $20\le20n^3$, sehingga $T(n)\le125n^3$. Karena suku tambahan tidak negatif, $T(n)\ge5n^3$. Dua batas ini membuktikan $\Theta(n^3)$.
-
-### 6. Tahap berurutan
-
-**Soal.** $n^2$ operasi disusul $20n$ operasi.
-
-Totalnya $T(n)=n^2+20n$, sebab tahap kedua tidak diulang pada setiap operasi tahap pertama. Pada $n\ge1$, $n\le n^2$, sehingga $n^2\le T(n)\le21n^2$. Maka $\Theta(n^2)$.
-
-### 7. Panjang loop berubah
-
-**Soal.** Pada nilai $i$ dilakukan $i$ perbandingan, dari $i=1$ sampai $n$.
-
-Untuk $n=5$, $1+2+3+4+5=15$. Umumnya $F(n)=n(n+1)/2$. Pada $n\ge1$, $n\le n+1\le2n$. Kalikan semua ruas dengan $n/2>0$: $n^2/2\le F(n)\le n^2$. Jadi $\Theta(n^2)$. Nilai tepat pada $n=5$ tetap 15, bukan 25.
-
-### 8. Tiga loop panjang $n$
-
-**Soal.** Tiga loop bersarang masing-masing mempunyai $n$ nilai indeks.
-
-Untuk $n=3$, tiap indeks bisa 0, 1, atau 2. Ada $3\cdot3\cdot3=27$ kombinasi. Umumnya $F(n)=n^3$, sehingga $\Theta(n^3)$.
-
-### 9. Tiga pola bersarang
-
-**Soal.** Indeks luar dibagi dua, tengah dikali dua, dalam ditambah dua.
-
-Pada $n=8$, $i$ bernilai 8, 4, 2, 1 (4 nilai); $j$ bernilai 1, 2, 4 (3 nilai); $k$ bernilai 0, 2, 4, 6 (4 nilai). Total $4\cdot3\cdot4=48$. Umumnya $F(n)=(\lfloor\log_2n\rfloor+1)\lceil\log_2n\rceil\lceil n/2\rceil$, sehingga $\Theta(n\log^2n)$.
-
-### 10. Dua loop berurutan
-
-**Soal.** Loop luar menggandakan bound; di dalamnya dua loop berjalan satu setelah yang lain.
-
-Pada $n=8$, luar mempunyai 1, 2, 4, 8 (4 putaran); loop dalam pertama 0, 2, 4, 6 (4); kedua 1, 2, 4 (3). Setiap putaran luar berbiaya $4+3=7$, total $4(7)=28$. Umumnya $F(n)=(\lfloor\log_2n\rfloor+1)(\lceil n/2\rceil+\lceil\log_2n\rceil)$, sehingga $\Theta(n\log n)$.
-
-### 11. Paket logaritmik
-
-**Soal.** Bandingkan $0{,}1n\log_2n$ dengan $5n$ pada $2^{40}$ dan $2^{60}$.
-
-Setarakan, bagi dengan $n>0$, lalu dengan $0{,}1$: $\log_2n=50$, maka titik potong $n=2^{50}$. Pada $2^{40}$, A berbiaya $4n<5n$, jadi A lebih cepat. Pada $2^{60}$, A berbiaya $6n>5n$, jadi B lebih cepat.
-
-### 12. Paket akar
-
-**Soal.** Bandingkan $0{,}001n$ dan $500\sqrt n$ pada $10^9$.
-
-Setarakan. Bagi kedua ruas dengan $\sqrt n>0$: $0{,}001\sqrt n=500$. Bagi dengan $0{,}001$: $\sqrt n=500.000$. Kuadratkan: $n=2{,}5\times10^{11}$. Pada $10^9$, A = $10^6$ ms dan B $\approx1{,}581\times10^7$ ms; A lebih cepat.
-
-### 13. Perkiraan kubik
-
-**Soal.** Satu detik pada 8; perkirakan pada 16.
-
-Rasionya $16^3/8^3=(16/8)^3=8$, jadi perkiraannya delapan detik *jika* model kubik sudah dominan pada dua ukuran itu. Label $O(n^3)$ hanya batas atas. Fungsi $T(n)=n$ juga berada dalam $O(n^3)$, tetapi rasionya dua.
-
-### 14. Batas longgar
-
-**Soal.** Tunjukkan $n\in O(n^2)$, tetapi bukan $\Theta(n^2)$.
-
-Untuk $n\ge1$, $n\le n^2$; pilih $c=1,n_0=1$. Agar $\Theta(n^2)$, harus ada $c_1>0$ sehingga $n\ge c_1n^2$ untuk semua $n$ besar. Bagi dengan $n>0$: $1\ge c_1n$. Sisi kanan terus bertambah; ketaksamaan tidak mungkin terus berlaku.
-
-### 15. Dua fungsi kuadrat
-
-**Soal.** Bandingkan $2n^2+975n+90$ dengan $n^2+75n+90$ untuk $n>0$.
-
-Kurangkan B dari A: $(2n^2-n^2)+(975n-75n)+(90-90)=n^2+900n>0$. Maka A selalu lebih besar, sehingga B tidak pernah lebih lambat menurut fungsi biaya ini. Keduanya tetap $\Theta(n^2)$: sama-sama diapit oleh kelipatan $n^2$ untuk $n$ besar. Kelas sama tidak berarti biaya tepat sama.
-
-### 16. Klaim “pasti empat kali”
-
-**Soal.** Apakah $O(n^2)$ menjamin rasio empat saat $n$ digandakan?
-
-Tidak. Pertama, $O(n^2)$ hanya batas atas. $T(n)=n$ juga memenuhinya tetapi rasionya dua. Kedua, bahkan fungsi $\Theta(n^2)$ dapat memiliki biaya tambahan. $T(n)=n^2+1000$ berubah dari 1100 pada $n=10$ menjadi 1400 pada $n=20$, bukan 4400. Rasio empat hanya pendekatan ketika suku kuadrat sudah dominan.
-
-## 12. Ringkasan untuk tutor
-
-Mulailah dengan lima nama dan hitung perbandingannya. Setelah peserta melihat asal $T(n)$, jelaskan tiga batas lewat satu fungsi yang diapit dua ketaksamaan. Untuk soal loop, tulis nilai indeks pada $n=8$ sebelum memakai logaritma. Untuk memilih paket, samakan satuan, cari titik potong, dan uji ukuran yang benar-benar ditanyakan.
-
-**Sumber:** *Kuliah 2 Analgor 2026–2027*, *Lembar Kerja Responsi Pertemuan 2*, bank soal K2, dan UTS 2018 dari arsip Sensei. Soal berlabel adaptasi ditulis ulang untuk belajar. Bagian responsi yang berupa gambar tanpa teks terbaca tidak dipakai untuk mengklaim hitungan tertentu.
+**Sumber:** *Kuliah 2 Analgor 2026–2027*, *Lembar Kerja Responsi Pertemuan 2*, bank soal K2, dan UTS 2018 dari materi pendamping kuliah. Soal berlabel adaptasi ditulis ulang untuk belajar. Bagian responsi yang berupa gambar tanpa teks terbaca tidak dipakai untuk mengklaim hitungan tertentu. Asal setiap soal latihan dicatat di [Latihan Bab 2](latihan-bab-02.md).
