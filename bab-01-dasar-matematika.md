@@ -120,7 +120,11 @@ $$\binom nr=\frac{n!}{r!(n-r)!}.$$
 
 Bagian $n!/(n-r)!$ menghitung pemilihan berurutan sebanyak $r$ benda; bagian $r!$ membuang penghitungan ulang akibat urutan internal yang tidak penting. Jika jabatan *ketua* dan *wakil* berbeda, urutan memang penting, sehingga untuk 2 dari 5 hasilnya $5\times4=20$, bukan 10.
 
+Lihat lagi angka 5040 sebelum membaginya. Proyek pertama mempunyai 10 kemungkinan. Setelah satu proyek diambil, proyek yang sama tidak boleh diambil ulang, sehingga pilihan kedua tinggal 9. Sesudah dua proyek berbeda diambil, pilihan ketiga tinggal 8; pilihan keempat tinggal 7. Karena **setiap** pilihan pertama dapat diikuti **setiap** pilihan kedua yang tersisa, kita mengalikan $10\times9\times8\times7$, bukan menjumlahkannya. Setelah empat proyek terpilih, baru kita buang pengulangan urutan dengan membagi 24. Pembagian sah karena setiap kelompok empat proyek berbeda mempunyai tepat 24 susunan, tanpa pengecualian.
+
 **Jawaban 2b perlu dibedakan dari jumlah proyek.** Jika tidak ada proyek yang dipilih, jumlah proyek terpilih adalah nol. Namun hanya ada **satu** kelompok yang memenuhi keputusan itu, yakni kelompok kosong. Jadi $\binom{10}{0}=1$, bukan nol. Angka $0!=1$ membuat rumus kombinasi konsisten dengan alasan ini.
+
+Bayangkan peserta diminta menulis semua hasil dari keputusan “ambil nol proyek”. Daftarnya berisi satu baris: `{}`. Daftar itu tidak mempunyai anggota proyek, tetapi tetap merupakan **satu hasil pilihan**. Perbedaan antara “banyak anggota hasil” dan “banyak hasil yang mungkin” sering menjadi sumber jawaban nol yang keliru.
 
 Pada 2a hasilnya $\binom{10}{4}=210$; pada 2b hasilnya 1; pada 2c hasilnya $\binom52=10$. Untuk 2c, daftar AB, AC, AD, AE, BC, BD, BE, CD, CE, DE memeriksa bahwa tidak ada pasangan terlewat. Jika soal mengganti sub-tim menjadi ketua dan wakil, pembagian oleh 2 tidak dilakukan dan hasilnya 20. **Baca syarat urutan sebelum memilih rumus.**
 
@@ -146,6 +150,15 @@ Secara umum, bila setiap simpul punya $b$ anak, kedalaman $d$ memuat $b^d$ simpu
 ### Jawaban 3b: “level ke-2” perlu konvensi
 
 **Soal sumber.** Sebuah *tree* mempunyai empat level, dengan tiga cabang pada setiap simpul, lalu ditanya banyak simpul pada level ke-2. Lembar sumber tidak menyebut apakah akar dihitung sebagai level 1 atau level 0. Jika **akar level 1**, level 1 berisi 1 dan level 2 berisi $1\times3=\boxed{3}$. Jika **akar level 0**, level 1 berisi 3 dan level 2 berisi $3\times3=\boxed{9}$. Dalam penomoran sehari-hari, akar sebagai level 1 lazim dipakai untuk pertanyaan ini; jawabannya 3 **dengan konvensi itu**. Sebutkan konvensi saat menjawab.
+
+| Lapisan fisik dari akar | Jika akar disebut level 1 | Jika akar disebut level 0 | Banyak simpul |
+| ---: | ---: | ---: | ---: |
+| Akar | 1 | 0 | 1 |
+| Satu langkah dari akar | 2 | 1 | $1\times3=3$ |
+| Dua langkah dari akar | 3 | 2 | $3\times3=9$ |
+| Tiga langkah dari akar | 4 | 3 | $9\times3=27$ |
+
+Tabel itu menunjukkan bahwa *tree* fisiknya sama; hanya **nama lapisannya** yang bergeser. Empat level pada soal memberi cukup lapisan untuk kedua penomoran. Jika pengajar menetapkan satu konvensi di kelas, ikuti konvensi tersebut dan tulis di awal jawaban.
 
 ## 4. Gabungan himpunan: satu solusi dihitung sekali
 
