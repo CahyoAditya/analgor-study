@@ -50,6 +50,24 @@ Contoh *3¹³ mod 7*: 13 = 8 + 4 + 1. Kuadrat modular berturut-turut 3¹ ≡ 3, 
 
 Dari matriks *n × n*, submatriks kontigu ukuran *(n−1) × (n−1)* hanya memiliki **empat** posisi: buang baris atas/bawah dan kolom kiri/kanan. Hitung jumlah seluruh elemen S dalam Θ(n²), jumlah tiap baris pinggir dan tiap kolom pinggir. Untuk posisi yang membuang baris *r* dan kolom *c*, jumlahnya `S − jumlahBaris[r] − jumlahKolom[c] + A[r,c]`; sel pojok yang terbuang dua kali harus ditambah kembali. Memilih maksimum dari empat nilai memerlukan O(1) setelah penjumlahan. Total Θ(n²) waktu dan O(1) ruang tambahan bila hanya jumlah empat baris/kolom pinggir yang disimpan. Jika “submatriks” boleh memilih baris dan kolom tidak kontigu, definisinya perlu diperjelas; soal ini ditafsirkan kontigu.
 
+## Contoh perlahan: apa yang dibuang binary search?
+
+Cari 9 dalam larik terurut *[1, 3, 5, 7, 9, 11, 13]*. Indeks dimulai dari 0 dan rentang kandidat ditulis `[lo, hi)`, artinya *lo* termasuk dan *hi* tidak termasuk. Mula-mula `[0,7)` berarti indeks 0 sampai 6.
+
+| Langkah | Rentang kandidat | mid | A[mid] | Keputusan |
+| ---: | --- | ---: | ---: | --- |
+| 1 | `[0,7)` | 3 | 7 | 7 < 9, buang indeks 0..3; menjadi `[4,7)` |
+| 2 | `[4,7)` | 5 | 11 | 11 > 9, buang indeks 5..6; menjadi `[4,5)` |
+| 3 | `[4,5)` | 4 | 9 | Sama; target ditemukan di indeks 4 |
+
+Mengapa langkah pertama boleh membuang **semua** indeks 0..3? Karena larik terurut naik: setiap elemen di kiri atau sama dengan indeks 3 bernilai paling besar 7, jadi tidak mungkin 9. Tanpa sifat terurut, satu perbandingan di indeks tengah tidak memberi informasi tentang elemen lain. Invariant-nya: selama target ada, ia masih berada di rentang kandidat. Tiap keputusan mempertahankan invariant sekaligus mengecilkan rentang, sehingga proses berhenti.
+
+Jika yang diminta adalah **kemunculan pertama** pada [5,5,5,5], berhenti pada nilai sama tidak cukup: indeks tengah bisa 2 padahal indeks 0 juga cocok. Gunakan pencarian batas bawah: ketika nilai tengah ≥ target, pertahankan bagian kiri dengan *hi = mid*. Dengan begitu indeks yang mungkin lebih awal tidak dibuang. Setelah *lo = hi*, periksa bahwa indeks masih di dalam larik dan nilainya benar-benar sama dengan target.
+
+### Pemangkatan modulo tanpa lompatan
+
+Untuk *3¹³ mod 7*, simpan hasil 1, basis 3, sisa eksponen 13. Karena 13 ganjil, kalikan hasil dengan basis: hasil 3. Kuadratkan basis: 3² mod 7 = 2; bagi sisa menjadi 6. Saat 6 genap, hasil tetap 3; basis menjadi 2² mod 7 = 4; sisa menjadi 3. Saat 3 ganjil, hasil menjadi 3·4 mod 7 = 5; basis menjadi 4² mod 7 = 2; sisa menjadi 1. Saat 1 ganjil, hasil menjadi 5·2 mod 7 = 3; sisa menjadi 0. Jadi jawabannya 3. Pada setiap baris, *hasil·basis^sisa* tetap setara dengan *3¹³* modulo 7; itulah alasan langkah kuadrat dan pembagian dua aman.
+
 ## Latihan bertingkat
 
 1. **Mudah.** Linear search pada 10 elemen tidak terurut: berapa perbandingan terburuk jika target tidak ada?
@@ -79,5 +97,11 @@ Dari matriks *n × n*, submatriks kontigu ukuran *(n−1) × (n−1)* hanya memi
 10. Jika genap *s = 2t*, setelah basis dikuadratkan dan sisa jadi *t*, `hasil·(basis²)^t = hasil·basis^s`. Jika ganjil *s = 2t+1*, hasil dikalikan basis lalu basis dikuadratkan: `(hasil·basis)(basis²)^t = hasil·basis^s`. Semua kesetaraan modulo *m*.
 11. Kandidat kiri atas 12, kanan atas 16, kiri bawah 24, kanan bawah **28**. Maksimum 28.
 12. Secara orde, pengurutan awal menarik bila *q* cukup besar dibanding log n: *qn* versus *n log n + q log n*. Konstanta, biaya pembaruan data, ruang, dan apakah pencarian perlu mempertahankan urutan asli tetap penting.
+
+### Pembahasan lebih lengkap: latihan 9 dan 11
+
+**Latihan 9 — repeated squaring.** Catat keadaan *(hasil, basis, sisa)* setelah tiap putaran, selalu modulo 7. Awalnya *(1,3,13)*. Karena 13 ganjil, hasil menjadi 3; basis menjadi 3² mod 7 = 2; sisa 6, jadi *(3,2,6)*. Karena 6 genap, hasil tetap 3; basis menjadi 4; sisa 3, jadi *(3,4,3)*. Karena 3 ganjil, hasil menjadi 3·4 mod 7 = 5; basis menjadi 4² mod 7 = 2; sisa 1, jadi *(5,2,1)*. Karena 1 ganjil, hasil menjadi 5·2 mod 7 = 3; sisa 0. Ada empat putaran dan hasilnya 3.
+
+**Latihan 11 — empat jendela.** Pada matriks tiga kali tiga, jendela 2×2 hanya bisa berawal di (baris 0 atau 1, kolom 0 atau 1). Kiri atas berisi 1+2+4+5 = 12. Kanan atas 2+3+5+6 = 16. Kiri bawah 4+5+7+8 = 24. Kanan bawah 5+6+8+9 = 28. Bandingkan keempat jumlah itu: maksimum 28. Empat kandidat muncul karena untuk tiap dimensi hanya ada *3−2+1 = 2* posisi awal.
 
 **Sumber bab:** Kuliah 6; Lembar Kerja Responsi Pertemuan 6; Bank Soal K6 dalam ZIP yang diberikan.

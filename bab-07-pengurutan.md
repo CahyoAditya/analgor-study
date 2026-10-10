@@ -62,6 +62,22 @@ Untuk hanya *K = 1000* skor terbesar dari *n = 20 juta* angka, pertahankan **min
 | Heap | Θ(n log n) | Θ(n log n) | O(1) | Tidak |
 | Counting untuk rentang 0..k | Θ(n+k) | Θ(n+k) | O(n+k) | Ya, bila penempatan stabil |
 
+## Contoh perlahan: ikuti keadaan larik
+
+### Insertion sort
+
+Urutkan *[9,5,6,3]* naik. Anggap bagian sebelum indeks *i* sudah terurut. Saat *i = 1*, kunci 5 dibandingkan dengan 9. Karena 9 > 5, geser 9 ke kanan lalu letakkan 5 pada ruang yang kosong: *[5,9,6,3]*. Saat *i = 2*, kunci 6 dibandingkan dengan 9; geser 9, lalu bandingkan 6 dengan 5 dan berhenti karena 5 ≤ 6. Hasilnya *[5,6,9,3]*. Saat *i = 3*, kunci 3 melewati 9, 6, dan 5, sehingga hasil akhir *[3,5,6,9]*.
+
+Mengapa bagian yang telah diproses tetap terurut? Kita hanya menggeser elemen yang lebih besar dari kunci dan menaruh kunci tepat setelah elemen terakhir yang tidak lebih besar. Bila dua kunci sama, jangan geser yang lama: aturan itu menjaga urutan relatifnya dan membuat algoritme stabil. Pada input terbalik, kunci ke-*i* melintasi *i* elemen; total pergeseran *1+2+···+(n−1) = n(n−1)/2*, sehingga worst Θ(n²).
+
+### Merge: nilai sama harus diputuskan dengan sengaja
+
+Gabungkan kiri *[1ₐ,3ₐ,5]* dan kanan *[1ᵦ,3ᵦ,4]*. Bandingkan kepala 1ₐ dan 1ᵦ: sama, ambil 1ₐ dari kiri lebih dulu. Berikutnya ambil 1ᵦ karena 1ᵦ < 3ₐ. Bandingkan 3ₐ dan 3ᵦ: sama, ambil 3ₐ dari kiri. Lalu ambil 3ᵦ, 4, dan sisa 5. Hasilnya *[1ₐ,1ᵦ,3ₐ,3ᵦ,4,5]*. Tanda bawah hanya membedakan identitas record. Bila saat sama kita mengambil kanan dulu, 1ᵦ mendahului 1ₐ padahal urutan asalnya kebalikan; stabilitas rusak.
+
+### Mengapa quick sort dapat menjadi kuadratik?
+
+Jika sebuah partisi memisahkan *n* elemen menjadi dua bagian hampir sama, kedalaman pohon sekitar log₂ *n*. Setiap tingkat total memeriksa sekitar *n* elemen, sehingga total sekitar *n log n*. Jika pivot selalu elemen terkecil, ukuran masalah berikutnya *n−1*, lalu *n−2*, dan seterusnya. Kerja partisinya menjadi sekitar *n + (n−1) + ··· + 1 = Θ(n²)*. Posisi pivot di tengah larik tidak menjamin nilainya median; itulah sebabnya posisi tengah saja tidak menjamin pembagian seimbang.
+
 ## Latihan bertingkat
 
 1. **Mudah.** Jalankan dua iterasi pertama insertion sort pada [9,5,6,3,3,8,1]. Tunjukkan kunci dan larik setelah setiap iterasi.
@@ -91,5 +107,11 @@ Untuk hanya *K = 1000* skor terbesar dari *n = 20 juta* angka, pertahankan **min
 10. Hoare dan Lomuto memindahkan elemen dengan aturan berbeda, sementara duplikat dapat ditempatkan pada sisi berbeda. Nyatakan skema dan tie rule sebelum menentukan hasil.
 11. **[2ₐ,2ᵦ,1]** menjadi **[1,2ᵦ,2ₐ]** setelah menukar minimum ke depan; urutan dua kunci 2 berbalik.
 12. Batas Ω(n log n) mengasumsikan hasil diperoleh hanya dari perbandingan antar kunci. Counting sort mengindeks rentang kunci 0..*k* dan menghitung frekuensi, sehingga memakai operasi dan asumsi tambahan.
+
+### Pembahasan lebih lengkap: latihan 6 dan 9
+
+**Latihan 6 — counting sort.** Dari [2,5,3,0,2,3,0,3], kunci 0 muncul dua kali, 1 nol, 2 dua, 3 tiga, 4 nol, dan 5 satu. Jadi frekuensi untuk 0..5 adalah [2,0,2,3,0,1]. Jumlah kumulatif dihitung dari kiri: 2; 2+0=2; 2+2=4; 4+3=7; 7+0=7; 7+1=8. Hasilnya [2,2,4,7,7,8]. Angka 7 pada kunci 3 berarti tujuh elemen bernilai **paling besar 3**, bukan frekuensi kunci 3. Inilah yang dipakai untuk menentukan batas posisi di output.
+
+**Latihan 9 — mengapa min-heap untuk skor terbesar?** Simpan 1000 skor kandidat. Akar min-heap ialah yang paling kecil **di antara kandidat yang disimpan**. Untuk tiap skor baru, jika tidak lebih besar daripada akar, sudah ada 1000 kandidat yang sekurangnya sebesar skor itu, jadi skor baru tidak perlu disimpan. Jika lebih besar, ganti akar dan pulihkan sifat heap dalam O(log 1000). Ulangi untuk 20 juta skor: O(n log K) sebagai batas sederhana, dengan ruang O(K). Terakhir keluarkan atau urutkan K kandidat untuk mendapatkan urutan menurun, menambah O(K log K). Akar heap bukan skor terkecil dari seluruh input; ia hanya ambang kandidat saat itu.
 
 **Sumber bab:** Kuliah 7; Lembar Kerja Responsi Pertemuan 7; Bank Soal K7; pembahasan UTS 2020–2021 dalam ZIP yang diberikan.

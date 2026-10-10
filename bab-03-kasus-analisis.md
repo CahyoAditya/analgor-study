@@ -60,6 +60,29 @@ Jika juga ada kemungkinan tidak ditemukan, tambahkan satu keadaan biaya *n* deng
 
 Tanyakan “apakah target pasti ada?”, “semua posisi sama mungkin?”, “apakah data terurut?”, dan “apakah biaya operasi setara?” sebelum menghitung rata-rata. Bila soal tidak menjawab, tulis asumsi eksplisit lalu selesaikan di bawah asumsi tersebut.
 
+## Contoh perlahan: menghitung rata-rata tanpa melompati peluang
+
+Ambil larik berisi empat elemen. Kita menghitung **banyak perbandingan** saat linear search berhenti pada target pertama. Andaikan target ditemukan tepat sekali dan keempat posisi sama mungkin.
+
+| Posisi target dari kiri | Peluang | Perbandingan | Sumbangan ke rata-rata |
+| --- | ---: | ---: | ---: |
+| 1 | 1/4 | 1 | 1/4 |
+| 2 | 1/4 | 2 | 2/4 |
+| 3 | 1/4 | 3 | 3/4 |
+| 4 | 1/4 | 4 | 4/4 |
+
+Jumlah peluang adalah 1. Jumlah kolom terakhir adalah *(1+2+3+4)/4 = 10/4 = 2,5*. Itulah nilai harapan, walaupun tidak mungkin satu pencarian melakukan 2,5 perbandingan. Rata-rata banyak percobaan memang boleh pecahan. Best case pada himpunan input yang sama adalah 1; worst case adalah 4.
+
+Sekarang ubah asumsi: target tidak ada dengan peluang *1/4*. Jika ada, setiap posisi sama mungkin; peluang **tak bersyarat** setiap posisi ialah *(3/4)·(1/4) = 3/16*. Keadaan gagal membutuhkan 4 perbandingan. Maka rata-rata baru ialah
+
+*A = (3/16)(1+2+3+4) + (1/4)·4 = 30/16 + 1 = 23/8 = 2,875*.
+
+Jangan memakai peluang 1/4 untuk masing-masing posisi **dan** menambah peluang gagal 1/4: jumlahnya akan menjadi 1,25, sehingga bukan distribusi peluang. Untuk *n* umum, langkah yang sama memberi *(1−q)(n+1)/2 + qn* ketika peluang gagal ialah *q*.
+
+### Mengapa rata-rata insertion sort memerlukan asumsi acak?
+
+Sebuah inversi adalah pasangan yang muncul dengan urutan terbalik. Pada [3,1,2], pasangannya (3,1) dan (3,2), jadi ada dua inversi. Insertion sort menggeser elemen melewati elemen yang lebih besar; karena itu jumlah pergeseran berkaitan langsung dengan jumlah inversi. Untuk *n* nilai berbeda, ada *n(n−1)/2* pasangan. Bila setiap permutasi sama mungkin, setiap pasangan terbalik dengan peluang 1/2. Jumlah inversi yang diharapkan ialah *[n(n−1)/2]·(1/2) = n(n−1)/4*. Jika input hampir selalu sudah terurut, peluang 1/2 itu salah dan rata-ratanya berubah.
+
 ## Latihan bertingkat
 
 1. **Mudah.** Pada linear search 8 elemen, berapa perbandingan bila target ada di indeks 0, indeks 7, atau tidak ada?
@@ -89,5 +112,11 @@ Tanyakan “apakah target pasti ada?”, “semua posisi sama mungkin?”, “ap
 10. Ada C(n,2) pasangan. Pada permutasi seragam, masing-masing pasangan terbalik dengan peluang 1/2. Linearitas harapan memberi C(n,2)/2 = n(n−1)/4.
 11. P **5.000.000 s**, Q **50.000 s**, R sekitar **1.089 s**. Untuk R, hitung 5·100·(log₂5000/log₂50) ≈ 1.088,6; tiga angka bergantung pada model skala yang diasumsikan.
 12. Tidak. Jika target hampir selalu di posisi pertama, misalnya peluang 1−1/n di indeks 0 dan 1/n tidak ditemukan, A(n) = (1−1/n)·1 + (1/n)·n = 2−1/n = Θ(1), meskipun worst Θ(n).
+
+### Pembahasan lebih lengkap: latihan 5 dan 12
+
+**Latihan 5 — target boleh tidak ada.** Pisahkan dua keadaan. Gagal terjadi dengan peluang 1/2 dan biayanya *n*. Berhasil terjadi dengan peluang 1/2; karena posisi seragam, biaya bersyaratnya *(1+···+n)/n = (n+1)/2*. Kalikan peluang dengan biaya tiap keadaan: *A(n) = (1/2)n + (1/2)(n+1)/2 = n/2 + (n+1)/4 = (3n+1)/4*. Hasilnya Θ(n), sebab koefisien *n* positif.
+
+**Latihan 12 — best dan worst belum menentukan average.** Pilih distribusi yang menaruh target di posisi pertama dengan peluang *1−1/n* dan membuat target tidak ada dengan peluang *1/n*. Best tetap 1, worst tetap *n*. Rata-rata: *(1−1/n)·1 + (1/n)·n = 2−1/n*. Untuk *n ≥ 1*, nilai ini dibatasi konstanta, jadi Θ(1). Dengan distribusi posisi seragam, rata-rata justru Θ(n). Perbedaan ini menunjukkan bahwa fungsi best dan worst saja tidak menetapkan peluang tiap input.
 
 **Sumber bab:** Kuliah 3; Lembar Kerja Responsi Pertemuan 3; Bank Soal K3 dalam ZIP yang diberikan.

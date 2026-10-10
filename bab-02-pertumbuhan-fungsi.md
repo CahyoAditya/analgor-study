@@ -56,6 +56,22 @@ Notasi Θ mengabaikan konstanta untuk menjelaskan kecenderungan saat *n* membesa
 
 Tulis *n* dan operasi dasar, turunkan T(n), sederhanakan suku dominan, lalu beri O/Ω/Θ sesuai pertanyaan. Jika soal meminta membandingkan dua paket pada rentang input tertentu, hitung juga nilai atau titik potongnya; jangan hanya melihat kelas asimtotik.
 
+## Contoh perlahan: dari jumlah operasi ke Θ
+
+Bayangkan tahap pertama memeriksa *n* elemen sekali. Tahap kedua menjalankan *i* perbandingan untuk setiap *i = 1, 2, …, n*. Operasi dasar kita ialah **satu perbandingan**.
+
+1. Tahap pertama berbiaya *n*. Tahap kedua untuk *n = 4* berbiaya *1 + 2 + 3 + 4 = 10*. Jadi seluruhnya 14, bukan *4 + 4·4*.
+2. Untuk *n* umum, tulis *T(n) = n + Σᵢ₌₁ⁿ i*. Sigma berarti kita menjumlah panjang loop dalam pada **setiap** nilai *i*.
+3. Pasangkan ujung deret: *(1+n), (2+(n−1)), …*. Hasilnya *Σᵢ₌₁ⁿ i = n(n+1)/2*. Maka *T(n) = (n²+3n)/2*.
+4. Batas bawah untuk *n ≥ 1*: *T(n) ≥ n²/2*. Batas atas: karena *n ≤ n²*, *3n ≤ 3n²*, sehingga *T(n) ≤ 2n²*.
+5. Jadi ada dua konstanta, *1/2* dan *2*, yang mengapit *T(n)* dengan kelipatan *n²*. Inilah alasan *T(n) ∈ Θ(n²)*. Notasi Θ berasal dari **dua ketaksamaan**, bukan dari membuang suku secara ajaib.
+
+Untuk membedakan O dari Θ, perhatikan *n ∈ O(n²)* juga benar saat *n ≥ 1*, sebab *n ≤ n²*. Akan tetapi *n ∉ Θ(n²)*: tidak ada konstanta positif *c* yang membuat *n ≥ cn²* untuk semua *n* besar, karena itu menuntut *1 ≥ cn* selamanya. Jadi jawaban O(n²) bisa benar tetapi kurang tajam.
+
+### Membaca titik potong tanpa menebak
+
+Bandingkan *A(n) = 100n* dan *B(n) = n²* untuk *n > 0*. Cari ukuran ketika sama: *100n = n²*. Bagi dengan *n* karena kita sudah menyatakan *n > 0*, sehingga *n = 100*. Uji satu nilai di kiri, misalnya *n = 10*: A = 1000, B = 100, jadi B lebih murah. Uji satu nilai di kanan, *n = 1000*: A = 100.000, B = 1.000.000, jadi A lebih murah. Kita perlu kedua uji itu sebab persamaan titik potong sendiri belum memberi arah ketaksamaan. Satuan biaya kedua fungsi harus sama agar perbandingannya bermakna.
+
 ## Latihan bertingkat
 
 1. **Mudah.** Sederhanakan *T(n) = 7n + 90* ke kelas Θ paling ketat.
@@ -85,5 +101,11 @@ Tulis *n* dan operasi dasar, turunkan T(n), sederhanakan suku dominan, lalu beri
 10. Tidak. *f_B − f_A = −n² − 900n < 0* untuk *n > 0*. Keduanya Θ(n²), tetapi konstanta dan suku linear tetap menentukan urutan ini.
 11. Untuk *n ≥ 2*, log₂ n ≤ n, sehingga n log₂ n ≤ n²; ambil *c = 1, n₀ = 2*.
 12. Banyak fungsi berpotongan pada satu titik; misalnya *n* dan *n²/100* sama pada *n = 100* tetapi kelas pertumbuhannya berbeda.
+
+### Pembahasan lebih lengkap: latihan 5 dan 11
+
+**Latihan 5 — dua waktu dengan satuan sama.** Tulis *A = 0,1n log₂n* dan *B = 5n*. Untuk *n = 2⁴⁰*, *log₂n = 40*, jadi *A = 4n* dan *B = 5n*: A lebih cepat. Untuk *n = 2⁶⁰*, *A = 6n*, sehingga B lebih cepat. Cari titik sama dengan *0,1n log₂n = 5n*. Karena *n > 0*, bagi kedua sisi dengan *n*: *0,1 log₂n = 5*, lalu *log₂n = 50*, jadi *n = 2⁵⁰*. Tanda perbandingan berubah setelah titik itu.
+
+**Latihan 11 — bukti batas atas.** Kita ingin menunjukkan *n log₂n ≤ c n²* sejak suatu *n₀*. Untuk *n ≥ 2*, berlaku *log₂n ≤ n*; misalnya pertumbuhan pangkat dua melampaui pertumbuhan linear, dan ketaksamaan ini juga dapat dibuktikan dengan induksi untuk bilangan bulat. Kalikan kedua sisi dengan *n > 0*: *n log₂n ≤ n²*. Jadi pilih *c = 1* dan *n₀ = 2*. Ingat: ini hanya membuktikan O(n²); kelas ketat fungsi tersebut tetap Θ(n log n).
 
 **Sumber bab:** Kuliah 2; Lembar Kerja Responsi Pertemuan 2; Bank Soal K2; UTS 2018 dalam ZIP yang diberikan.

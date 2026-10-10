@@ -42,6 +42,27 @@ Analisis Θ(1) untuk penjumlahan atau perkalian aritmetika memakai model biaya s
 
 Sebelum menyederhanakan, buat tabel 3–4 nilai kecil: indeks luar, jumlah langkah dalam, biaya tingkat. Dari pola itu tulis jumlah Σ. Periksa satu kasus batas seperti *n = 1*. Jika indeks tidak berubah atau menjauhi syarat berhenti, jangan memberi Big-O seolah program selesai.
 
+## Contoh perlahan: menghitung loop dari tabel kecil
+
+Tinjau dua loop: *i* berjalan dari 1 sampai *n*; pada setiap *i*, *j* berjalan dari 1 sampai *i*; tubuh paling dalam menjalankan satu operasi. Untuk *n = 4*:
+
+| Nilai i | Nilai j yang dikunjungi | Banyak operasi |
+| ---: | --- | ---: |
+| 1 | 1 | 1 |
+| 2 | 1, 2 | 2 |
+| 3 | 1, 2, 3 | 3 |
+| 4 | 1, 2, 3, 4 | 4 |
+
+Jumlahnya 10. Untuk *n* umum, baris ke-*i* menyumbang *i*, sehingga *T(n) = Σᵢ₌₁ⁿ i = n(n+1)/2*. Kita memperoleh Θ(n²) karena untuk *n ≥ 1*, *n²/2 ≤ T(n) ≤ n²*. Jika tubuh melakukan tiga operasi, hitungan tubuh menjadi *3n(n+1)/2* dan kelasnya tetap Θ(n²).
+
+Bandingkan dengan loop dalam yang selalu *j = 1..n*: setiap baris menyumbang *n*, sehingga *T(n) = n·n*. Kedua pola memang Θ(n²), tetapi jumlah pastinya berbeda. Ini penting bila soal meminta banyak eksekusi, bukan hanya kelas.
+
+### Loop pembagian dua: tulis urutan nilainya
+
+Untuk *i ← n* lalu *i ← ⌊i/2⌋* selama *i ≥ 1*, saat *n = 13* nilai yang dipakai adalah 13, 6, 3, 1: **empat** iterasi. Mengapa sekitar log₂ *n*? Sesudah *k* pembagian, nilai tidak lebih dari *n/2ᵏ*; agar turun di bawah 1 diperlukan *k* sekitar log₂ *n*. Jumlah tepat untuk *n ≥ 1* ialah *⌊log₂ n⌋ + 1*. Pada *n = 13*, nilainya *3 + 1 = 4*.
+
+Jika loop dalam panjangnya bergantung pada *i*, jangan mengalikan “jumlah putaran luar × jumlah putaran dalam yang paling besar” sebagai jawaban tepat. Catat biaya untuk setiap *i*, baru jumlahkan. Periksa juga apakah *i* benar-benar berubah: aturan *i ← i²* dengan nilai awal 1 akan tetap 1 selamanya.
+
 ## Latihan bertingkat
 
 1. **Mudah.** Loop *i = 0..n−1* melakukan satu perbandingan tiap iterasi. Berapa perbandingan dan Θ-nya?
@@ -71,5 +92,11 @@ Sebelum menyederhanakan, buat tabel 3–4 nilai kecil: indeks luar, jumlah langk
 10. *n Σᵢ₌₁ⁿ 1/i − n < Σ⌊n/i⌋ ≤ n Σ1/i*. Jumlah harmonik Θ(log n), jadi Θ(n log n).
 11. Mulai 1 tidak berhenti untuk *n ≥ 1*. Mulai 2, setelah *k* kuadrat nilainya 2^(2ᵏ); jumlah langkah sampai melewati *n* adalah Θ(log log n) untuk *n* cukup besar.
 12. Ambil *k = ⌊n/2⌋*. Jumlah 2 + 4 + … + 2k = 2·k(k+1)/2 = **k(k+1)**; jumlah operasi aritmetika tetap di model biaya satuan.
+
+### Pembahasan lebih lengkap: latihan 8 dan 9
+
+**Latihan 8 — tiga loop bergantung.** Ambil sementara *n = 2ᵐ*. Nilai *i* berturut-turut kira-kira *2ᵐ, 2ᵐ⁻¹, …, 1*. Pada saat *i = 2ʳ*, loop *j = 1,3,9,… ≤ i* mempunyai sekitar *r/log₂3 + 1* putaran, yaitu Θ(*r+1*). Setiap putaran *j* menjalankan loop *k* sebanyak *n* kali. Jadi total berbanding dengan *n Σᵣ₌₀ᵐ (r+1) = n(m+1)(m+2)/2*. Karena *m = log₂n*, hasilnya Θ(n log²n). Mengganti pangkat dua dengan *n* umum hanya mengubah batas pembulatan, bukan kelas.
+
+**Latihan 9 — tingkat terakhir menjelaskan dominasi.** Saat *i = 2ʳ*, loop *j* berjalan *i* kali. Banyak putaran *k* pada nilai *j* sekitar *log₂(j+1)*, sehingga biaya tingkat itu *Σⱼ₌₁ⁱ Θ(log(j+1)) = Θ(i log(i+1))*. Untuk *i = 2ʳ*, ini Θ(*2ʳ r*) pada tingkat besar. Jumlah tingkat *r = 0..m* dibatasi konstanta kali tingkat terakhir *2ᵐm* karena ukuran tingkat naik secara geometri. Tingkat terakhir sendiri memberi batas bawah itu. Maka total Θ(n log n), bukan Θ(n² log n).
 
 **Sumber bab:** Kuliah 4; Lembar Kerja Responsi Pertemuan 2–4; Bank Soal K4; UTS 2018 dalam ZIP yang diberikan.

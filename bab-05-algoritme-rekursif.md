@@ -52,6 +52,27 @@ Contoh T(n) = 2T(n/2) + n log n: *p = 1*, *f(n) = Θ(n log n)*, jadi kasus kedua
 
 Waktu menghitung semua panggilan; ruang stack menghitung kedalaman panggilan aktif. Binary search rekursif memerlukan stack O(log n), sementara versi iteratif O(1) ruang tambahan. Merge sort biasa memakai O(n) buffer gabung dan O(log n) stack; ruang total O(n). Quick sort dapat memakai stack O(n) pada partisi terburuk, atau O(log n) rata-rata dengan pembagian seimbang.
 
+## Contoh perlahan: membaca satu pohon rekurensi
+
+Selesaikan *T(n) = 2T(n/2) + n* dengan *T(1) = 1* dan *n* pangkat dua. Angka 2 berarti **dua panggilan anak**; pembagi 2 berarti **ukuran setiap anak setengah**; tambahan *n* berarti pekerjaan pada satu panggilan ukuran *n* di luar anaknya.
+
+Ambil *n = 8* agar pohonnya terlihat.
+
+| Kedalaman | Jumlah panggilan | Ukuran tiap panggilan | Kerja tambahan seluruh tingkat |
+| ---: | ---: | ---: | ---: |
+| 0 | 1 | 8 | 8 |
+| 1 | 2 | 4 | 2·4 = 8 |
+| 2 | 4 | 2 | 4·2 = 8 |
+| 3 | 8 | 1 | 8·T(1) = 8 |
+
+Totalnya 8 + 8 + 8 + 8 = 32. Untuk *n* umum, tingkat *i* berisi *2ⁱ* panggilan ukuran *n/2ⁱ*. Hasil kali keduanya *n*. Kedalaman daun memenuhi *n/2ᵏ = 1*, jadi *k = log₂ n*. Ada *k+1* tingkat jika akar dan daun dihitung. Dengan biaya dasar satu, *T(n) = n(log₂ n + 1) = Θ(n log n)*. Jika biaya dasar hanya diketahui Θ(1), rumus tepatnya bisa berubah, tetapi kelasnya tetap.
+
+Sekarang ubah hanya jumlah anak menjadi satu: *T(n) = T(n/2) + 1*. Tiap tingkat hanya satu panggilan dan kerja tetap 1. Dengan *n = 8*, urutannya ukuran 8 → 4 → 2 → 1, sehingga total 4. Untuk *n* umum, Θ(log n). Satu anak versus dua anak adalah alasan binary search dan merge sort memiliki biaya berbeda meskipun sama-sama membelah ukuran.
+
+### Mengapa tidak langsung memakai Teorema Master?
+
+Pertama tulis *a*, *b*, dan *f(n)* dari prosesnya. Periksa apakah *b > 1*, *a ≥ 1*, pekerjaan *f(n)* taknegatif, dan submasalah benar-benar berukuran *n/b* (pembulatan kecil boleh). *T(n−1)+n* tidak memenuhi bentuk itu karena pengurangannya tetap satu, bukan pembagian dengan konstanta. Bila syarat tidak terpenuhi, buka beberapa tingkat atau gunakan induksi; jangan memilih salah satu dari tiga kasus Master hanya karena ada huruf T pada soal.
+
 ## Latihan bertingkat
 
 1. **Mudah.** Tulis relasi T(n) untuk binary search rekursif dan jelaskan nilai *a,b,f(n)*.
@@ -81,5 +102,11 @@ Waktu menghitung semua panggilan; ruang stack menghitung kedalaman panggilan akt
 10. Kasus 2 dengan *p = 1, k = 1*: Θ(n log² n).
 11. Biaya tingkat *i* = cn²/3ⁱ, jumlahnya Θ(n²); daun Θ(n), sehingga total Θ(n²).
 12. Relasi pertama mengecil dengan *n−1*, bukan *n/b*. Relasi kedua memiliki *f(n) = −n*, bertentangan dengan biaya nonnegatif pada teorema standar; model biaya perlu diklarifikasi.
+
+### Pembahasan lebih lengkap: latihan 4 dan 10
+
+**Latihan 4 — kerja mengecil tiap tingkat.** Untuk *T(n)=2T(n/4)+n*, akar berbiaya *n*. Tingkat berikutnya mempunyai dua anak ukuran *n/4*, sehingga total kerja tambahan *2(n/4)=n/2*. Tingkat setelah itu empat anak ukuran *n/16*, total *4(n/16)=n/4*. Jumlah kerja bagian dalam adalah *n + n/2 + n/4 + ··· < 2n*. Akar sendiri sudah memerlukan *n*, sehingga batas bawahnya Ω(n); batas atasnya O(n). Dengan biaya dasar tetap per daun, daun berjumlah *n^(log₄2)=√n*, lebih kecil daripada *n*. Jadi T(n)=Θ(n).
+
+**Latihan 10 — satu faktor log tambahan.** Untuk *T(n)=2T(n/2)+n log₂n*, anggap *n=2ᵐ*. Pada kedalaman *i*, ada *2ⁱ* simpul ukuran *n/2ⁱ*. Tiap simpul berbiaya *(n/2ⁱ)·log₂(n/2ⁱ)*. Kalikan dengan jumlah simpul: biaya tingkat *i* adalah *n(m−i)*. Jumlahkan untuk *i=0..m−1*: *n[m+(m−1)+···+1] = n·m(m+1)/2*. Daun menambah Θ(n). Karena *m=log₂n*, hasil akhirnya Θ(n log²n). Faktor log kedua datang dari penjumlahan biaya yang menurun secara aritmetika antar tingkat.
 
 **Sumber bab:** Kuliah 5; Lembar Kerja Responsi Pertemuan 5; Bank Soal K5; UTS 2018 dan pembahasan UTS 2020–2021 dalam ZIP yang diberikan.

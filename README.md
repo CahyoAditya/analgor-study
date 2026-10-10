@@ -1,6 +1,6 @@
 # Panduan Belajar Analisis Algoritme: Kuliah 1–7
 
-Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu berlatih menjelaskannya. Urutan bab mengikuti tujuh berkas kuliah dalam materi yang diberikan. Setiap bab memuat konsep, contoh kerja, kesalahan yang sering terjadi, serta sedikitnya sepuluh latihan bertingkat dengan jawaban atau petunjuk pemeriksaan.
+Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu berlatih menjelaskannya. Urutan bab mengikuti tujuh berkas kuliah dalam materi yang diberikan. Setiap bab memuat konsep, contoh kerja yang diturunkan langkah demi langkah, kesalahan yang sering terjadi, serta dua belas latihan bertingkat dengan jawaban atau petunjuk pemeriksaan.
 
 | Bab | Bacaan | Pertanyaan inti |
 | --- | --- | --- |
@@ -11,6 +11,12 @@ Panduan ini membantu calon tutor memahami *mengapa* suatu analisis benar, lalu b
 | 5 | [Algoritme rekursif](bab-05-algoritme-rekursif.md) | Bagaimana membentuk dan menyelesaikan relasi rekurensi? |
 | 6 | [Pencarian](bab-06-pencarian.md) | Asumsi data apa yang membenarkan strategi pencarian? |
 | 7 | [Pengurutan](bab-07-pengurutan.md) | Bagaimana memilih algoritme urut menurut data dan kebutuhan? |
+
+## Mulai dari sini jika rumus terasa melompat
+
+Buka satu bab saja, lalu cari bagian **Contoh perlahan** sebelum mencoba latihan. Pada setiap baris, tanyakan: apa yang dihitung, dari mana angka itu berasal, dan mengapa langkah berikutnya sah? Coba ulangi contoh dengan angka kecil tanpa melihat jawabannya. Jika tersendat, kembali ke langkah terakhir yang masih jelas; tidak perlu memaksa menghafal rumus.
+
+Urutan belajar yang membantu: **Bab 1** untuk deret dan bukti → **Bab 2** untuk mengubah hitungan menjadi Θ → **Bab 3** untuk memahami asumsi peluang → **Bab 4** untuk jumlah operasi loop → **Bab 5** untuk pohon rekursi → **Bab 6–7** untuk menerapkan semuanya pada algoritme. Untuk waktu singkat, pahami satu contoh tuntas per bab sebelum berpindah.
 
 ## Cara memakai panduan ini untuk mengajar
 
@@ -31,4 +37,4 @@ Jika waktu terbatas, dahulukan Bab 1 bagian induksi dan jumlah deret; Bab 2 defi
 
 ## Materi sumber
 
-ZIP yang diberikan berisi `Kuliah 1–7 Analgor 2026-2027.pdf`, `LEMBAR KERJA RESPONSI PERTEMUAN 1–7 ANALGOR.pdf`, bank soal K1–K7, dan contoh UTS 2018 serta pembahasan UTS 2020–2021. Catatan ini ditulis ulang sebagai panduan belajar; PDF tidak diunggah ulang ke repositori ini. Pada pembahasan UTS 2020–2021 terdapat rekurensi dengan biaya negatif atau koefisien anak pecahan; keduanya tidak boleh langsung dipaksa ke Teorema Master standar. Pada bank soal K4, loop yang mengubah *i* menjadi *i²* dari *i = 1* tidak pernah maju. Koreksi dan alasan matematisnya dijelaskan di bab terkait.
+ZIP yang diberikan berisi tujuh PDF kuliah (Kuliah 1 sampai 7), tujuh PDF lembar kerja responsi (Pertemuan 1 sampai 7), bank soal K1–K7, dan contoh UTS 2018 serta pembahasan UTS 2020–2021. Catatan ini ditulis ulang sebagai panduan belajar; PDF tidak diunggah ulang ke repositori ini. Pada pembahasan UTS 2020–2021 terdapat rekurensi dengan biaya negatif atau koefisien anak pecahan; keduanya tidak boleh langsung dipaksa ke Teorema Master standar. Pada bank soal K4, loop yang mengubah *i* menjadi *i²* dari *i = 1* tidak pernah maju. Koreksi dan alasan matematisnya dijelaskan di bab terkait.

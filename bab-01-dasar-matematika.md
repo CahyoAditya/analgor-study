@@ -72,6 +72,28 @@ Contoh responsi: |A| = 50, |B| = 30, |C| = 20; irisan berpasangan 15, 10, 5; iri
 
 Tanyakan dahulu: “Pernyataan ini berlaku untuk satu contoh atau semua *n*?” Lalu minta peserta menyebut definisi yang dipakai. Untuk soal pencacahan, tanyakan “apakah urutan berpengaruh?” sebelum memilih permutasi atau kombinasi. Untuk jumlah pekerjaan, gambar 3–4 level kecil sebelum menulis rumus umum.
 
+## Contoh perlahan: dari definisi sampai bukti
+
+### Mengapa langkah induksi harus menambah satu suku?
+
+Kita hendak membuktikan jumlah bilangan ganjil pertama adalah *n²*. Jangan mulai dengan “karena rumusnya benar”. Mulailah dari bentuk jumlahnya: untuk *n = 3*, sukunya 1 + 3 + 5 = 9. Suku ke-*n* adalah *2n − 1*, sehingga pernyataannya ialah *P(n): 1 + 3 + ··· + (2n − 1) = n²*.
+
+1. **Basis.** Pada *n = 1*, kiri 1 dan kanan 1² = 1. Jadi anak tangga pertama benar.
+2. **Asumsi induksi.** Anggap *P(k)* benar: jumlah sampai suku ke-*k* adalah *k²*. Ini hanya asumsi sementara untuk membuktikan suku berikutnya, bukan menganggap semua kasus sudah benar.
+3. **Apa yang berubah?** Jumlah sampai suku ke-*(k+1)* sama dengan jumlah lama ditambah tepat satu suku baru. Suku baru itu *2(k+1) − 1 = 2k + 1*.
+4. **Ganti jumlah lama memakai asumsi.** Kita memperoleh *k² + (2k + 1)*.
+5. **Sederhanakan.** *k² + 2k + 1 = (k+1)²*, persis sisi kanan *P(k+1)*. Basis dan langkah induksi bersama-sama menjangkau semua *n ≥ 1*.
+
+Kesalahan umum ialah menambahkan *2k − 1* lagi pada langkah ke-*k+1*; itu mengulang suku lama. Cara memeriksanya: tulis daftar suku untuk *k = 2*, lalu lihat suku baru ketika berpindah ke *k = 3*.
+
+### Mengapa kombinasi membagi dengan faktorial?
+
+Pilih tiga orang dari lima orang bernama A, B, C, D, E. Jika kita memilih berurutan, ada 5 pilihan pertama, 4 pilihan kedua, dan 3 pilihan ketiga: *5·4·3 = 60*. Namun pilihan A-B-C, A-C-B, B-A-C, B-C-A, C-A-B, dan C-B-A adalah **kelompok yang sama** bila jabatan tidak dibedakan. Setiap kelompok muncul *3! = 6* kali dalam hitungan 60. Karena itu jumlah kelompoknya *60/6 = 10*. Jika jabatan pertama, kedua, dan ketiga berbeda, enam urutan tadi memang hasil berbeda dan pembagian tidak dilakukan.
+
+### Mengapa irisan tiga ditambahkan kembali?
+
+Ambil satu anggota yang berada di A, B, dan C sekaligus. Ketika ukuran ketiga himpunan dijumlah, anggota itu terhitung **tiga** kali. Mengurangi ketiga irisan pasangan menguranginya **tiga** kali, sehingga sementara hitungannya nol. Menambahkan |A ∩ B ∩ C| sekali membuat hitungannya kembali satu. Periksa unsur yang hanya berada di A ∩ B: mula-mula terhitung dua kali, lalu dikurangi sekali, sehingga juga berakhir satu.
+
 ## Latihan bertingkat
 
 Kerjakan tanpa melihat bagian jawaban. Label **Adaptasi** menyatakan bentuk soal ditulis ulang dari sumber yang disebut.
@@ -103,5 +125,11 @@ Kerjakan tanpa melihat bagian jawaban. Label **Adaptasi** menyatakan bentuk soal
 10. Salah. *a = 1, b = 0* memberi *1 − 0 − 1 = 0*. Soal tidak boleh “dibuktikan” bila klaimnya salah.
 11. Pertama, dua pilihan independen untuk tiap barang memberi 2ⁿ. Kedua, kelompokkan menurut banyak barang: Σᵣ₌₀ⁿ C(n,r) = (1+1)ⁿ = 2ⁿ.
 12. Σₗ₌₀ᵈ 3ˡ = **(3ᵈ⁺¹ − 1)/2**. Kedalaman *d* memuat *d + 1* level termasuk akar.
+
+### Pembahasan lebih lengkap: latihan 7 dan 9
+
+**Latihan 7 — induksi jumlah ganjil.** Pada *n = 1*, jumlahnya 1 = 1². Anggap jumlah sampai suku ke-*k* sudah *k²*. Suku ke-*(k+1)* bernilai *2(k+1)−1 = 2k+1*. Jumlah baru adalah *k²+2k+1 = (k+1)²*. Kita telah membuktikan basis dan perpindahan *k → k+1*, maka rumus berlaku untuk semua *n ≥ 1*.
+
+**Latihan 9 — titik potong.** Kedua kurva bertemu bila nilai *y*-nya sama: *x²−4x+3 = x+1*. Pindahkan semua ke kiri: *x²−5x+2 = 0*. Rumus kuadrat memberi *x = [5 ± √(25−8)]/2 = (5 ± √17)/2*. Untuk setiap akar, gunakan persamaan yang lebih sederhana *y = x+1*, sehingga *y = (7 ± √17)/2* dengan tanda yang sama. Pemeriksaan: karena tiap *x* memenuhi *x²−5x+2=0*, maka *x²−4x+3 = x+1*; kedua rumus *y* memang sama.
 
 **Sumber bab:** Kuliah 1; Lembar Kerja Responsi Pertemuan 1; Bank Soal K1; UTS 2018 dalam ZIP yang diberikan.
