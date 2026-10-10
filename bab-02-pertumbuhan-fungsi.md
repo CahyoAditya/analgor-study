@@ -99,7 +99,9 @@ Titik potong itu di atas $10^9$. Pada batas soal, $T_A(10^9)=1.000.000$ milideti
 
 ## 3. Loop: hitung pekerjaan, bukan sekadar jumlah kata `for`
 
-Sekarang panitia menulis program untuk memproses daftar. $F(n)$ di bagian ini berarti **jumlah pelaksanaan satu operasi pada bagian paling dalam**. Jika tiap operasi itu berbiaya tetap positif, kelas waktu pekerjaan tersebut mengikuti $F(n)$. Biaya pemeriksaan syarat loop dapat menambah suku, tetapi tidak mengubah kelas pada tiga contoh ini. Kita mulai dengan $n=8$ agar setiap nilai indeks dapat dilihat, lalu menulis rumus umum.
+Sekarang panitia menulis program untuk memproses daftar. $F(n)$ berarti **jumlah pelaksanaan pekerjaan pada bagian paling dalam**. Untuk menghitung seluruh pekerjaan, gunakan $T(n)$: jumlah kolom *Total* dari setiap baris, termasuk pemeriksaan kondisi yang terakhir kali bernilai salah. Pada tabel di bawah, penugasan atau perbandingan berbiaya 1, `x++`, `x += 2`, `x *= 2`, dan `x /= 2` berbiaya 2 karena masing-masing melakukan operasi aritmetika lalu menyimpan hasilnya. Pekerjaan tetap di badan loop berbiaya 1. Ini adalah **model hitung yang dipilih**, bukan ukuran waktu nyata komputer. Kita mulai dengan $n=8$ agar setiap nilai indeks dapat dilihat, lalu menulis rumus umum.
+
+Dalam tabel, *Frequency* adalah banyaknya suatu baris dijalankan, sedangkan *Total* = *Cost* $\times$ *Frequency*. Untuk batas `x < n`, nilai terakhir yang mencapai atau melewati $n$ tetap diperiksa satu kali. Karena itu loop `x = 0; x < n; x += 2` berjalan $\lceil n/2\rceil$ kali, bukan selalu tepat $n/2$; misalnya $n=5$ memberi nilai 0, 2, 4. Loop `x = n; x > 0; x = \lfloor x/2\rfloor` berjalan $\lfloor\log_2 n\rfloor+1$ kali untuk $n\ge1$; untuk $n=8$ nilainya 8, 4, 2, 1. Nilai awal dan tanda batas selalu menentukan apakah rumus logaritma perlu pembulatan atau tambahan 1.
 
 **Aturan sederhana.** Dua tahap yang berjalan **berurutan** dijumlahkan. Loop yang benar-benar **bersarang**, dengan panjang dalam yang sama pada setiap putaran luar, dikalikan. Jika panjang dalam berubah mengikuti indeks luar, jumlahkan pekerjaan per putaran luar satu demi satu. Batas $j<n$ tidak memasukkan $n$; batas $bound\le n$ memasukkan $n$.
 
@@ -112,6 +114,24 @@ Untuk $n=2$, pasangan $(i,j)$ adalah $(0,0),(0,1),(1,0),(1,1)$: ada empat. Untuk
 $$F(n)=\underbrace{n\cdot n\cdot n}_{\text{tiga pilihan indeks}}=n^3\in\Theta(n^3).$$
 
 Pemeriksaan: untuk $n=3$, ada $3\cdot3\cdot3=27$ kombinasi. Tiga loop menghasilkan kubik **di soal ini** karena ketiganya berjalan sepanjang $n$ dan bersarang; jumlah kata `for` saja tidak cukup untuk menyimpulkan kubik.
+
+Jika ketiga loop ditulis `for (i=0; i<n; i++)`, lalu `for (j=0; j<n; j++)`, lalu `for (k=0; k<n; k++)` dengan satu pekerjaan tetap di dalamnya, perhitungan **seluruh baris** menjadi:
+
+| Code | Cost | Frequency | Total |
+| --- | ---: | ---: | ---: |
+| `i = 0` | 1 | $1$ | $1$ |
+| `i < n` | 1 | $n+1$ | $n+1$ |
+| `i++` | 2 | $n$ | $2n$ |
+| `j = 0` | 1 | $n$ | $n$ |
+| `j < n` | 1 | $n(n+1)$ | $n^2+n$ |
+| `j++` | 2 | $n^2$ | $2n^2$ |
+| `k = 0` | 1 | $n^2$ | $n^2$ |
+| `k < n` | 1 | $n^2(n+1)$ | $n^3+n^2$ |
+| `k++` | 2 | $n^3$ | $2n^3$ |
+| Pekerjaan tetap | 1 | $n^3$ | $n^3$ |
+| **Jumlah** | | | **$T(n)=4n^3+5n^2+5n+2$** |
+
+Perhatikan perbedaan $F(n)=n^3$ dan $T(n)=4n^3+5n^2+5n+2$. Yang pertama hanya menghitung pekerjaan terdalam; yang kedua juga menghitung pengendali loop. Keduanya tetap $\Theta(n^3)$.
 
 ### 3b. Membagi, menggandakan, dan melangkah dua
 
@@ -138,6 +158,24 @@ $$
 
 Mengapa ada kuadrat pada logaritma? Dua loop pertama masing-masing memiliki sekitar $\log_2n$ putaran, sehingga hasil perkaliannya sekitar $(\log_2n)^2$. Loop ketiga menyumbang sekitar $n/2$. Untuk $n=1$, loop $j$ tidak berjalan dan $F(1)=0$; rumus tepat di atas juga memberi nol. Pernyataan $\Theta(n\log^2n)$ dipakai untuk input yang cukup besar.
 
+Untuk menghitung biaya semua baris, misalkan $a=\lfloor\log_2n\rfloor+1$, $b=\lceil\log_2n\rceil$, dan $c=\lceil n/2\rceil$. Loop $j$ dimulai ulang $a$ kali; loop $k$ dimulai ulang $ab$ kali. Pembagian `i` memakai pembagian bilangan bulat.
+
+| Code | Cost | Frequency | Total |
+| --- | ---: | ---: | ---: |
+| `i = n` | 1 | $1$ | $1$ |
+| `i > 0` | 1 | $a+1$ | $a+1$ |
+| `i = floor(i/2)` | 2 | $a$ | $2a$ |
+| `j = 1` | 1 | $a$ | $a$ |
+| `j < n` | 1 | $a(b+1)$ | $a(b+1)$ |
+| `j *= 2` | 2 | $ab$ | $2ab$ |
+| `k = 0` | 1 | $ab$ | $ab$ |
+| `k < n` | 1 | $ab(c+1)$ | $ab(c+1)$ |
+| `k += 2` | 2 | $abc$ | $2abc$ |
+| Pekerjaan tetap | 1 | $abc$ | $abc$ |
+| **Jumlah** | | | **$T(n)=2+5a+5ab+4abc$** |
+
+Saat $n=8$, $a=4$, $b=3$, dan $c=4$. Jadi $F(8)=48$, sedangkan $T(8)=2+5(4)+5(4)(3)+4(4)(3)(4)=274$ menurut model biaya ini.
+
 ### 3c. Dua loop dalam berurutan pada setiap putaran luar
 
 **Soal sumber.** Loop luar memakai $bound=1,2,4,\ldots$ selama $bound\le n$. Pada *setiap* putaran luar, loop dalam pertama memakai $j=0,2,4,\ldots<n$ dan melakukan satu pekerjaan per nilai. Setelah loop pertama selesai, loop dalam kedua memakai $j=1,2,4,\ldots<n$ dan melakukan satu pekerjaan per nilai. Tentukan $F(n)$ dan kelasnya.
@@ -154,6 +192,25 @@ $$
 
 Bagian dalam kurung tumbuh seperti $n$, karena $n/2$ akhirnya lebih besar daripada $\log n$. Bagian luar tumbuh seperti $\log n$. Inilah alasan kelasnya $n\log n$, sedangkan 3b menjadi $n\log^2n$. Bentuk kurung pada rumus mencerminkan letak kurung pada program: *jumlah dua pekerjaan dalam* dikalikan *jumlah pengulangan luar*.
 
+Untuk biaya seluruh baris, tulis $a=\lfloor\log_2n\rfloor+1$, $b=\lceil n/2\rceil$, dan $c=\lceil\log_2n\rceil$. Kedua loop `j` berjalan **berurutan**; tiap loop diinisialisasi kembali pada setiap putaran `bound`.
+
+| Code | Cost | Frequency | Total |
+| --- | ---: | ---: | ---: |
+| `bound = 1` | 1 | $1$ | $1$ |
+| `bound <= n` | 1 | $a+1$ | $a+1$ |
+| `bound *= 2` | 2 | $a$ | $2a$ |
+| `j = 0` (loop pertama) | 1 | $a$ | $a$ |
+| `j < n` (loop pertama) | 1 | $a(b+1)$ | $a(b+1)$ |
+| `j += 2` | 2 | $ab$ | $2ab$ |
+| Pekerjaan tetap pertama | 1 | $ab$ | $ab$ |
+| `j = 1` (loop kedua) | 1 | $a$ | $a$ |
+| `j < n` (loop kedua) | 1 | $a(c+1)$ | $a(c+1)$ |
+| `j *= 2` | 2 | $ac$ | $2ac$ |
+| Pekerjaan tetap kedua | 1 | $ac$ | $ac$ |
+| **Jumlah** | | | **$T(n)=2+7a+4a(b+c)$** |
+
+Saat $n=8$, $a=4$, $b=4$, dan $c=3$: $F(8)=4(4+3)=28$, sedangkan $T(8)=2+7(4)+4(4)(4+3)=142$. Keduanya tetap $\Theta(n\log n)$.
+
 ## 4. Rata-rata: mengapa dua program dengan hasil sama punya biaya berbeda?
 
 Panitia mempunyai array nilai $A[1],A[2],\ldots,A[n]$ dan ingin menghitung rata-ratanya. Kedua algoritme pada lembar responsi menjumlahkan nilai yang sama lalu membagi dengan $n$. Karena itu **hasil rata-ratanya sama** untuk $n>0$; yang dibandingkan adalah jumlah pekerjaan. Jika $n=4$ dan nilainya 2, 4, 6, 8, keduanya memberi $(2+4+6+8)/4=5$.
@@ -164,47 +221,47 @@ Panitia mempunyai array nilai $A[1],A[2],\ldots,A[n]$ dan ingin menghitung rata-
 
 Rata-1 memakai bentuk `for i = 1 sampai n`: inisialisasi jumlah, pengulangan penjumlahan $n$ kali, lalu pembagian sekali. Rata-2 memakai `while i <= n`: inisialisasi $i$ dan jumlah, memeriksa syarat, menjumlahkan dan menaikkan $i$ selama syarat benar, lalu membagi sekali. Pada $n=4$, syarat `i <= 4` diperiksa saat $i=1,2,3,4$ (benar) **dan** saat $i=5$ (salah, untuk keluar). Jadi ada lima pemeriksaan. Tanpa pemeriksaan terakhir, program belum tahu kapan berhenti.
 
-Pada contoh lembar, baris `for` Rata-1 dihitung $n$ kali sebagai satu baris pengulangan. Itu **konvensi penyederhanaan**; penghitungan yang memisahkan inisialisasi, pemeriksaan akhir, dan kenaikan indeks `for` akan memberi fungsi tepat berbeda. Jangan mencampur dua konvensi dalam satu tabel.
+Pada contoh lembar, baris `for` Rata-1 dihitung $n$ kali sebagai satu baris pengulangan. Itu **konvensi penyederhanaan**; penghitungan yang memisahkan inisialisasi, pemeriksaan akhir, dan kenaikan indeks `for` akan memberi fungsi tepat berbeda. Bagian 4a dan 4b mengikuti bobot khusus yang diminta oleh lembar responsi, sedangkan bagian 3 memakai bobot operasi sederhana seperti `i++` = 2. Karena bobotnya berbeda, jangan mencampur hasil tepat keduanya dalam satu tabel.
 
 ### 4a. Setiap pelaksanaan baris berbiaya satu satuan
 
 **Soal lengkap.** Dengan konvensi satu pelaksanaan baris = satu satuan waktu, isilah tabel untuk $n=4$ dan $n$ umum. Baris `for` Rata-1 dihitung $n$ kali, sedangkan pemeriksaan `while` Rata-2 dihitung $n+1$ kali, sesuai contoh lembar.
 
-| Algoritme dan baris | Kali saat $n=4$ | Kali umum | Biaya per kali | Waktu umum |
-| --- | ---: | ---: | ---: | ---: |
-| Rata-1: `jml ← 0` | 1 | 1 | 1 | 1 |
-| Rata-1: `for i ← 1 to n` | 4 | $n$ | 1 | $n$ |
-| Rata-1: `jml ← jml + A[i]` | 4 | $n$ | 1 | $n$ |
-| Rata-1: `rata ← jml/n` | 1 | 1 | 1 | 1 |
-| **Total Rata-1** | **10** | | | **$F_1(n)=2+2n$** |
-| Rata-2: `i ← 1` | 1 | 1 | 1 | 1 |
-| Rata-2: `jml ← 0` | 1 | 1 | 1 | 1 |
-| Rata-2: cek `i <= n` | 5 | $n+1$ | 1 | $n+1$ |
-| Rata-2: `jml ← jml + A[i]` | 4 | $n$ | 1 | $n$ |
-| Rata-2: `i ← i + 1` | 4 | $n$ | 1 | $n$ |
-| Rata-2: `rata ← jml/n` | 1 | 1 | 1 | 1 |
-| **Total Rata-2** | **16** | | | **$F_2(n)=4+3n$** |
+| Code | Cost | Frequency | Total |
+| --- | ---: | ---: | ---: |
+| Rata-1: `jml ← 0` | 1 | 1 | 1 |
+| Rata-1: `for i ← 1 to n` | 1 | $n$ | $n$ |
+| Rata-1: `jml ← jml + A[i]` | 1 | $n$ | $n$ |
+| Rata-1: `rata ← jml/n` | 1 | 1 | 1 |
+| **Jumlah Rata-1** | | | **$T_1(n)=2+2n$** |
+| Rata-2: `i ← 1` | 1 | 1 | 1 |
+| Rata-2: `jml ← 0` | 1 | 1 | 1 |
+| Rata-2: cek `i <= n` | 1 | $n+1$ | $n+1$ |
+| Rata-2: `jml ← jml + A[i]` | 1 | $n$ | $n$ |
+| Rata-2: `i ← i + 1` | 1 | $n$ | $n$ |
+| Rata-2: `rata ← jml/n` | 1 | 1 | 1 |
+| **Jumlah Rata-2** | | | **$T_2(n)=4+3n$** |
 
-Untuk Rata-1, dua baris sekali jalan menghasilkan 2, dan dua baris yang masing-masing berjalan $n$ kali menghasilkan $2n$. Untuk Rata-2, tiga baris sekali jalan ditambah **satu pemeriksaan akhir** menghasilkan 4, lalu pemeriksaan berhasil, penjumlahan, dan kenaikan indeks masing-masing menyumbang $n$: total $4+3n$. Pada $n=4$, tabel memberi 10 dan 16, sesuai menghitung satu per satu. Selisih $F_2(n)-F_1(n)=2+n>0$ untuk $n>0$, jadi **Rata-1 lebih murah menurut model 4a**.
+Untuk Rata-1, dua baris sekali jalan menghasilkan 2, dan dua baris yang masing-masing berjalan $n$ kali menghasilkan $2n$. Untuk Rata-2, tiga baris sekali jalan ditambah **satu pemeriksaan akhir** menghasilkan 4, lalu pemeriksaan berhasil, penjumlahan, dan kenaikan indeks masing-masing menyumbang $n$: total $4+3n$. Pada $n=4$, tabel memberi 10 dan 16, sesuai menghitung satu per satu. Selisih $T_2(n)-T_1(n)=2+n>0$ untuk $n>0$, jadi **Rata-1 lebih murah menurut model 4a**.
 
 ### 4b. Biaya tiap jenis instruksi berbeda
 
 **Soal lengkap.** Hitung ulang dua algoritme dengan bobot *per baris* pada contoh lembar. Baris penugasan sederhana dan pemeriksaan logika bernilai $\tfrac12$ satuan; baris `for` Rata-1 bernilai 2 satuan; baris gabungan `jml ← jml + A[i]`, `i ← i + 1`, dan `rata ← jml/n` masing-masing bernilai $1\tfrac12$ satuan. Lembar memperlakukan baris gabungan sebagai satu biaya tetap; jangan menghitung operasi penyusunnya dua kali.
 
-| Algoritme dan baris | Kali umum | Biaya per kali | Waktu umum |
+| Code | Cost | Frequency | Total |
 | --- | ---: | ---: | ---: |
-| Rata-1: `jml ← 0` | 1 | $\tfrac12$ | $\tfrac12$ |
-| Rata-1: `for i ← 1 to n` | $n$ | $2$ | $2n$ |
-| Rata-1: `jml ← jml + A[i]` | $n$ | $1\tfrac12$ | $1\tfrac12n$ |
-| Rata-1: `rata ← jml/n` | 1 | $1\tfrac12$ | $1\tfrac12$ |
-| **Total Rata-1** | | | **$F_1(n)=2+3\tfrac12n$** |
-| Rata-2: `i ← 1` | 1 | $\tfrac12$ | $\tfrac12$ |
-| Rata-2: `jml ← 0` | 1 | $\tfrac12$ | $\tfrac12$ |
-| Rata-2: cek `i <= n` | $n+1$ | $\tfrac12$ | $\tfrac12n+\tfrac12$ |
-| Rata-2: `jml ← jml + A[i]` | $n$ | $1\tfrac12$ | $1\tfrac12n$ |
-| Rata-2: `i ← i + 1` | $n$ | $1\tfrac12$ | $1\tfrac12n$ |
-| Rata-2: `rata ← jml/n` | 1 | $1\tfrac12$ | $1\tfrac12$ |
-| **Total Rata-2** | | | **$F_2(n)=3+3\tfrac12n$** |
+| Rata-1: `jml ← 0` | $\tfrac12$ | 1 | $\tfrac12$ |
+| Rata-1: `for i ← 1 to n` | $2$ | $n$ | $2n$ |
+| Rata-1: `jml ← jml + A[i]` | $1\tfrac12$ | $n$ | $1\tfrac12n$ |
+| Rata-1: `rata ← jml/n` | $1\tfrac12$ | 1 | $1\tfrac12$ |
+| **Jumlah Rata-1** | | | **$T_1(n)=2+3\tfrac12n$** |
+| Rata-2: `i ← 1` | $\tfrac12$ | 1 | $\tfrac12$ |
+| Rata-2: `jml ← 0` | $\tfrac12$ | 1 | $\tfrac12$ |
+| Rata-2: cek `i <= n` | $\tfrac12$ | $n+1$ | $\tfrac12n+\tfrac12$ |
+| Rata-2: `jml ← jml + A[i]` | $1\tfrac12$ | $n$ | $1\tfrac12n$ |
+| Rata-2: `i ← i + 1` | $1\tfrac12$ | $n$ | $1\tfrac12n$ |
+| Rata-2: `rata ← jml/n` | $1\tfrac12$ | 1 | $1\tfrac12$ |
+| **Jumlah Rata-2** | | | **$T_2(n)=3+3\tfrac12n$** |
 
 Periksa konstanta Rata-2: $\tfrac12+\tfrac12+\tfrac12+1\tfrac12=3$. Periksa bagian yang berulang: $\tfrac12n+1\tfrac12n+1\tfrac12n=3\tfrac12n$. Pada $n=4$, Rata-1 memakai $2+3{,}5(4)=16$ satuan dan Rata-2 memakai $3+3{,}5(4)=17$ satuan. Selisihnya selalu 1 satuan dalam **model bobot 4b**. Jadi Rata-1 tetap lebih murah menurut model ini, tetapi alasannya berbeda dari 4a. Keduanya tetap $\Theta(n)$ karena sama-sama mengolah $n$ nilai. Kelas yang sama tidak berarti waktu tepatnya sama.
 

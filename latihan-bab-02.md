@@ -66,7 +66,7 @@ Bacaan pendamping: [bab-02-pertumbuhan-fungsi.md](bab-02-pertumbuhan-fungsi.md).
 
 *Tingkat: Sedang.*
 
-**Soal lengkap.** Tiga loop bersarang masing-masing memakai indeks integer dari 0 sampai sebelum $n$, dengan kenaikan satu. Setiap kombinasi tiga indeks menjalankan tepat satu operasi di bagian terdalam. Berapa operasi saat $n=3$, berapa $F(n)$ untuk integer $n\ge1$, dan apa kelas $\Theta$-nya?
+**Soal lengkap.** Tiga loop bersarang masing-masing memakai indeks integer dari 0 sampai sebelum $n$, dengan kenaikan satu. Setiap kombinasi tiga indeks menjalankan tepat satu operasi di bagian terdalam. Berapa operasi terdalam saat $n=3$ dan berapa $F(n)$? Dengan biaya penugasan dan pemeriksaan masing-masing 1, kenaikan indeks 2, serta operasi terdalam 1, buat tabel *Code–Cost–Frequency–Total* dan cari $T(n)$ untuk integer $n\ge1$. Apa kelas $\Theta$-nya?
 
 **Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 2 Analgor”, nomor 3a.
 
@@ -74,7 +74,7 @@ Bacaan pendamping: [bab-02-pertumbuhan-fungsi.md](bab-02-pertumbuhan-fungsi.md).
 
 *Tingkat: Sedang.*
 
-**Soal lengkap.** Tiga loop bersarang menjalankan satu operasi pada setiap kombinasi indeks. Loop luar mulai dari $i=n$, lalu memakai pembagian bilangan bulat $i\leftarrow\lfloor i/2\rfloor$ selama $i>0$. Loop tengah mulai dari $j=1$, lalu menggandakan $j$ selama $j<n$. Loop terdalam mulai dari $k=0$, lalu menambah 2 selama $k<n$. Hitung operasi saat $n=8$ dan tentukan kelas $\Theta$ untuk $n>1$.
+**Soal lengkap.** Tiga loop bersarang menjalankan satu operasi pada setiap kombinasi indeks. Loop luar mulai dari $i=n$, lalu memakai pembagian bilangan bulat $i\leftarrow\lfloor i/2\rfloor$ selama $i>0$. Loop tengah mulai dari $j=1$, lalu menggandakan $j$ selama $j<n$. Loop terdalam mulai dari $k=0$, lalu menambah 2 selama $k<n$. Hitung operasi terdalam $F(8)$. Dengan biaya penugasan dan pemeriksaan 1 serta pembagian, penggandaan, dan penambahan indeks 2, buat tabel *Code–Cost–Frequency–Total*, cari $T(8)$, dan tentukan kelas $\Theta$ untuk $n>1$.
 
 **Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 2 Analgor”, nomor 3b.
 
@@ -82,7 +82,7 @@ Bacaan pendamping: [bab-02-pertumbuhan-fungsi.md](bab-02-pertumbuhan-fungsi.md).
 
 *Tingkat: Sedang.*
 
-**Soal lengkap.** Loop luar memakai bound = 1, 2, 4, dan seterusnya selama bound $\le n$. Pada setiap putaran luar, loop pertama memakai $j=0,2,4,\ldots<n$; *setelah loop pertama selesai*, loop kedua memakai $j=1,2,4,\ldots<n$. Setiap putaran kedua loop dalam menjalankan satu operasi. Hitung total saat $n=8$ dan kelas $\Theta$ untuk $n>1$.
+**Soal lengkap.** Loop luar memakai bound = 1, 2, 4, dan seterusnya selama bound $\le n$. Pada setiap putaran luar, loop pertama memakai $j=0,2,4,\ldots<n$; *setelah loop pertama selesai*, loop kedua memakai $j=1,2,4,\ldots<n$. Setiap putaran kedua loop dalam menjalankan satu operasi. Hitung pekerjaan terdalam $F(8)$. Dengan biaya penugasan dan pemeriksaan 1 serta penggandaan dan penambahan indeks 2, buat tabel *Code–Cost–Frequency–Total*, cari $T(8)$, dan tentukan kelas $\Theta$ untuk $n>1$.
 
 **Asal:** Adaptasi “Lembar Kerja Responsi Pertemuan 2 Analgor”, nomor 3c.
 
@@ -146,7 +146,7 @@ Bacaan pendamping: [bab-02-pertumbuhan-fungsi.md](bab-02-pertumbuhan-fungsi.md).
 
 *Tingkat: Sedang; terkait responsi nomor 4a.*
 
-**Soal lengkap.** Dua algoritme menghitung rata-rata dari array berisi $n>0$ angka. Rata-1 menjalankan `jml ← 0` sekali, baris `for` sebanyak $n$ kali, penjumlahan sebanyak $n$ kali, dan pembagian akhir sekali. Rata-2 menjalankan dua inisialisasi sekali masing-masing, pemeriksaan `while` sebanyak $n+1$ kali, penjumlahan $n$ kali, kenaikan indeks $n$ kali, dan pembagian akhir sekali. Jika setiap pelaksanaan baris berbiaya satu satuan waktu, tentukan $F_1(n)$, $F_2(n)$, biaya saat $n=4$, serta algoritme yang lebih murah.
+**Soal lengkap.** Dua algoritme menghitung rata-rata dari array berisi $n>0$ angka. Rata-1 menjalankan `jml ← 0` sekali, baris `for` sebanyak $n$ kali, penjumlahan sebanyak $n$ kali, dan pembagian akhir sekali. Rata-2 menjalankan dua inisialisasi sekali masing-masing, pemeriksaan `while` sebanyak $n+1$ kali, penjumlahan $n$ kali, kenaikan indeks $n$ kali, dan pembagian akhir sekali. Jika setiap pelaksanaan baris berbiaya satu satuan waktu sesuai model khusus soal ini, buat tabel *Code–Cost–Frequency–Total*. Tentukan $T_1(n)$, $T_2(n)$, biaya saat $n=4$, serta algoritme yang lebih murah.
 
 **Asal:** Dikembangkan dari dua algoritme rata-rata pada “Lembar Kerja Responsi Pertemuan 2 Analgor”, nomor 4, dengan konvensi satu baris satu satuan pada contoh halaman 3.
 
@@ -190,15 +190,15 @@ Untuk $n=5$, $1+2+3+4+5=15$. Umumnya $F(n)=n(n+1)/2$. Pada $n\ge1$, $n\le n+1\le
 
 ### 8. Tiga loop panjang $n$
 
-Untuk $n=3$, tiap indeks bisa 0, 1, atau 2. Ada $3\cdot3\cdot3=27$ kombinasi. Umumnya $F(n)=n^3$, sehingga $\Theta(n^3)$.
+Untuk $n=3$, tiap indeks bisa 0, 1, atau 2. Ada $3\cdot3\cdot3=27$ kombinasi, sehingga $F(n)=n^3$. Tabel *Code–Cost–Frequency–Total* lengkap ada pada Bab 2 bagian 3a: jumlah kolom Total memberi $T(n)=4n^3+5n^2+5n+2$. Keduanya $\Theta(n^3)$.
 
 ### 9. Tiga pola bersarang
 
-Pada $n=8$, $i$ bernilai 8, 4, 2, 1 (4 nilai); $j$ bernilai 1, 2, 4 (3 nilai); $k$ bernilai 0, 2, 4, 6 (4 nilai). Total $4\cdot3\cdot4=48$. Umumnya $F(n)=(\lfloor\log_2n\rfloor+1)\lceil\log_2n\rceil\lceil n/2\rceil$, sehingga $\Theta(n\log^2n)$.
+Pada $n=8$, $i$ bernilai 8, 4, 2, 1 (4 nilai); $j$ bernilai 1, 2, 4 (3 nilai); $k$ bernilai 0, 2, 4, 6 (4 nilai). Jadi $F(8)=4\cdot3\cdot4=48$. Umumnya $F(n)=abc$ dengan $a=\lfloor\log_2n\rfloor+1$, $b=\lceil\log_2n\rceil$, $c=\lceil n/2\rceil$. Tabel lengkap pada Bab 2 bagian 3b memberi $T(n)=2+5a+5ab+4abc$, sehingga $T(8)=274$ dan kelasnya $\Theta(n\log^2n)$.
 
 ### 10. Dua loop berurutan
 
-Pada $n=8$, luar mempunyai 1, 2, 4, 8 (4 putaran); loop dalam pertama 0, 2, 4, 6 (4); kedua 1, 2, 4 (3). Setiap putaran luar berbiaya $4+3=7$, total $4(7)=28$. Umumnya $F(n)=(\lfloor\log_2n\rfloor+1)(\lceil n/2\rceil+\lceil\log_2n\rceil)$, sehingga $\Theta(n\log n)$.
+Pada $n=8$, luar mempunyai 1, 2, 4, 8 (4 putaran); loop dalam pertama 0, 2, 4, 6 (4); kedua 1, 2, 4 (3). Maka $F(8)=4(4+3)=28$. Umumnya $F(n)=a(b+c)$ dengan $a=\lfloor\log_2n\rfloor+1$, $b=\lceil n/2\rceil$, dan $c=\lceil\log_2n\rceil$. Tabel lengkap pada Bab 2 bagian 3c memberi $T(n)=2+7a+4a(b+c)$, sehingga $T(8)=142$ dan kelasnya $\Theta(n\log n)$.
 
 ### 11. Paket logaritmik
 
@@ -230,8 +230,8 @@ Bandingkan masing-masing suku dengan $n^{1{,}5}$. Rasio $500n/(100n^{1{,}5})=5/\
 
 ### 18. Rata-rata dengan biaya setiap baris sama
 
-Untuk Rata-1 ada dua baris yang berjalan sekali dan dua baris yang berjalan $n$ kali, sehingga $F_1(n)=2+2n$ dan $F_1(4)=10$. Untuk Rata-2, dua inisialisasi dan satu pembagian menyumbang 3; pemeriksaan `while` menyumbang $n+1$; penjumlahan dan kenaikan indeks menyumbang $2n$. Maka $F_2(n)=3+(n+1)+2n=4+3n$ dan $F_2(4)=16$. Selisihnya $F_2-F_1=n+2>0$, jadi Rata-1 lebih murah menurut bobot ini.
+Gunakan tabel pada Bab 2 bagian 4a. Untuk Rata-1 ada dua baris yang berjalan sekali dan dua baris yang berjalan $n$ kali, sehingga $T_1(n)=2+2n$ dan $T_1(4)=10$. Untuk Rata-2, dua inisialisasi dan satu pembagian menyumbang 3; pemeriksaan `while` menyumbang $n+1$; penjumlahan dan kenaikan indeks menyumbang $2n$. Maka $T_2(n)=3+(n+1)+2n=4+3n$ dan $T_2(4)=16$. Selisihnya $T_2-T_1=n+2>0$, jadi Rata-1 lebih murah menurut bobot ini.
 
 ### 19. Rata-rata dengan biaya per baris berbeda
 
-Rata-1: inisialisasi dan pembagian akhir memberi $\tfrac12+1\tfrac12=2$; pengulangan dan penjumlahan memberi $2n+1\tfrac12n=3\tfrac12n$. Jadi $F_1(n)=2+3\tfrac12n$ dan $F_1(4)=16$. Rata-2: dua inisialisasi, satu pemeriksaan akhir, dan pembagian memberi $\tfrac12+\tfrac12+\tfrac12+1\tfrac12=3$; pemeriksaan yang berhasil, penjumlahan, dan kenaikan indeks memberi $\tfrac12n+1\tfrac12n+1\tfrac12n=3\tfrac12n$. Jadi $F_2(n)=3+3\tfrac12n$ dan $F_2(4)=17$. Rata-1 lebih murah satu satuan dalam model ini; keduanya $\Theta(n)$.
+Gunakan tabel pada Bab 2 bagian 4b. Rata-1: inisialisasi dan pembagian akhir memberi $\tfrac12+1\tfrac12=2$; pengulangan dan penjumlahan memberi $2n+1\tfrac12n=3\tfrac12n$. Jadi $T_1(n)=2+3\tfrac12n$ dan $T_1(4)=16$. Rata-2: dua inisialisasi, satu pemeriksaan akhir, dan pembagian memberi $\tfrac12+\tfrac12+\tfrac12+1\tfrac12=3$; pemeriksaan yang berhasil, penjumlahan, dan kenaikan indeks memberi $\tfrac12n+1\tfrac12n+1\tfrac12n=3\tfrac12n$. Jadi $T_2(n)=3+3\tfrac12n$ dan $T_2(4)=17$. Rata-1 lebih murah satu satuan dalam model ini; keduanya $\Theta(n)$.
