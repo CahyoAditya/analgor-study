@@ -2,6 +2,51 @@
 
 > Setiap panggilan rekursif membuat submasalah. Untuk menganalisisnya, hitung **berapa submasalah**, **seberapa kecil**, dan **berapa kerja di luar panggilan**.
 
+Bab ini menjawab soal *Lembar Kerja Responsi Pertemuan 5* menurut urutan A1–A4, B1–B4, C1–C2. Bagian sesudah pembahasan soal memberi landasan dan latihan tambahan. Untuk hitungan tepat, anggap ukuran yang diperlukan merupakan pangkat pembagi dan biaya dasar $T(1)=d>0$. Pembulatan ukuran hanya mengubah rincian, bukan orde pertumbuhan. [Latihan terpisah](latihan-bab-05.md) tersedia setelah pembahasan.
+
+## Jawaban lembar responsi, urut menurut nomor
+
+### A1. $T(n)=2T(n/4)+n$
+
+Misal $n=16$. Akar mengerjakan 16, dua anak ukuran 4 mengerjakan $2\cdot4=8$, dan empat daun ukuran 1 mengerjakan $4d$. Untuk $n$ umum, tingkat $i$ berisi $2^i$ simpul berukuran $n/4^i$, sehingga biayanya $n(1/2)^i$. Kedalaman $h=\log_4 n$; biaya tingkat dalam berjumlah $n(1+1/2+\cdots+(1/2)^{h-1})<2n$. Akar sendiri berbiaya $n$, sedangkan daun hanya $d\,2^h=d\sqrt n$. Jadi **$T(n)=\Theta(n)$**.
+
+### A2. $T(n)=3T(n/3)+n$
+
+Untuk $n=9$, tingkat akar berbiaya 9, tingkat berikutnya $3\cdot3=9$, dan sembilan daun berbiaya $9d$. Pada tingkat $i$, $3^i$ anak masing-masing berukuran $n/3^i$, jadi total kerja $n$. Ada $h=\log_3 n$ tingkat dalam dan satu tingkat daun. Dengan $T(1)=d$, $T(n)=nh+dn$, yakni **$\Theta(n\log n)$**. Banyaknya tingkat bukan satu-satunya faktor; setiap tingkat di sini menghabiskan $n$.
+
+### A3. $T(n)=4T(n/2)+n$
+
+Untuk $n=8$, biaya tingkat dalam: $8$, lalu $4\cdot4=16$, lalu $16\cdot2=32$; daun berjumlah $4^3=64$ dan berbiaya total $64d$. Pada tingkat $i$, total biaya $n2^i$. Kedalaman $h=\log_2n$, sehingga $4^h=n^2$ daun. Jumlah $n(1+2+\cdots+2^{h-1})=n(n-1)$, lalu tambah $dn^2$. Hasilnya **$\Theta(n^2)$**.
+
+### A4. $T(n)=7T(n/8)+n$
+
+Untuk $n=64$, biaya akar 64, tujuh anak ukuran 8 berbiaya $7\cdot8=56$, dan 49 daun berbiaya $49d$. Tingkat $i$ berbiaya $n(7/8)^i$. Deret ini kurang dari $8n$ dan akar memberi batas bawah $n$. Daun berjumlah $7^{\log_8 n}=n^{\log_8 7}$, lebih kecil dari $n$. Jadi **$\Theta(n)$**.
+
+### B1–B4. Isi tabel Master Theorem
+
+Bandingkan $f(n)$ dengan $n^p$, dengan $p=\log_ba$. Kasus 1: $f$ lebih kecil secara polinomial; kasus 2: sama besar, mungkin dikali pangkat log; kasus 3: $f$ lebih besar secara polinomial dan memenuhi syarat regularitas $af(n/b)\leq cf(n)$ untuk suatu $c<1$.
+
+| No. | $a$ | $b$ | $f(n)$ | $n^{\log_ba}$ | Kasus dan alasan | Hasil |
+| --- | ---: | ---: | --- | --- | --- | --- |
+| B1: $2T(n/2)+n\log n$ | 2 | 2 | $n\log n$ | $n$ | 2; $f=n^p\log^1n$ | $\Theta(n\log^2n)$ |
+| B2: $4T(n/2)+n$ | 4 | 2 | $n$ | $n^2$ | 1; $n=O(n^{2-1})$ | $\Theta(n^2)$ |
+| B3: $9T(n/3)+n^2$ | 9 | 3 | $n^2$ | $n^2$ | 2; $f=n^p$ | $\Theta(n^2\log n)$ |
+| B4: $3T(n/3)+n^{3/2}$ | 3 | 3 | $n^{3/2}$ | $n$ | 3; $3(n/3)^{3/2}=n^{3/2}/\sqrt3$ | $\Theta(n^{3/2})$ |
+
+Pada B1, contoh $n=8$ memberi biaya tingkat dalam $8\cdot3$, $8\cdot2$, $8\cdot1$, lalu delapan daun. Jumlah bagian dalam $8(3+2+1)=48$, ditambah $8d$. Karena jumlah $1+\cdots+h=h(h+1)/2$, faktor log menjadi kuadrat. Pada B2, $n=8$ memberi biaya dalam 8, 16, 32, lalu 64 daun: faktor 4 anak mengalahkan pembagian ukuran 2.
+
+### C1. TriMergeSort
+
+Kasus dasar pada satu elemen memerlukan biaya tetap. Untuk ukuran yang habis dibagi tiga, tiga panggilan masing-masing berukuran $n/3$ dan penggabungan tiga hasil diasumsikan linear sesuai kalimat soal: $T(n)=3T(n/3)+cn$. Contoh $n=9$: kerja gabung 9 di akar, $3\cdot3=9$ di tingkat berikutnya, lalu sembilan kasus dasar. Tiap tingkat berbiaya $\Theta(n)$ dan tingginya $\log_3n$, sehingga waktu **$\Theta(n\log n)$**. Nama `MERGE3_IN_PLACE` tidak membuktikan ruang tambahan $O(1)$; implementasinya harus dilihat untuk menilai ruang dan stabilitas. Untuk ukuran yang tidak kelipatan tiga, bagian yang berukuran sekitar $n/3$ memberi orde yang sama.
+
+### C2. QuadHistogram
+
+Histogram berisi $K$ posisi. `ZERO_VEC(K)` pada setiap daun membutuhkan $\Theta(K)$, dan `ADD4` pada simpul dalam juga menjumlahkan $K$ posisi, yakni $\Theta(K)$. Untuk $n=4^h$, ada $n$ daun dan $(n-1)/3$ simpul dalam. Maka biaya total **$\Theta(nK)$**; bila $K$ konstanta, **$\Theta(n)$**. Contoh $n=4$: empat histogram daun masing-masing menyiapkan $K$ posisi, lalu satu penjumlahan empat histogram sepanjang $K$; keduanya tetap berskala $K$. Bentuk $T(n,K)=4T(n/4,K)+\Theta(K)$ untuk simpul dalam harus disertai $T(1,K)=\Theta(K)$; mengabaikan biaya daun membuat hasil salah. Untuk ukuran kecil yang tidak habis dibagi empat, kode dapat membuat bagian kosong; masing-masing `ZERO_VEC(K)` tetap menghabiskan waktu $\Theta(K)$, tanpa mengubah orde $\Theta(nK)$.
+
+### Koreksi khusus dari gambar Sensei: $T(n)=2T(n/2)+c$
+
+Untuk $n=8$, tingkat 0 berisi satu simpul berbiaya $c$; tingkat 1 dua simpul, masing-masing **tetap $c$**, jadi $2c$; tingkat 2 berbiaya $4c$; delapan daun menambah $8d$. Jika biaya dasar juga $c$, jumlahnya $(1+2+4+8)c=15c$. Secara umum, $h=\log_2n$ adalah **kedalaman**, sedangkan total simpul $1+2+\cdots+2^h=2n-1$; jadi $T(n)=\Theta(n)$. Menulis $c/2$ di tiap anak akan menggambarkan rekurensi lain, yakni pekerjaan lokal yang mengecil bersama ukuran submasalah.
+
 ## 1. Dari algoritme ke relasi rekurensi
 
 Sebuah prosedur rekursif perlu kasus dasar dan kemajuan menuju kasus dasar. Jika satu panggilan pada ukuran *n* membuat *a* panggilan ukuran sekitar *n/b* dan pekerjaan lain *f(n)*, bentuk umumnya T(n) = aT(n/b) + f(n), dengan T(1) = Θ(1). Dua panggilan berarti *a = 2*; membagi ke tiga bagian berarti *b = 3*. Jangan menyamakan *a* dan *b*.
@@ -44,9 +89,9 @@ Contoh T(n) = 2T(n/2) + n log n: *p = 1*, *f(n) = Θ(n log n)*, jadi kasus kedua
 
 ## 5. Contoh adaptasi responsi: tiga dan empat bagian
 
-**TriMergeSort** membagi larik menjadi tiga sublarik, mengurutkan ketiganya, lalu menggabung dalam Θ(n) **jika** operasi merge tiga arah benar-benar linear. Relasinya T(n) = 3T(n/3) + Θ(n), maka Θ(n log n). Nama `MERGE3_IN_PLACE` pada lembar kerja tidak sendiri menjamin kerja linear atau ruang O(1); asumsi biaya merge harus diperiksa pada implementasi.
+**TriMergeSort** membagi array menjadi tiga subarray, mengurutkan ketiganya, lalu menggabung dalam Θ(n) **jika** operasi merge tiga arah benar-benar linear. Relasinya T(n) = 3T(n/3) + Θ(n), maka Θ(n log n). Nama `MERGE3_IN_PLACE` pada lembar kerja tidak sendiri menjamin kerja linear atau ruang O(1); asumsi biaya merge harus diperiksa pada implementasi.
 
-**QuadHistogram** membagi menjadi empat sublarik lalu menggabungkan empat vektor frekuensi panjang *K*. Relasinya, jika inisialisasi basis dan penggabungan masing-masing Θ(K), ialah T(n,K) = 4T(n/4,K) + Θ(K) untuk *n > 1*. Ada Θ(n) simpul pada pohon 4-ary, masing-masing dapat menyentuh Θ(K) elemen; total **Θ(nK)** untuk cara penulisan ini. Jika *K* dianggap konstanta, menjadi Θ(n). Algoritme iteratif satu histogram dapat bekerja Θ(n+K), sehingga bentuk rekursif yang membuat vektor baru di setiap panggilan punya biaya tambahan. Menyebut T(n) = 4T(n/4) + n tanpa membaca biaya `ADD4` akan keliru.
+**QuadHistogram** membagi menjadi empat subarray lalu menggabungkan empat vektor frekuensi panjang *K*. Relasinya, jika inisialisasi basis dan penggabungan masing-masing Θ(K), ialah T(n,K) = 4T(n/4,K) + Θ(K) untuk *n > 1*. Ada Θ(n) simpul pada pohon 4-ary, masing-masing dapat menyentuh Θ(K) elemen; total **Θ(nK)** untuk cara penulisan ini. Jika *K* dianggap konstanta, menjadi Θ(n). Algoritme iteratif satu histogram dapat bekerja Θ(n+K), sehingga bentuk rekursif yang membuat vektor baru di setiap panggilan punya biaya tambahan. Menyebut T(n) = 4T(n/4) + n tanpa membaca biaya `ADD4` akan keliru.
 
 ## 6. Ruang rekursi
 
